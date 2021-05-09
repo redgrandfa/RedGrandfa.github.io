@@ -9,7 +9,7 @@
   <script src="https://kit.fontawesome.com/62756de202.js" crossorigin="anonymous"></script>
   <style>
     *{      
-      outline: 1px solid red;
+      /* outline: 1px solid red; */
       padding: 0;
       margin: 0;
       list-style: none;
@@ -298,6 +298,7 @@
     .service .item>p{
       font-size: 14px;
       line-height: 1.3;
+      height: auto;
     }
     .dot{
       position: absolute;
@@ -320,9 +321,12 @@
     }
     footer div{
       display: flex;
+      justify-content: space-between;
       align-items: center;      
-      height: 59px;        
-      padding:20px 0;    
+      height: 59px;      
+      max-width: 1200px;
+      padding:20px 0;
+      margin: 0 auto 0;
     }
 
     footer div:not(:last-child){      
@@ -351,15 +355,75 @@
     }
 
     footer div p{
+      font-size: 12px;
       margin: auto 4px auto auto;
+      position: relative;
+    }
+    footer div p::after{
+      content: url("https://fakeimg.pl/68x68/333333");
+      position: absolute;
+
+      padding: 10px 10px 4px;
+      border: 1px solid #ddd;
+
+      bottom:30px;
+      right:-6px;
+    }
+
+    footer .familysites{
+      margin: 0 90px 0 auto;
+      position: relative;
+
+      font-size: 15px;;
+    }
+
+    footer .familysites::after{
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-top: 1px solid #222;
+      border-right: 1px solid #222;
+      position: relative;
+      left:4px;
+    }
+    footer .familysites li{      
+      display: none;
+    }
+    footer .familysites li a{      
+      margin: auto;
+    }
+    
+    footer .familysites:hover li{
+      display: flex;
+      /* justify-content: center;
+      align-content: center; */
+
+      width: 148px;
+      height: 53px;
+      border: 1px solid #777;
+      position: absolute;
+      bottom:22px;
+      left:-39px;
+    }
+
+    footer .snslist{
+      font-size: 25px;
+      margin: 0 ;
+    }
+    footer .snslist i{
+      font-size: 25px;
+      margin: 0 8px ;
     }
     /*  */
   </style>
 </head>
+
+
+
 <body>
   <div class="banner">
-    <h1>Life on LINE</h1>
-    <h4>LINE始終陪伴在你身旁100%*360</h4>    
+    <!-- <h1>Life on LINE</h1>
+    <h4>LINE始終陪伴在你身旁100%*360</h4>     -->
   </div>
   <!-- 1200*400 -->
   <div class="wrap">
@@ -877,36 +941,37 @@
       </ul>
     </div>
   </div>
-    <footer>
+
+  <footer>
       
-      <div>
-        <i class="fab fa-line"></i>
-        <ul class="downloadlist">
-          <li><a href="#"><i class="fab fa-apple"></i>
-            App Store
-          </a></li>
-          <li><a href="#"><i class="fab fa-google-play"></i>
-            Google Play
-          </a></li>
-          <li><a href="#"><i class="fas fa-desktop"></i>
-            Desktop
-          </a></li>
-          <li><a href="#"><i class="fab fa-windows"></i>
-            Windows Store
-          </a></li>
-          <li><a href="#">
-            Chrome
-          </a></li>
-          <li><a href="#">
-            APK
-          </a></li><li><a href="#">
-            Screen Saver
-          </a></li>
-        </ul>
-        <p>LINE 加入好友</p>
-      </div>
-    
-      <div>
+    <div>
+      <i class="fab fa-line"></i>
+      <ul class="downloadlist">
+        <li><a href="#"><i class="fab fa-apple"></i>
+          App Store
+        </a></li>
+        <li><a href="#"><i class="fab fa-google-play"></i>
+          Google Play
+        </a></li>
+        <li><a href="#"><i class="fas fa-desktop"></i>
+          Desktop
+        </a></li>
+        <li><a href="#"><i class="fab fa-windows"></i>
+          Windows Store
+        </a></li>
+        <li><a href="#">
+          Chrome
+        </a></li>
+        <li><a href="#">
+          APK
+        </a></li><li><a href="#">
+          Screen Saver
+        </a></li>
+      </ul>
+      <p>LINE 加入好友</p>
+    </div>
+  
+    <div>
       <ul class="footerlist">
         <a href="#">
           © LINE Corporation
@@ -924,26 +989,22 @@
         <li><a href="#">
           註冊及移動帳號
         </a></li>
-      </ul>
+      </ul>  
 
-      <ul>
-        Family sites
-        <li>
+      <ul class="familysites">
+        Family sites<li>
           <a href="#">中小企業工具</a>
         </li>
       </ul>
 
 
       <ul class="snslist">
-        <li><a href="#">
-          <i class="fab fa-youtube"></i>
-        </a></li>
-        <li><a href="#">
-          <i class="fab fa-facebook"></i>
-        </a></li>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></li>
       </ul>
     </div>
+
   </footer>
-  
+  </div>
 </body>
 </html>
