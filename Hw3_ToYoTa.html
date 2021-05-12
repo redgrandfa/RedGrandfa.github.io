@@ -7,7 +7,7 @@
   <title>復刻toyota</title>
   <style>
     *{
-      outline:1px solid #00b;
+      /* outline:1px solid #00b; */
       padding: 0px;
       margin: 0px;
       text-decoration: none;
@@ -194,19 +194,21 @@
       content:'';
       display: inline-block;
       background-color: #f3f3f3;
+      position: absolute;
+      z-index: -1;
+    }
+    .advantage:nth-child(odd) .video-BG-container::after{
       width: 435px;
       height: 285px;
-
-      position: absolute;
       top: -95px;
       /*照片高430 自身高-285  上偏+95*/
-      /* left:-355px;     */
-      right: -24px;
+      /* right: -24px; */
+      right: -32px;
       /*  右偏-80 icon+56*/
       /* 自身寬-435 */
 
-      z-index: -1;
     }
+
     .advantage:nth-child(even) .video-BG-container::after{
       width: 515px;
       height: 435px;
