@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    
+    .box{
+      width: 100px;
+      height: 100px;
+      color: #fff;
+      opacity: .5;
+      font-size: 30px;
+    }
+
+    /* fixed */
+    .box1{
+      background-color: #f00;
+      position: fixed;
+      top:90px;
+      /*bottom: 90px; */
+      right:500px;
+      left:40px;
+      margin: auto;
+    }
+
+    .box + p{
+      color: green;
+    }
+    /* fixed */
+
+    /* absolute */
+    .box2{
+      background-color: #00f;
+      position: absolute;
+
+    }
+    /* absolute */
+
+
+
+    /* sticky */
+    .box4{
+      background-color: #000;
+      position: absolute;
+
+    }
+    /* sticky */
+  </style>
+
+</head>
+
+<body>
+  <!-- fixed  -->
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque incidunt sequi nemo tenetur excepturi, quisquam consequatur quam cum reiciendis sit. Ab temporibus quo velit possimus rerum vitae quam ipsa placeat.</p>
+  <div class="box box1">box1</div>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi quas dicta nostrum similique neque molestias, ab nulla fugit assumenda eaque necessitatibus esse, itaque corrupti consectetur dolorum debitis quisquam eveniet nesciunt!</p>
+  <!-- fixed  -->
+
+<!-- absolute -->
+<div class="box box2">box2</div>
+<!-- absolute -->
+
+<!-- sticky -->
+<div class="box box4">box4</div>
+<!-- sticky -->
+
+
+
+</body>
+</html>

@@ -46,33 +46,32 @@
     }
     .container::before{
       content: '';
-      position: relative;
+      position: absolute;
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background-color: #fff;
       border: 1px solid #aaa;
-      left:595px; 
+      display: block;
+      margin: 0 auto;
     }
-    .container:nth-child(even)::before{
-      left:-595px; 
-    }
+
     .container{
       width: 1200px;
       display: flex;      
       margin: auto;
-      /* align-items: center; */
+      justify-content: center;
+      position: relative;
     }    
     .container:nth-child(even){
       flex-direction: row-reverse;
     }
     .col1{
-      width: 31.5px;
+      width: 39px;
     }  
     .col2{
       margin: auto 0;
       width: 490px;
-      /* height: 430px; */
     }  
     .col3{
       width: 70px;
@@ -110,8 +109,7 @@
       padding-bottom: 15px;
     } 
     p{
-      color: #777 ;      
-      /* font-weight: 900;    */
+      color: #777 ;
       line-height:1.7;
       font-size: 18px;
     }
@@ -142,13 +140,13 @@
     
     .end{
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
+      height: 18px;
+      width: 18px;
       background-color: #fff;
       border: 1px solid #aaa;
-      position: relative;
-      left: -11px;
-      top:9px;
+      position: absolute;
+      margin: auto;
+      bottom: -10px;
     }
     .end::before{
       content: '';
@@ -157,8 +155,11 @@
       width: 5px;
       background-color: #aaa;
       position: absolute;
-      left: 7.5px;
-      top:7.5px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
 
     .gray{      
@@ -205,7 +206,7 @@
       height: 220px;
       border-radius: 22px 22px 0 0;
     }
-    .box>.item>h4{      
+    .box>.item>h4{
       margin-top: 30px;
       font-size: 25px;
       line-height: 2;
@@ -239,29 +240,33 @@
     .service{
       display: flex;
       min-width: 1200px;
+      position: relative;
     }
 /* 側欄*/
-    .service>aside{
+      aside{            
+        position: relative;
+      }
+      aside>.asidelist{
       position: sticky;
-      /* overflow: auto; */
 
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-
+      /* padding-left: 40px; */
       width: 270px;
       top:190x;
-      padding-left: 40px;
-      margin: 0 0 0 auto;
+      left:40px;
+
+      /* margin: 0 0 0 auto; */
     }
-    .service>aside>a{
+    .service>aside>.asidelist>a{
       padding: 7px 16px 9px;
       font-size: 13px;
       border-radius: 25px;
       border: 0.7px solid #ccc;
       margin: 15px 0 0;
     }
-    .service>aside>a:first-child{
+    .service>aside>.asidelist>a:first-child{
       width: 70px;
       background-color: #2b4;
       border-color:#2b4;
@@ -276,11 +281,10 @@
       margin: 0 auto 0 0;
     }
     
-    .service .item{
-      box-sizing: border-box;
+    .service .item{      
       width: 270px;
       height: 335px;
-      padding: 35px;
+      box-sizing: border-box;
       border: 1px ridge ;
       margin: 40px 0 0;
       
@@ -292,6 +296,40 @@
       text-align: left;
       position: relative;
     }
+
+    .service .item .overlay{      
+      display:none;
+      width: 100%;
+      height: 100%;
+      position:absolute;
+      top:0;
+    }
+    .service .item:hover .overlay{
+      display:flex;
+      flex-direction:column;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: rgba(0,0,0, .8);
+    }
+
+    .service .item .content{        
+      margin: 35px;
+    }
+
+    .overlay a{
+      width: 150px;
+      line-height: 45px;
+      border-radius: 4px;
+      border: 1px solid #fff;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+    }
+    .overlay a:hover{
+      background-color: #090;
+      border-color: #090;
+    }
+
     .service .item>img{
       border-radius: 16px;
     }
@@ -400,8 +438,6 @@
     
     footer .familysites:hover li{
       display: flex;
-      /* justify-content: center;
-      align-content: center; */
 
       width: 148px;
       height: 53px;
@@ -547,8 +583,9 @@
       <div class="space"></div>
         <img src="https://picsum.photos/600/430/?random=2">
       <div class="space"></div>
-      <div class="end"></div>
+
     </div>
+    <div class="end"></div>
   </div>
 
 
@@ -602,24 +639,34 @@
 
     <div class="service">
       <aside>
-        <a href="#">All Product</a>
-        <a href="#">通訊</a>
-        <a href="#">娛樂</a>
-        <a href="#">生活</a>
-        <a href="#">購物</a>
-        <a href="#">工具</a>
-        <a href="#">金融</a>
-        <a href="#">企業商務</a>
-        <a href="#">新聞資訊</a>
-        <a href="#">相機</a>
+        <div class="asidelist">
+          <a href="#">All Product</a>
+          <a href="#">通訊</a>
+          <a href="#">娛樂</a>
+          <a href="#">生活</a>
+          <a href="#">購物</a>
+          <a href="#">工具</a>
+          <a href="#">金融</a>
+          <a href="#">企業商務</a>
+          <a href="#">新聞資訊</a>
+          <a href="#">相機</a>
+        </div>
       </aside>
       <ul class="box">
         <li class="item">
-          <img src="https://picsum.photos/70/70/?random=1">
-          <h4>LINE Messenger</h4>
-          <p>拉近人與人、人與資訊及應用服務間的距離的通訊軟體</p>
-          <div class="dot"></div>
+          <div class="content">
+            <img src="https://picsum.photos/70/70/?random=1">
+            <h4>LINE Messenger</h4>
+            <p>拉近人與人、人與資訊及應用服務間的距離的通訊軟體</p>
+            <div class="dot"></div>
+          </div>
+          <div class="overlay">
+            <a href="#"><i class="fab fa-apple"></i>App Store</a>
+            <a href="#"><i class="fab fa-google-play"></i>Google Play</a>
+            <a href="#"><i class="fas fa-external-link-alt"></i>其他詳細資訊</a>
+          </div>
         </li>
+        
         <li class="item">
           <img src="https://picsum.photos/70/70/?random=1">
           <h4>LINE STORE</h4>

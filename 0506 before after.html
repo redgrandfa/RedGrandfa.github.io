@@ -6,16 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+
+    p{
+      background-color: #0f0;
+    }
     p::before{
       content:'be';
+      display: block;      
+      height: 100px;
+      
+      position: absolute;
+      top: 30px;
+      bottom: 50px;
+      margin: auto;
     }
+
     p::after{
-      content:'af';
+      content:'af';      
+      display: inline-block;
+      height: 100px;
+      background-color: #f00;
+
     }
+
+    div{
+      background-color: #f00;
+    }
+    div::before{
+      content:url(LineIcon.png);
+      /* background-image: url(qwe.jpg); */
+      /* content:''; */
+      overflow:hidden;
+      display: block;
+      width: 100px;
+      height: 100px;
+      background-color: #00f;
+    }
+    div::after{
+      content:'af';
+      display: inline-block;
+    }
+
   </style>
+
+
 </head>
-<p>嗨</p>
+
 <body>
-  
+
+  <p>嗨  Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis voluptatem eos ab vitae, nostrum repellendus neque temporibus exercitationem nisi libero eaque asperiores, omnis quis in maiores! Rem totam tenetur vitae?
+  </p>
+  <div></div>
+
+
 </body>
 </html>
