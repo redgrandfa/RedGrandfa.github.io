@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      outline: 1px ;
+    }
+    .wrap{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .col{
+      display: block;
+      width: calc(50% - 30px);
+      background-color: #f00;
+      margin: 15px;
+    }
+    img{
+      width: 100%;
+    }
+    
+/* lg xl */
+    @media screen and (min-width:768px) {
+      .col{
+        width: calc(33.333333% - 30px);
+      }
+    }
+    @media screen and (min-width:1200px) {
+      .col{
+        width: calc(16.666666% - 30px);
+      }
+    }
+  </style>
+</head>
+<body>
+  .wrap>.col*6>h3*3+p*4
+  <div class="wrap">
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+    <div class="col">
+      <img src="https://picsum.photos/300/200/?random=1">
+      <h4>title</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore laudantium molestias est incidunt nisi impedit doloremque ducimus ex voluptas. Voluptatem minus corporis optio nam corrupti necessitatibus tempore expedita exercitationem!</p>
+    </div>
+  </div>
+  
+</body>
+</html>

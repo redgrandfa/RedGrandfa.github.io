@@ -1,466 +1,466 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>復刻LINE｜始終陪伴在你身旁。</title>
-    <link rel="Shortcut Icon" type="image/x-icon" href="LineIcon.png"/>
-    <script src="https://kit.fontawesome.com/62756de202.js" crossorigin="anonymous"></script>
-    <style>
-      *{      
-        /* outline: 1px solid red; */
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-decoration: none;
-        font-family: Arial,sans-serif;
-        font-weight: border;
-      }
-  
-      a{
-        color: #000;
-      }
-      .banner{
-        width: 1200px;
-        height: 360px;
-        /*display: flex; */
-        text-align: center;
-        background-image: url("https://picsum.photos/1200/360/?random=1");
-        margin: auto;
-      }
-      .wrap{       
-        text-align: center;     
-        width: 1200px;
-        height: 440px;
-        box-sizing: border-box;
-        margin: auto;
-      }
-      .wrap>h2{
-        padding: 80px 0 0 0;
-        font-size: 75px;
-      }
-      .wrap>p{
-        font-size: 20px;      
-        font-weight: bolder;
-      }
-      .container::before{
-        content: '';
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: #fff;
-        border: 1px solid #aaa;
-        display: block;
-        margin: 0 auto;
-      }
-  
-      .container{
-        width: 1200px;
-        display: flex;      
-        margin: auto;
-        justify-content: center;
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>復刻LINE｜始終陪伴在你身旁。</title>
+  <link rel="Shortcut Icon" type="image/x-icon" href="LineIcon.png"/>
+  <script src="https://kit.fontawesome.com/62756de202.js" crossorigin="anonymous"></script>
+  <style>
+    *{      
+      /* outline: 1px solid red; */
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      text-decoration: none;
+      font-family: Arial,sans-serif;
+      font-weight: border;
+    }
+
+    a{
+      color: #000;
+    }
+    .banner{
+      width: 1200px;
+      height: 360px;
+      /*display: flex; */
+      text-align: center;
+      background-image: url("https://picsum.photos/1200/360/?random=1");
+      margin: auto;
+    }
+    .wrap{       
+      text-align: center;     
+      width: 1200px;
+      height: 440px;
+      box-sizing: border-box;
+      margin: auto;
+    }
+    .wrap>h2{
+      padding: 80px 0 0 0;
+      font-size: 75px;
+    }
+    .wrap>p{
+      font-size: 20px;      
+      font-weight: bolder;
+    }
+    .container::before{
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 1px solid #aaa;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .container{
+      width: 1200px;
+      display: flex;      
+      margin: auto;
+      justify-content: center;
+      position: relative;
+    }    
+    .container:nth-child(even){
+      flex-direction: row-reverse;
+    }
+    .col1{
+      width: 39px;
+    }  
+    .col2{
+      margin: auto 0;
+      width: 490px;
+    }  
+    .col3{
+      width: 70px;
+    }  
+    .col4{
+      width: 599px;
+      border-left: 1px dotted #999;
+      border-right: none;
+      display: flex;
+      flex-direction: column;
+    }  
+    .container:nth-child(even)>.col4{
+      border-left: none;
+      border-right: 1px dotted #999;
+    }
+    .container:nth-child(even)> .col4>img{
+      height: 740px;
+    }
+    .col2>i{
+      font-size: 100px;
+      color: #0c0;
+    }
+    .col2>.item{     
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .col2>.item>h3{
+      font-size: 40px;
+      line-height: 2.3;
+    } 
+    .slogan{
+      color: #0a0;       
+      line-height: 1;
+      padding-bottom: 15px;
+    } 
+    p{
+      color: #777 ;
+      line-height:1.7;
+      font-size: 18px;
+    }
+    .hyperlinks{
+      display: flex;
+      margin-top: 40px;
+    }
+    .hyperlinks>a>i{
+      font-size:20px;
+    }
+    .hyperlinks>a{
+      display: block;
+      padding: 15px;
+      width: 150px;
+      border: 1px solid #ddd;
+      margin: 1px;
+
+      color: #111;
+      text-align: center;
+      font-size: 16px;
+    }
+    .hyperlinks>.icon{
+      width: 20px;
+    }
+    .col4>.space{
+      height: 150px;
+    }
+    
+    .end{
+      border-radius: 50%;
+      height: 18px;
+      width: 18px;
+      background-color: #fff;
+      border: 1px solid #aaa;
+      position: absolute;
+      margin: auto;
+      bottom: -10px;
+    }
+    .end::before{
+      content: '';
+      border-radius: 50%;
+      height: 5px;
+      width: 5px;
+      background-color: #aaa;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .gray{      
+      background-color: #f4f4f4;
+      min-width: 1200px;
+      width: 100%;
+      padding-bottom: 230px;
+    }
+/* 通訊軟體 */
+    .communication{
+      min-width: 1200px;      
+      width: 100%;
+
+      text-align: center;
+      padding: 180px 0 180px 0;
+    }
+    .communication>h2,.serviceHead{
+      font-size: 60px;
+      text-align: center;
+    }
+    .communication>p{
+      font-size: 20px;      
+      font-weight: bolder;
+      padding: 10px 0 90px;
+    }
+    .box{      
+      width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: auto;
+    }    
+    .box>.item{
+      width: 340px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+    }
+    .box>.item>.imgCellphone{
+      width: 150px;
+      height: 220px;
+      border-radius: 22px 22px 0 0;
+    }
+    .box>.item>h4{
+      margin-top: 30px;
+      font-size: 25px;
+      line-height: 2;
+    }
+    .box>.item>p{
+      font-size: 15px;
+      height: 100px;
+      line-height: 1.4;
+    }
+
+/* 企業服務 */
+    .bannerService{
+      min-width: 1200px;      
+      width: 100%;
+      max-width: 2000px;
+      height: 320px;      
+      background-image: url("https://picsum.photos/2000/320/?random=1");
+      display: flex;
+      margin: auto;
+    }
+    .bannerService>h1{   
+      margin: auto;
+      font-size: 45px;
+      color: #fff;
+    }
+/* 服務總覽 */
+    .serviceHead{
+      padding-top: 180px;
+      height: 150px;
+    }
+    .service{
+      display: flex;
+      min-width: 1200px;
+      position: relative;
+    }
+/* 側欄*/
+      aside{            
         position: relative;
-      }    
-      .container:nth-child(even){
-        flex-direction: row-reverse;
       }
-      .col1{
-        width: 39px;
-      }  
-      .col2{
-        margin: auto 0;
-        width: 490px;
-      }  
-      .col3{
-        width: 70px;
-      }  
-      .col4{
-        width: 599px;
-        border-left: 1px dotted #999;
-        border-right: none;
-        display: flex;
-        flex-direction: column;
-      }  
-      .container:nth-child(even)>.col4{
-        border-left: none;
-        border-right: 1px dotted #999;
-      }
-      .container:nth-child(even)> .col4>img{
-        height: 740px;
-      }
-      .col2>i{
-        font-size: 100px;
-        color: #0c0;
-      }
-      .col2>.item{     
-        width: 100%;
-        box-sizing: border-box;
-      }
-  
-      .col2>.item>h3{
-        font-size: 40px;
-        line-height: 2.3;
-      } 
-      .slogan{
-        color: #0a0;       
-        line-height: 1;
-        padding-bottom: 15px;
-      } 
-      p{
-        color: #777 ;
-        line-height:1.7;
-        font-size: 18px;
-      }
-      .hyperlinks{
-        display: flex;
-        margin-top: 40px;
-      }
-      .hyperlinks>a>i{
-        font-size:20px;
-      }
-      .hyperlinks>a{
-        display: block;
-        padding: 15px;
-        width: 150px;
-        border: 1px solid #ddd;
-        margin: 1px;
-  
-        color: #111;
-        text-align: center;
-        font-size: 16px;
-      }
-      .hyperlinks>.icon{
-        width: 20px;
-      }
-      .col4>.space{
-        height: 150px;
-      }
+      aside>.asidelist{
+      position: sticky;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /* padding-left: 40px; */
+      width: 270px;
+      top:190x;
+      left:40px;
+
+      /* margin: 0 0 0 auto; */
+    }
+    .service>aside>.asidelist>a{
+      padding: 7px 16px 9px;
+      font-size: 13px;
+      border-radius: 25px;
+      border: 0.7px solid #ccc;
+      margin: 15px 0 0;
+    }
+    .service>aside>.asidelist>a:first-child{
+      width: 70px;
+      background-color: #2b4;
+      border-color:#2b4;
+      color: #fff;
+      font-size: 14px;
+      padding-top: 10px;
+    }
+
+    .service .box{
+      box-sizing: border-box;
+      width: 900px;
+      margin: 0 auto 0 0;
+    }
+    
+    .service .item{      
+      width: 270px;
+      height: 335px;
+      box-sizing: border-box;
+      border: 1px ridge ;
+      margin: 40px 0 0;
       
-      .end{
-        border-radius: 50%;
-        height: 18px;
-        width: 18px;
-        background-color: #fff;
-        border: 1px solid #aaa;
-        position: absolute;
-        margin: auto;
-        bottom: -10px;
-      }
-      .end::before{
-        content: '';
-        border-radius: 50%;
-        height: 5px;
-        width: 5px;
-        background-color: #aaa;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-      }
-  
-      .gray{      
-        background-color: #f4f4f4;
-        min-width: 1200px;
-        width: 100%;
-        padding-bottom: 230px;
-      }
-  /* 通訊軟體 */
-      .communication{
-        min-width: 1200px;      
-        width: 100%;
-  
-        text-align: center;
-        padding: 180px 0 180px 0;
-      }
-      .communication>h2,.serviceHead{
-        font-size: 60px;
-        text-align: center;
-      }
-      .communication>p{
-        font-size: 20px;      
-        font-weight: bolder;
-        padding: 10px 0 90px;
-      }
-      .box{      
-        width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: auto;
-      }    
-      .box>.item{
-        width: 340px;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-      }
-      .box>.item>.imgCellphone{
-        width: 150px;
-        height: 220px;
-        border-radius: 22px 22px 0 0;
-      }
-      .box>.item>h4{
-        margin-top: 30px;
-        font-size: 25px;
-        line-height: 2;
-      }
-      .box>.item>p{
-        font-size: 15px;
-        height: 100px;
-        line-height: 1.4;
-      }
-  
-  /* 企業服務 */
-      .bannerService{
-        min-width: 1200px;      
-        width: 100%;
-        max-width: 2000px;
-        height: 320px;      
-        background-image: url("https://picsum.photos/2000/320/?random=1");
-        display: flex;
-        margin: auto;
-      }
-      .bannerService>h1{   
-        margin: auto;
-        font-size: 45px;
-        color: #fff;
-      }
-  /* 服務總覽 */
-      .serviceHead{
-        padding-top: 180px;
-        height: 150px;
-      }
-      .service{
-        display: flex;
-        width: 1200px;
-        margin: auto;
-      }
-  /* 側欄*/
-      aside{
-  
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        /* padding-left: 40px; */
-        width: 270px;
-
-        position: sticky;
-        top:190x;
-        left:40px;
-      }
-      .service>aside>a{
-        padding: 7px 16px 9px;
-        font-size: 13px;
-        border-radius: 25px;
-        border: 0.7px solid #ccc;
-        margin: 15px 0 0;
-      }
-      .service>aside>a:first-child{
-        width: 70px;
-        background-color: #2b4;
-        border-color:#2b4;
-        color: #fff;
-        font-size: 14px;
-        padding-top: 10px;
-      }
-  
-      .service .box{
-        box-sizing: border-box;
-        width: 900px;
-        margin: 0 auto 0 0;
-      }
+      background-color: #fff;
+      box-shadow:0px 14px 33px #ddd;
       
-      .service .item{      
-        width: 270px;
-        height: 335px;
-        box-sizing: border-box;
-        border: 1px ridge ;
-        margin: 40px 0 0;
-        
-        background-color: #fff;
-        box-shadow:0px 14px 33px #ddd;
-        
-        justify-content: flex-start;
-        align-items: flex-start;
-        text-align: left;
-        position: relative;
-      }
-  
-      .service .item .overlay{      
-        display:none;
-        width: 100%;
-        height: 100%;
-        position:absolute;
-        top:0;
-      }
-      .service .item:hover .overlay{
-        display:flex;
-        flex-direction:column;
-        justify-content: space-evenly;
-        align-items: center;
-        background-color: rgba(0,0,0, .8);
-      }
-  
-      .service .item .content{        
-        margin: 35px;
-      }
-  
-      .service .item>.content>img{
-        border-radius: 16px;
-      }
-      .service .item>.content>h4{
-        margin: 10px 0 10px;
-        font-size: 20px;
-        line-height: 1.3;
-      }
-      .service .item>.content>p{
-        font-size: 14px;
-        line-height: 1.3;
-        height: auto;
-      }
-      .dot{
-        position: absolute;
-        bottom:35px; 
-  
-        border-radius: 50%;
-        width: 5px;
-        height: 5px;
-        background-color: #aaa;
-        box-shadow: 8px 0px  0px #aaa,
-        16px 0px  0px #aaa;
-      }
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: left;
+      position: relative;
+    }
 
-      .overlay a{
-        width: 150px;
-        line-height: 45px;
-        border-radius: 4px;
-        border: 1px solid #fff;
-        text-align: center;
-        background-color: #000;
-        color: #fff;
-      }
-      .overlay a:hover{
-        background-color: #090;
-        border-color: #090;
-      }
+    .service .item .overlay{      
+      display:none;
+      width: 100%;
+      height: 100%;
+      position:absolute;
+      top:0;
+    }
+    .service .item:hover .overlay{
+      display:flex;
+      flex-direction:column;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: rgba(0,0,0, .8);
+    }
 
-  
-      /* footer */
-      footer{
-        box-sizing: border-box;
-        min-width: 1200px;
-        width: 100%;      
-        padding:0 20px;
-      }
-      footer div{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;      
-        height: 59px;      
-        max-width: 1200px;
-        padding:20px 0;
-        margin: 0 auto 0;
-      }
-  
-      footer div:not(:last-child){      
-        border-bottom: 1px solid #ddd;
-      }
-      footer ul{
-        /* font-size: 9px; */
-        display: flex;
-        align-items: center;      
-        font-size: 13px;
-      }
-      footer div>i{
-        font-size: 46px;      
-      }
-      footer ul li{
-        margin: 0 14px;
-      }
-      footer ul li:not(:last-child)::after{
-        content:'';
-        /* width: 1px;
-        height: 10px;
-        border-right-color: #000; */
-        border: 0.1px solid #aaa; 
-        position: relative;
-        left:15px;
-      }
-  
-      footer div p{
-        font-size: 12px;
-        margin: auto 4px auto auto;
-        position: relative;
-      }
-      footer div p::after{
-        content: url("https://fakeimg.pl/68x68/333333");
-        position: absolute;
-  
-        padding: 10px 10px 4px;
-        border: 1px solid #ddd;
-        background-color: #fff;
-        bottom:30px;
-        right:-6px;
-      }
-  
-      footer .familysites{
-        margin: 0 90px 0 auto;
-        position: relative;
-  
-        font-size: 15px;;
-      }
-  
-      footer .familysites::after{
-        content: '';
-        width: 5px;
-        height: 5px;
-        border-top: 1px solid #222;
-        border-right: 1px solid #222;
-        position: relative;
-        left:4px;
-      }
-      footer .familysites li{      
-        display: none;
-      }
-      footer .familysites li a{      
-        margin: auto;
-      }
-      
-      footer .familysites:hover li{
-        display: flex;
-  
-        width: 148px;
-        height: 53px;
-        border: 1px solid #777;
-        position: absolute;
-        bottom:22px;
-        left:-39px;
-      }
-  
-      footer .snslist{
-        font-size: 25px;
-        margin: 0 ;
-      }
-      footer .snslist i{
-        font-size: 25px;
-        margin: 0 8px ;
-      }
+    .service .item .content{        
+      margin: 35px;
+    }
 
-      @media screen and (max-width:850px) {
+    .overlay a{
+      width: 150px;
+      line-height: 45px;
+      border-radius: 4px;
+      border: 1px solid #fff;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+    }
+    .overlay a:hover{
+      background-color: #090;
+      border-color: #090;
+    }
+
+    .service .item>img{
+      border-radius: 16px;
+    }
+    .service .item>h4{
+      margin: 10px 0 10px;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    .service .item>p{
+      font-size: 14px;
+      line-height: 1.3;
+      height: auto;
+    }
+    .dot{
+      position: absolute;
+      bottom:35px; 
+
+      border-radius: 50%;
+      width: 5px;
+      height: 5px;
+      background-color: #aaa;
+      box-shadow: 8px 0px  0px #aaa,
+      16px 0px  0px #aaa;
+    }
+
+    /* footer */
+    footer{
+      box-sizing: border-box;
+      min-width: 1200px;
+      width: 100%;      
+      padding:0 20px;
+    }
+    footer div{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;      
+      height: 59px;      
+      max-width: 1200px;
+      padding:20px 0;
+      margin: 0 auto 0;
+    }
+
+    footer div:not(:last-child){      
+      border-bottom: 1px solid #ddd;
+    }
+    footer ul{
+      /* font-size: 9px; */
+      display: flex;
+      align-items: center;      
+      font-size: 13px;
+    }
+    footer div>i{
+      font-size: 46px;      
+    }
+    footer ul li{
+      margin: 0 14px;
+    }
+    footer ul li:not(:last-child)::after{
+      content:'';
+      /* width: 1px;
+      height: 10px;
+      border-right-color: #000; */
+      border: 0.1px solid #aaa; 
+      position: relative;
+      left:15px;
+    }
+
+    footer div p{
+      font-size: 12px;
+      margin: auto 4px auto auto;
+      position: relative;
+    }
+    footer div p::after{
+      content: url("https://fakeimg.pl/68x68/333333");
+      position: absolute;
+
+      padding: 10px 10px 4px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      bottom:30px;
+      right:-6px;
+    }
+
+    footer .familysites{
+      margin: 0 90px 0 auto;
+      position: relative;
+
+      font-size: 15px;;
+    }
+
+    footer .familysites::after{
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-top: 1px solid #222;
+      border-right: 1px solid #222;
+      position: relative;
+      left:4px;
+    }
+    footer .familysites li{      
+      display: none;
+    }
+    footer .familysites li a{      
+      margin: auto;
+    }
+    
+    footer .familysites:hover li{
+      display: flex;
+
+      width: 148px;
+      height: 53px;
+      border: 1px solid #777;
+      position: absolute;
+      bottom:22px;
+      left:-39px;
+    }
+
+    footer .snslist{
+      font-size: 25px;
+      margin: 0 ;
+    }
+    footer .snslist i{
+      font-size: 25px;
+      margin: 0 8px ;
+    }
+    /*  */
+  </style>
+</head>
 
 
-      }
-      /*  */
-    </style>
-  </head>
-  
+
 <body>
   <div class="banner">
     <!-- <h1>Life on LINE</h1>
@@ -599,31 +599,43 @@
     
       <ul class="box">
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>聊天、語音通話&視訊通話</h4>
           <p>能夠和好友一對一或多人群組訊息聊天，或是進行語音、視訊通話。</p>
         </li>
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>貼圖＆表情貼＆主題</h4>
           <p>使用有趣的貼圖或表情貼豐富聊天，也能更換超讚的主題來表達自己。</p>
         </li>
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>主頁</h4>
           <p>可以快速連結 LINE 的各種服務，包含貼圖等多樣的內容資訊。</p>
         </li>
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>社群</h4>
           <p>輕鬆分享共同興趣、開心聊出好麻吉。</p>
         </li>
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>貼文串</h4>
           <p>供你分享你的近況，或是瞭解好友的最新消息。透過「探索」功能，能找到更多你喜愛的內容。</p>
         </li>
         <li class="item">
+          <div class="content">
+
           <img class="imgCellphone" src="https://picsum.photos/150/220/?random=1">
           <h4>錢包</h4>
           <p>使用「 LINE Pay 」可以進行安全方便的行動付款或轉帳，也能使用其他金融相關服務。</p>
@@ -639,6 +651,7 @@
 
     <div class="service">
       <aside>
+        <div class="asidelist">
           <a href="#">All Product</a>
           <a href="#">通訊</a>
           <a href="#">娛樂</a>
@@ -649,10 +662,12 @@
           <a href="#">企業商務</a>
           <a href="#">新聞資訊</a>
           <a href="#">相機</a>
+        </div>
       </aside>
-
       <ul class="box">
         <li class="item">
+          <div class="content">
+
           <div class="content">
             <img src="https://picsum.photos/70/70/?random=1">
             <h4>LINE Messenger</h4>
@@ -664,13 +679,21 @@
             <a href="#"><i class="fab fa-google-play"></i>Google Play</a>
             <a href="#"><i class="fas fa-external-link-alt"></i>其他詳細資訊</a>
           </div>
+
+          </div>
+          <div class="overlay">
+            <a href="#"><i class="fab fa-apple"></i>App Store</a>
+            <a href="#"><i class="fab fa-google-play"></i>Google Play</a>
+            <a href="#"><i class="fas fa-external-link-alt"></i>其他詳細資訊</a>
+          </div>
         </li>
         
         <li class="item">
           <div class="content">
-            <img src="https://picsum.photos/70/70/?random=1">
-            <h4>LINE STORE</h4>
-            <p>可購買 LINE 貼圖、主題或遊戲中貨幣的官方線上商店</p>
+
+          <img src="https://picsum.photos/70/70/?random=1">
+          <h4>LINE STORE</h4>
+          <p>可購買 LINE 貼圖、主題或遊戲中貨幣的官方線上商店</p>
             <div class="dot"></div>
           </div>
           <div class="overlay">
