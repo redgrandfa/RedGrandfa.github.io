@@ -118,14 +118,21 @@ a{
 .non-profit{
   min-width:$min-width;
   .banner{
-    height: 200px;
+    height: 166px;
     .box{
-      height: 200px;
       background-color:$transp-blue;
+
+      h2,p{
+        font-size: 22px;
+        margin: 0;
+      }
     }
   }
   .non-profit-links{ 
+    height: 166px;
     max-width:$max-width;
+    margin-bottom: 0;
+    
   }
 }
 
@@ -133,17 +140,27 @@ a{
 .footer{
   min-width:$min-width;
   background-color: #ddd;
+  margin-bottom: -25px;
   .box{
     max-width:$max-width;
-    // background-color: #dfd;
-
     .contact{
       width: 400px;
+      .chatroom{
+        display: block;
+        width: 77px;
+        height: 77px;
+        border-radius: 50%;
+        background-color: #77f;
+
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+      }
     }
     .copyright{
       width: 300px;
-      // background-color: #fdd;
     }
   }
-
 }
