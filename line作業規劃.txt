@@ -1,0 +1,61 @@
+.banner
+.wrap
+	h2
+	p
+		
+
+.container
+	.pic
+		img
+	.info
+		i
+		.item
+			h3
+			p.slogan
+			p
+			.hyperlinks
+				a.icon
+					i
+
+.gray
+	.communcation
+		h2
+		p
+	ul.box
+		li.item*6
+			img.imgCellphong
+			h4
+			p
+.service
+	aside
+	ul.box
+		li.item*...
+			.content
+				img
+				h4
+				p
+				.dot
+
+			.overlay
+
+
+footer
+ div
+	i	icon
+	ul.downloadlist
+		li
+			a
+				i
+	p	LINE 加入好友
+
+	ul.footerlist	© LINE Corporation
+		li	
+			a	常見問題 服務條款
+				隱私權政策 註冊及移動帳號
+
+	ul.familysites	Family sites
+		li
+			a	中小企業工具
+	ul.snslist
+		a
+			i	icon
