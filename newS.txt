@@ -1,7 +1,0 @@
-            <div class="dot"></div>
-          </div>
-          <div class="overlay">
-            <a href="#"><i class="fab fa-apple"></i>App Store</a>
-            <a href="#"><i class="fab fa-google-play"></i>Google Play</a>
-            <a href="#"><i class="fas fa-external-link-alt"></i>其他詳細資訊</a>
-          </div>
