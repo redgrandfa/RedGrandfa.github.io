@@ -57,22 +57,28 @@
         ];
 
         let tbody = document.getElementsByTagName('tbody')[0];
-        console.log(reservoirs);
         reservoirs.forEach( (rr,idx)=>{
-          // console.log(rr);
           let tr= document.createElement('tr');
           tbody.appendChild(tr);
           let tdid = document.createElement('td');
           tr.appendChild(tdid);
           tdid.innerText=`${idx+1}`;
           let proerties = Object.keys(rr);
-          // console.log(proerties);
 
-          proerties.forEach(p=>{
-            // console.log(rr[p]);
-          let td = document.createElement('td');
+          proerties.forEach((p,idx)=>{
+            let td = document.createElement('td');
             tr.appendChild(td);
             td.innerText=rr[p];
+            switch(idx){
+              case 1:
+                td.innerText += "萬立方公尺"
+                break;
+              case 2:
+                td.innerText += "%"
+                break;
+              default:
+                break;
+            }
           });
         });
 
