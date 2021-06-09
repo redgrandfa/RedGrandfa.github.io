@@ -63,17 +63,17 @@
           let tdid = document.createElement('td');
           tr.appendChild(tdid);
           tdid.innerText=`${idx+1}`;
+          
           let proerties = Object.keys(rr);
-
-          proerties.forEach((p,idx)=>{
+          proerties.forEach((p)=>{
             let td = document.createElement('td');
             tr.appendChild(td);
             td.innerText=rr[p];
-            switch(idx){
-              case 1:
+            switch(p){
+              case 'capacity':
                 td.innerText += "萬立方公尺"
                 break;
-              case 2:
+              case 'percent':
                 td.innerText += "%"
                 break;
               default:
