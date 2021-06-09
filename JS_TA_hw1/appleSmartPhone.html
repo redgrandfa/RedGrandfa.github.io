@@ -20,7 +20,6 @@
   <div id="products" class="">
     <a id="iPHONE" href="#" class="btn btn-dark">iPHONE</a>iPad MacPro
   </div>
-  
   <div id="product-info" class="container">
     <div class="row">
       <div id="product-photo" class="col-12 col-md-6">
@@ -53,7 +52,7 @@
   </div>
 
   <script>
-    let products ={
+    let dataStuct={
       iPhone:{
         BaseImg:'',
         BasePrice:'',
@@ -145,6 +144,25 @@
         ]
       },
     }
+    let products = document.getElementById("products");
+    let productInfo = document.getElementById("product-info");
+    let productPhoto = document.getElementById("product-photo");
+    // let detailSelections = document.getElementById("detail-selections");
+    let model = document.getElementById("model");
+    
+    let specification = document.getElementById("specification");
+    let totalPrice = document.getElementById("total-price");
+
+    dataStuct.forEach(p => {
+      let values = Object.values(p);
+      //產生按鈕
+      //事件
+      // console.log(product);
+      p.forEach(prop =>{
+
+
+      });      
+    });
   </script>
 
 </body>
