@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple product</title>
+  <style>
+    /* a{
+      text-decoration: none;
+    }
+    .product>a{
+      background-color: #000;
+      color: #000;
+    } */
+
+  </style>
+</head>
+<body>
+  <div id="products" class="">
+    <a id="iPHONE" href="#" class="btn btn-dark">iPHONE</a>iPad MacPro
+  </div>
+  
+  <div id="product-info" class="container">
+    <div class="row">
+      <div id="product-photo" class="col-12 col-md-6">
+        <img>
+      </div>
+      <div id="detail-selections"class="col-12 col-md-6">
+        <ul id="model"class="">
+          <h1>選擇機型</h1>
+          <li>
+            <a href="#" class="btn btn-primary">
+              <sapn>iPhone 12 Pro Max</sapn>
+              <span class="price"></span>
+              </a>
+          </li>
+        </ul>
+        <ul id="specification" class="">
+          <h1>選擇規格</h1>
+          <li>
+            <a href="#" class="btn btn-primary">
+              <sapn>128GB</sapn>
+              <span class="price"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <h3 id="total-price">123</h3>
+    </div>
+    
+
+  </div>
+
+  <script>
+    let products ={
+      iPhone:{
+        BaseImg:'',
+        BasePrice:'',
+        Model:[
+          {
+            name:'iPhone 12 Pro' 
+            ,img:''
+            , extraPrice:0
+          },
+          {
+            name:'iPhone 12 Pro Max' 
+            , img:''
+            ,extraPrice:1
+          }
+        ],
+        Spec:[
+          {
+            size:'128GB'
+            ,extraPrice:0
+          },
+          {
+            size:'256GB'
+            ,extraPrice:1
+          },
+          {
+            size:'512GB'
+            ,extraPrice:2
+          }
+        ]
+      },
+      iPad:{
+        BaseImg:'',
+        BasePrice:'',
+        Model:[
+          {
+            name:'11吋顯示器' 
+            ,img:''
+            , extraPrice:0
+          },
+          {
+            name:'12.9吋顯示器' 
+            , img:''
+            ,extraPrice:1
+          }
+        ],
+        Spec:[
+          {
+            size:'512GB'
+            ,extraPrice:0
+          },
+          {
+            size:'1TB'
+            ,extraPrice:1
+          }
+        ]
+      },
+      MacPro:{
+        BaseImg:'',
+        BasePrice:'',
+        Model:[
+          {
+            name:'' 
+            ,img:''
+            , extraPrice:0
+          },
+          {
+            name:'' 
+            , img:''
+            ,extraPrice:1
+          }
+        ],
+        Spec:[
+          {
+            size:'256GB'
+            ,extraPrice:0
+          },
+          {
+            size:'512GB'
+            ,extraPrice:1
+          },
+          {
+            size:'1TB'
+            ,extraPrice:2
+          },
+          {
+            size:'2TB'
+            ,extraPrice:2
+          }
+        ]
+      },
+    }
+  </script>
+
+</body>
+</html>
