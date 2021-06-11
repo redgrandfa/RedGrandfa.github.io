@@ -25,7 +25,7 @@
 
     <script>
       const container = document.getElementById("container");
-      const MAX_NUMBER=5;
+      const MAX_NUMBER=151;
 
       const loadAll = document.getElementById("loadAll");
       const appendOne = document.getElementById("appendOne");
@@ -37,6 +37,7 @@
           for(  ; i<=MAX_NUMBER ; ){
             append();
           }
+
           loadAll.disabled = true;
           appendOne.disabled = true;
           reset.disabled = false;
@@ -66,6 +67,9 @@
         if(i>MAX_NUMBER){
           alert("已滿載");
           stop();
+          loadAll.disabled=true;
+          appendOne.disabled=true;
+          btnSetInterval.disabled = true;
         }
         else{
           let filename =i.toString().padStart(3,'0');
@@ -85,18 +89,12 @@
       
       let IntervalId = 0;
       function loop(t){
-        loadAll.disabled=true;
-        appendOne.disabled=true;
-        reset.disabled=true;
         btnSetInterval.disabled = true;
         btnStopInterval.disabled = false;
         IntervalId = setInterval( append , t);
       }
 
       function stop(){
-        loadAll.disabled=false;
-        appendOne.disabled=false;
-        // reset.disabled=true;
         btnSetInterval.disabled = false;
         btnStopInterval.disabled = true;
         clearInterval(IntervalId);
