@@ -21,58 +21,47 @@
         height: 100px;
       }
       .keyboard{
-        width: 140px;
+        width: 240px;
         height: 200px;
         border: #000 1px solid;
       }
+      /* .keyboard>button{
 
-
-      
-
+      } */
     </style>
   </head>
   <body>
     <div class="container p-5 d-flex flex-column align-items-center">
       <input type="textarea" class="guess my-2">
       <div class="keyboard d-flex flex-wrap justify-content-evenly align-items-center">
+        <button class="btn btn-dark">1</button>
+        <button class="btn btn-dark">2</button>
+        <button class="btn btn-dark">3</button>
+        <button class="btn btn-dark">4</button>
+        <button class="btn btn-dark">5</button>
+        <button class="btn btn-dark">6</button>
+        <button class="btn btn-dark">7</button>
+        <button class="btn btn-dark">8</button>
+        <button class="btn btn-dark">9</button>
+        <button class="btn btn-dark">0</button>
+        <button class="btn btn-dark">+</button>
+        <button class="btn btn-dark">-</button>
+        <button class="btn btn-dark">x</button>
+        <button class="btn btn-dark">/</button>
+        <button class="btn btn-dark">=</button>
+        <button class="btn btn-dark">></button>
+        <button class="btn btn-dark">(</button>
+        <button class="btn btn-dark">)</button>
+
+
       </div>
     </div>
 
     <script>  
-      let guess = document.querySelector('.guess');
-      let keyboard = document.querySelector('.keyboard');
-
-      produceKeyboard();
-      function produceKeyboard(){
-        for(i=1; i<=12;i++){
-          let btn = document.createElement('button');
-          btn.setAttribute("class","btn btn-dark");
-          switch (i) {
-            case 10:
-              btn.innerText = 'X';
-              btn.setAttribute("id","clear");
-              btn.addEventListener('click',clear);
-              break;
-            case 12:
-              btn.innerText = 'V';
-              btn.setAttribute("id","submit");
-              btn.addEventListener('click',submit);
-              break;
-
-            case 11:
-              btn.innerText = '0';
-              btn.addEventListener('click',btnclick);
-              break;
-            default:
-              btn.innerText = i;
-              btn.addEventListener('click',btnclick);
-              break;
-          }
-          keyboard.appendChild(btn);
-        }
-      }
+      //0~9    +-*-=  15  ()  17 次方  18 倒數 倒退
+      //只能對數字取倒數 對符號無效   無效的算式
       // Math.pow(x,y)
-      //次方 根號 等於 倒數
+      //次方 根號 等於 
       //prefix infix 小括號
       function btnclick(){
         guess.value += this.innerText;
