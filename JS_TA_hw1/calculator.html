@@ -140,8 +140,8 @@
         pos = infixExpr.length-1;
         let tree = EXPR();        
         printPrefix(tree);
-        // console.log(tree);
-        // console.log(PrefixEXPR);
+        console.log(tree);
+        console.log(PrefixEXPR);
         let ans = evaluate();
         if (ans != null && ans!='ERROR'){
           input.value = ans;
@@ -155,17 +155,16 @@
       } 
       
       //演算法
-      // FACTOR= NUM | (EXPR)
-      // EXPR = FACTOR | FACTOR OP FACTOR
+      // FACTOR= NUM | (EXPR)             數字 或 右方有小括號
+      // EXPR = FACTOR | EXPR OP FACTOR    FACTOR 或 FACTOR左接運算子
 
       function FACTOR(){
         let c;
         let node;
         if(pos>=0){
           c=infixExpr[pos--];
-          // console.log(c);
+          //rule: FACTOR = NUM
           if((c>='0' && c<='9')||c=='.' ){
-            //rule: FACTOR= NUM
             let tmp = [];
             do{
               tmp.unshift(c);
@@ -173,23 +172,22 @@
             }
             while((c>='0' && c<='9')||c=='.')
             pos++;
-            // console.log(infixExpr[pos]);
             node = makeNode(tmp.join(''));
           }
+          //遇到右括號
+          //rule: FACTOR = (EXPR)
           else if(c==')'){
-
-            //rule: FACTOR = (EXPR)
             node = EXPR();
-            //防呆+消耗左括號
+            //取用左括號
             if(infixExpr[pos--]!='('){
               alert('錯誤:缺少左括號以成對!');
               return 'ERROR';
             }
           }
-          else if(c=='('){
-            alert('錯誤:缺少左運算元!');
-            return 'ERROR';
-          }
+          // else if(c=='('){
+          //   alert('錯誤:缺少左運算元!');
+          //   return 'ERROR';
+          // }
           return node;
         }
         else
@@ -199,28 +197,26 @@
       function EXPR(){
         let c;
         let node;
-        let right;
-        if (pos>=0){
-          //右FACTOR
-          right=FACTOR();
-          //還有剩 且保留左括號的位置
+        if (pos>=0){          
+          let right=FACTOR();
+          console.log(`right${right}`);
+          //還有剩至少兩個字元?
           if (pos>0){
             c=infixExpr[pos];
-            //op、左FACTOR 
+            //EXPR op FACTOR 
             if(operators.includes(c)){
               node = makeNode(c);
               node.R=right;
               pos--;
-              //防呆...
-
-
-              node.L=FACTOR();
+              //防呆: 有op但左邊沒東西
+              node.L=EXPR();
+            // }
+            // //防呆
+            // else if(c=='('){
+            //   alert('錯誤:缺少右括號以成對!');
+            //   return 'ERROR'
             }
-            //防呆
-            else if(c=='('){
-              alert('錯誤:缺少右括號以成對!');
-              return 'ERROR'
-            }
+            //FACTOR 只剩至少一個字元
             else node=right;            
           }
           else node=right;
