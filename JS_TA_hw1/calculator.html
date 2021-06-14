@@ -56,11 +56,6 @@
     <div class="box d-flex flex-column align-items-center">
       <input type="text" class="input" 
       value="(4.4+3.3)/(2.2-1.1)">
-      <!-- -8 -->
-      <!-- (((6) -->
-      <!-- (((4.4+3.3) -->
-      <!-- ((((4.4+3.3)/(2.2-1.1)) -->
-
       
       <div class="keyboard d-flex flex-wrap justify-content-between align-content-between">
         <button class="btn btn-danger" id="clear">C</button>
@@ -92,8 +87,25 @@
       </div>
     </div>
     <p>註1.沒有先乘除後加減的判斷，只以小括號來改變運算順序</p>
-    <p>註2.沒有正負號功能，防呆也懶得再完善了</p>
-
+    <p>註2.沒有正負號功能，防呆也許未完善</p>
+    <br>V	1
+    <br>V	(
+    <br>X  )
+    <br>V	()
+    <br>V	(2)
+    <br>V	(3	(((3)
+    <br>V	(4))	4)	
+    <br>V	-8
+    <br>V	-8)
+    <br>V	(-8
+    <br>V	1+
+    <br>V	1+)
+    <br>V	1+2+3
+    <br>V	(1+2)
+    <br>V	(1+2+3)
+    <br>V	1+(2+3)
+    <br>V	(2.2-1.1)/(4.4+3.3)
+    <br>V	(2.2-1.1)/((((4.4+3.3)
     <script>
       let input = document.querySelector('input');
       let keyInBtns = document.querySelectorAll('.btn:not(.btn-danger,#dot)');
@@ -130,6 +142,7 @@
 
       let infixExpr;
       let pos;
+      let diff_parenthese = 0;//右括號 減 左括號數量
       let operators=['+','-','x','/'];
       let PrefixEXPR=[];
 
@@ -138,15 +151,24 @@
       function isEqualTo(){
         infixExpr = input.value;
         pos = infixExpr.length-1;
-        let tree = EXPR();        
-        printPrefix(tree);
-        console.log(tree);
-        console.log(PrefixEXPR);
-        let ans = evaluate();
-        if (ans != null && ans!='ERROR'){
-          input.value = ans;
+        if(pos>=0){
+          // debugger;
+          let tree = EXPR();
+          // console.log(tree);
+          if(tree == 'ERROR') return;
+          else{
+            printPrefix(tree);
+            // console.log(PrefixEXPR);
+            let ans = evaluate();
+            // console.log(ans);
+
+            if (ans != null && ans!='ERROR'){
+              input.value = ans;
+            }
+            PrefixEXPR=[];
+            diff_parenthese = 0;
+          }
         }
-        PrefixEXPR=[];
       }
 
       function makeNode(char){
@@ -155,123 +177,160 @@
       } 
       
       //演算法
-      // FACTOR= NUM | (EXPR)             數字 或 右方有小括號
-      // EXPR = FACTOR | EXPR OP FACTOR    FACTOR 或 FACTOR左接運算子
+      // EXPR = FACTOR | EXPR OP FACTOR    遞迴自己 op factor
+      // FACTOR= NUM | (EXPR)             數值 或 小括號組
+
+      function EXPR(){
+        if (pos>=0){
+          let right=FACTOR();
+          if (right=='ERROR' ||right==null ) return right;
+          else{
+            //防呆檢查剩字
+            if (pos<0) return right;
+            else{
+              let c=infixExpr[pos--];
+              //若c是右括號
+              if(c==')'){
+                ++diff_parenthese;
+                alert('錯誤:缺少運算子');
+                return 'ERROR';
+              }
+              //若c是左括號
+              else if(c=='('){
+                if(--diff_parenthese <0){
+                  alert('錯誤:缺少右括號以成對');
+                  return 'ERROR';
+                }
+                ++diff_parenthese;
+                pos++;
+                return right;
+              }
+              //若c是運算子
+              else if(operators.includes(c)){
+                let left =EXPR();
+                if (left=='ERROR')return 'ERROR';                
+                //空 op FACTOR 
+                else if (left==null){
+                  alert('錯誤:缺少左運算元');
+                  return 'ERROR';
+                }
+                //EXPR op FACTOR 
+                else{
+                  let node = makeNode(c);
+                  node.R=right;
+                  node.L=left;
+                  return node;
+                }
+              }
+            }
+          }
+        }        
+      }
 
       function FACTOR(){
-        let c;
-        let node;
-        if(pos>=0){
-          c=infixExpr[pos--];
-          //rule: FACTOR = NUM
+        if(pos<0)
+          return null;        
+        else{
+          let c=infixExpr[pos--];
+          let node;
+          //c是數字或點
           if((c>='0' && c<='9')||c=='.' ){
+            //rule: FACTOR = NUM
             let tmp = [];
             do{
               tmp.unshift(c);
               c=infixExpr[pos--];
             }
             while((c>='0' && c<='9')||c=='.')
+ 
             pos++;
             node = makeNode(tmp.join(''));
+            return node;
           }
           //遇到右括號
           //rule: FACTOR = (EXPR)
           else if(c==')'){
+            ++diff_parenthese;
             node = EXPR();
-            //取用左括號
-            if(infixExpr[pos--]!='('){
-              alert('錯誤:缺少左括號以成對!');
+            if(node=='ERROR' || node==null) return node;         
+            else{
+              //取字，判斷是否為左括號
+              //有瑕疵
+              if(infixExpr[pos--]!='('){
+                alert('錯誤:缺少左括號以成對');
+                return 'ERROR';
+              }
+              else{
+                --diff_parenthese;
+                return node;
+              }
+            }
+          }
+          //遇到左括號
+          else if(c=='('){
+            if(--diff_parenthese <0){
+              alert('錯誤:缺少右括號以成對');
               return 'ERROR';
             }
-          }
-          // else if(c=='('){
-          //   alert('錯誤:缺少左運算元!');
-          //   return 'ERROR';
-          // }
-          return node;
-        }
-        else
-          return null;
-      }
-
-      function EXPR(){
-        let c;
-        let node;
-        if (pos>=0){          
-          let right=FACTOR();
-          console.log(`right${right}`);
-          //還有剩至少兩個字元?
-          if (pos>0){
-            c=infixExpr[pos];
-            //EXPR op FACTOR 
-            if(operators.includes(c)){
-              node = makeNode(c);
-              node.R=right;
-              pos--;
-              //防呆: 有op但左邊沒東西
-              node.L=EXPR();
-            // }
-            // //防呆
-            // else if(c=='('){
-            //   alert('錯誤:缺少右括號以成對!');
-            //   return 'ERROR'
+            else{
+              return null;
             }
-            //FACTOR 只剩至少一個字元
-            else node=right;            
           }
-          else node=right;
+          //遇到運算子
+          else if(operators.includes(c)){
+            alert('錯誤:缺少右運算元');
+            return 'ERROR';
+          }
         }
-        return node;
       }
 
-      function printPrefix(tree){
-        if(tree!=null){
-          //防呆
-
+      function printPrefix(node){
+        if(node!=null){
           //中左右 表達序,組成陣列
-          PrefixEXPR.push(tree.data);
-          printPrefix(tree.L)
-          printPrefix(tree.R);
+          PrefixEXPR.push(node.data);
+          printPrefix(node.L);
+          printPrefix(node.R);
         }        
       }
       
       function evaluate(){
-        let first = PrefixEXPR[0];
-        //是運算子
-        if( operators.includes(first)){        
-          let op = PrefixEXPR.shift();   
-          // console.log(`op${op}`);  
-          let A = evaluate();//遞迴
-          // console.log(`A${A}`);
-          if (A==null)
-            return null;
-          let B = evaluate();//遞迴
-          // console.log(`B${B}`);
-          if (B==null)
-            return null;
+        // debugger;
+        if(PrefixEXPR.length>0){
+          let first = PrefixEXPR.shift();
+          //是運算子
+          if( operators.includes(first)){        
+            let op = first;
+            let A = evaluate();//遞迴
+            if (A==null)
+              return null;
+            let B = evaluate();//遞迴
+            if (B==null)
+              return null;
 
-          switch(op){
-            case '+':
-              return parseFloat(A)+parseFloat(B);
-            case '-':
-              return parseFloat(A)-parseFloat(B);
-            case 'x':
-              return parseFloat(A)*parseFloat(B);
-            case '/':
-              return parseFloat(A)/parseFloat(B);
-            default:
-              return '錯誤:無設計此運算子';
+            switch(op){
+              case '+':
+                return parseFloat(A)+parseFloat(B);
+              case '-':
+                return parseFloat(A)-parseFloat(B);
+              case 'x':
+                return parseFloat(A)*parseFloat(B);
+              case '/':
+                return parseFloat(A)/parseFloat(B);
+              default:
+                alert('錯誤:無設計此運算子');
+                return 'ERROR';
+            }
           }
-        }
-        //非運算子
-        else{
-          // 防呆 只能一個小數點
-          if(Array.from(first).filter( c => c =='.').length>1){
-            alert('錯誤:小數點數量異常');
-            return null;
+          //非運算子，必是數值
+          else{
+            // 防呆 只能一個小數點
+            if(Array.from(first).filter( c => c =='.').length>1){
+              alert('錯誤:小數點數量異常');
+              return 'ERROR';
+            }
+            else
+              return first;
           }
-          else
-            return PrefixEXPR.shift();//取出第一個 
         }
       }
 
