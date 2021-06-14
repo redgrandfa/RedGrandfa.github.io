@@ -55,9 +55,9 @@
   <body>
     <div class="box d-flex flex-column align-items-center">
       <input type="text" class="input" 
-      value="(((8)">
+      value="(4.4+3.3)/(2.2-1.1)">
       <!-- -8 -->
-      <!--  -->
+      <!-- (((6) -->
       <!-- (((4.4+3.3) -->
       <!-- ((((4.4+3.3)/(2.2-1.1)) -->
 
@@ -140,8 +140,8 @@
         pos = infixExpr.length-1;
         let tree = EXPR();        
         printPrefix(tree);
-        console.log(tree);
-        console.log(PrefixEXPR);
+        // console.log(tree);
+        // console.log(PrefixEXPR);
         let ans = evaluate();
         if (ans != null && ans!='ERROR'){
           input.value = ans;
@@ -173,11 +173,11 @@
             }
             while((c>='0' && c<='9')||c=='.')
             pos++;
-            console.log(infixExpr[pos]);
+            // console.log(infixExpr[pos]);
             node = makeNode(tmp.join(''));
           }
           else if(c==')'){
-            
+
             //rule: FACTOR = (EXPR)
             node = EXPR();
             //防呆+消耗左括號
@@ -211,7 +211,7 @@
               node = makeNode(c);
               node.R=right;
               pos--;
-              //防呆
+              //防呆...
 
 
               node.L=FACTOR();
