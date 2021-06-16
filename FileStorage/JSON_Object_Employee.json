@@ -1,5 +1,5 @@
-{
-  "1":{
+[
+  {
     "name":"kevin",
     "height":180,
     "email":"kevin180@gmail.com",
@@ -17,7 +17,7 @@
       "Audi"
     ]
   },
-  "2":{
+  {
     "name":"Mary",
     "height":168,
     "email":"Mary168@gmail.com",
@@ -35,4 +35,4 @@
       "Audi"
     ]
   }
-}
+]
