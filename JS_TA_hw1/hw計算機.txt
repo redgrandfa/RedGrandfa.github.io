@@ -1,0 +1,44 @@
+V	1
+V	(
+	)
+V	()
+V	(2)
+V	(3	(((3)
+V	(4))	4)	
+V	-8
+V	-8)
+V	(-8
+V	1+
+V	1+)
+V	1+2+3
+V	(1+2)
+V	(1+2+3)
+V	1+(2+3)
+V	(2.2-1.1)/(4.4+3.3)
+V	(2.2-1.1)/((((4.4+3.3)
+
+缺少右括號以成對
+
+EXPR:(回傳給tree或factor)
+right=FACTOR()	right若是'ERROR'(不警示)return 'ERROR'
+(tree => 先檢查非'ERROR'才呼叫printPrefix)
+		right若非'ERROR'若pos<0		return right ~~解決 8 這種
+				若pos>=0	c=inf[pos--]	若c是右括	(警示:可能缺少運算子)return 'ERROR'
+								若c是左括	pos++	return right ~~解決 (8) 這種
+								若c是運算子	left=FACTOR()	left若是'null'(警示:缺少左運算元)return 'ERROR'
+												left若是'ERROR'	(不警示)return 'ERROR'
+												left若皆非	let node=makeNode(c) node.L=left node.R=right return node			
+
+FACTOR:(回傳給EXPR)
+pos<0 return null
+pos>=0 c=inf[pos--]
+num	c若是數字或點	node=makeNode(c) return node
+(EXPR)	c若是右括號	node = EXPR()	node若是'ERROR'	(不警示)return 'ERROR'
+					node若非'ERROR' 沒左括  (警示:缺少左括號以成對)return 'ERROR'
+							有左括	return node
+	
+	c若是左括號	(警示:)return 'ERROR'
+	c若是op		(警示:)return 'ERROR'	
+
+
+
