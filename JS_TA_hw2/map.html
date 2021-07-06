@@ -205,8 +205,9 @@
 
 
     //縣市選擇事件
-    document.querySelector('#country').addEventListener('change',function(){
+    document.querySelector('#country').addEventListener('change',()=>{
       console.log(this);
+      // console.log(this.value);
       if(this.value != ''){
         //聚焦到
         let country = areaData.find( x=> x.City ==this.value);
