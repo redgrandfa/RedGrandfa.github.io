@@ -92,9 +92,7 @@
         console.log(ev.target);
         ev.dataTransfer.setData('text/plain',ev.target.innerText);
         console.log(ev.target.innerText);
-
     });
-
 
     let drag = document.querySelectorAll('td');
     let X= 0 , Y=0;
@@ -109,17 +107,9 @@
         });
     });
     function move(ev){
-        let row = 0 , col=0 
-        
         X= ev.clientX;
-        Y= ev.screenY;
-        
-        //計算那些要 那些不要
-        //著色
-        // h1.classList.add()
-        // h1.classList.remove()       
+        Y= ev.screenY; 
         h1.innerText = `X:${X} , Y:${Y}`;
-
     }
 
     function stop(){
