@@ -15,15 +15,10 @@
             margin: 0;
             list-style: none;
         }
-        #calendarTitle{
-            width: 100%;
-            padding: 20px;
-            /* background-color: #fcc; */
-        }
 
         #calendarTitle{
             width: 100%;
-            padding: 20px;
+            /* padding: 20px; */
             background-color: #fee;
         }
         #calendar{
@@ -96,6 +91,33 @@
         </div>
         </div>
     </div>
+    <!-- mouse coord -->
+    <div class="d-flex w-100 justify-content-around">
+        <div>
+            <h1>起點</h1>
+            <span>x:</span>
+            <span id='startX'></span>
+            <span>_y:</span>
+            <span id='startY'></span>
+            <span>r:</span>
+            <span id='startR'></span>
+            <span>_c:</span>
+            <span id='startC'></span>
+        </div>
+        <div>
+            <h1>動點</h1>
+            <span>x:</span>
+            <span id='movingX'></span>
+            <span>_y:</span>
+            <span id='movingY'></span>
+            <span>r:</span>
+            <span id='movingR'></span>
+            <span>_c:</span>
+            <span id='movingC'></span>
+        </div>
+    </div>
+
+
     <!-- calendar html -->
     <div id="calendarTitle" class="d-flex justify-content-around">
         <button type="button" class="btn btn-primary" onclick="MinMonth()">往上月</button>
@@ -130,7 +152,7 @@
 
     let activityDateStart;
     let activityIdx;
-
+    let trHeights=[];
     RefreshCalendar();   
 
     function RefreshCalendar(){
@@ -148,6 +170,7 @@
         RefreshActivity(shift,row_max);
     };
     function RefreshDate(shift,row_max){
+        trHeights=[];
         //title
         document.getElementById('year-month').innerHTML=`${year}年${month+1}月`;
 
@@ -171,7 +194,6 @@
                 span.innerText = current.getDate();
                 td.appendChild(span);
 
-                //行程物件 key:yyyy-mm-dd    value:[  mission1 , mission2   ...]
                 td.addEventListener('click',function(ev){
                     //modal title
                     document.querySelector('#exampleModalLabel').innerText='新增行程';
@@ -186,6 +208,20 @@
 
                 td.setAttribute("data-bs-toggle","modal");
                 td.setAttribute("data-bs-target","#exampleModal");
+
+                td.addEventListener('mousedown',function(ev){
+                    //防止反白文字等預設事件
+                    ev.preventDefault();
+                    let [r,c] = coordToRC(ev);
+                    let sR = document.querySelector('#startR');
+                    let sC = document.querySelector('#startC');
+                    sR.innerText=r;
+                    sC.innerText=c;
+                    //綁滑鼠移動、放開事件
+                    document.addEventListener('mousemove', move);
+                    document.addEventListener('mouseup',stop);
+                });
+
                 tr.appendChild(td);
 
                 shift++;
@@ -200,7 +236,7 @@
             let trActivity = document.querySelectorAll('.trActivity')[row];
             trActivity.innerText='';
             let tr = document.querySelectorAll('.tr')[row];
-            let trHeight=0;
+            let rowsOfActivities=0;
             for(let col=0; col<7;col++){
                 //Print activities  從localstorage取資料
                 let current = new Date( year , month, shift );
@@ -239,19 +275,51 @@
                         button.classList.add(`left${col}`);
                         button.classList.add('position-absolute');
                         button.style.top = `${idx*2}em`;
-                        if(idx == todoArr.length-1 && todoArr.length>trHeight){
-                            trHeight = todoArr.length;
+                        if(idx == todoArr.length-1 && todoArr.length>rowsOfActivities){
+                            rowsOfActivities = todoArr.length;
                         }
-                        tr.style.height = `${trHeight*32 + 25}px`;
+
                         //如何計算找佔位?
                     });
                 }
                 shift++;
             }
+            trHeights.push(rowsOfActivities*32 + 25);
+            // console.log(trHeights);
+            tr.style.height = `${trHeights[row]}px`;
         }
     };
 
+    function move(ev){                    
+        let [r,c] = coordToRC(ev);
+        let mR = document.querySelector('#movingR');
+        let mC = document.querySelector('#movingC');
+        mR.innerText=r;
+        mC.innerText=c;
 
+    }
+
+    function stop(){//解開事件
+        document.removeEventListener('mousemove',move);
+        document.removeEventListener('mouseup',stop);
+    }
+
+    function coordToRC( mouseEv){
+        let w = document.querySelector('.date').offsetWidth;
+        let m1=document.querySelector('#calendar').offsetTop;
+        let m2=document.querySelector('#calendarHead').offsetHeight;
+
+        let c = parseInt(mouseEv.clientX/w);
+        let tmp = mouseEv.clientY-m1-m2;
+        let r;
+        for(r =0 ; r < row_max-1 ; r++){
+            if (tmp> trHeights[r])
+                tmp-=trHeights[r];
+            else
+                break;
+        }
+        return [r,c];
+    }
     function TransformToYMD( clickDate , week , week_max){
         //if   <7 且 在末週=> 是次月
         //else if 在首週，數字>7 => 是前月
