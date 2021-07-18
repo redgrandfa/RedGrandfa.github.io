@@ -18,7 +18,7 @@
         padding: 20px;
       }
     </style>
-    <title>Calender</title>
+    <title>Calendar</title>
   </head>
 <body>
   <!-- Modal -->
@@ -78,9 +78,9 @@
     let date = today.getDate();
     
     // debugger;
-    RefreashCalender();
+    RefreshCalendar();
 
-    function RefreashCalender(){
+    function RefreshCalendar(){
       tbody.innerHTML ="";
       //refreash title
       document.getElementById('year-month').innerHTML=`${year}年${month+1}月`;
@@ -230,18 +230,18 @@
         //要JSON.stringify不然會出現[Object,Object]
       }
 
-      RefreashCalender();
+      RefreshCalendar();
     }
 
     
     function AddMonth(){
         month++;
-        RefreashCalender();
+        RefreshCalendar();
     }
 
     function MinMonth(){
         month--;
-        RefreashCalender();
+        RefreshCalendar();
     }
   </script>
 
