@@ -18,7 +18,7 @@
 
         #calendarTitle{
             width: 100%;
-            /* padding: 20px; */
+            padding: 20px;
             background-color: #fee;
         }
         #calendarHead>div{
@@ -46,7 +46,6 @@
             color: #fff;
             white-space: nowrap;
             text-overflow: ellipsis;
-            /* box-sizing: border-box; */
         }
 
         .left0{left: 0;}
@@ -73,7 +72,8 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+            <!-- onclick="removeFake()" -->
             </div>
 
             <div id="input-area" class="modal-body d-flex flex-column">
@@ -119,9 +119,9 @@
 
     <!-- calendar html -->
     <div id="calendarTitle" class="d-flex justify-content-around">
-        <button type="button" class="btn btn-primary" onclick="MinMonth()">往上月</button>
+        <button type="button" class="btn btn-danger" onclick="MinMonth()">往上月</button>
         <h1 id="year-month" class="text-center"></h1>
-        <button type="button" class="btn btn-primary" onclick="AddMonth()">往下月</button>
+        <button type="button" class="btn btn-danger" onclick="AddMonth()">往下月</button>
     </div>
 
     <div id="calendar" class="w-100">
@@ -188,51 +188,131 @@
                 span.innerText = current.getDate();
                 td.appendChild(span);
 
-                // td.addEventListener('click',function(ev){
-                //     //modal title
-                //     document.querySelector('#exampleModalLabel').innerText='新增行程';
-                //     //modal do
-                //     document.querySelector("#do").value = "";
-                //     //modal date
-
-
-                //     let clickYMD = TransformToYMD(parseInt(td.querySelector('span').innerText)  , row , row_max);
-                //     document.getElementById('dateStart').value=
-                //     document.getElementById('dateEnd').value=
-                //         `${clickYMD[0]}-${clickYMD[1]}-${clickYMD[2]}`;
-                // });
-
-                // td.setAttribute("data-bs-toggle","modal");
-                // td.setAttribute("data-bs-target","#exampleModal");
-
                 td.addEventListener('mousedown',function(ev){
                     //防止反白文字等預設事件
                     ev.preventDefault();
-                    
-                    let [r,c] = coordToRC(ev);
-                    let sR = document.querySelector('#startR');
-                    let sC = document.querySelector('#startC');
-                    sR.innerText=r;
-                    sC.innerText=c;
+                    let R1 ,C1 ,R2, C2;
+                    let [r1,c1] = coordToRC(ev);
+                    document.querySelector('#startX').innerText=ev.clientX;
+                    document.querySelector('#startY').innerText=ev.clientY;
+                    document.querySelector('#startR').innerText=r1;
+                    document.querySelector('#startC').innerText=c1;
                     //modal title
                     document.querySelector('#exampleModalLabel').innerText='新增行程';
                     //modal do
                     document.querySelector("#do").value = '';
 
-                    //modal date
-                    let [Y,M,D] = RCToYMD(r,c);
-                    document.getElementById('dateStart').value= `${Y}-${M}-${D}`;
+                    //--------拖曳視覺
+                    //各週創一按鈕
+                    for(let i=0 ; i < row_max  ; i++){
+                        var button = document.createElement('button');
+                        button.classList.add('btn');
+                        button.classList.add('text-start');
+                        button.innerText = 'what to do?'; 
+                        button.style.backgroundColor = '#000';
+                        
+                        //排版
+                        button.classList.add('position-absolute');
+                        button.style.top = '0';
+                        button.style.display = 'none';
+
+                        //接上按紐
+                        document.querySelectorAll('.trActivity')[i].appendChild(button);
+                        button.classList.add('fake');
+                    }
 
                     //綁滑鼠移動、放開事件
                     document.addEventListener('mousemove', move);
                     document.addEventListener('mouseup',stop);
+
+                    function move(ev){
+
+                        let [r2,c2] = coordToRC(ev);
+                        document.querySelector('#movingX').innerText=ev.clientX;
+                        document.querySelector('#movingY').innerText=ev.clientY;
+                        document.querySelector('#movingR').innerText=r2;
+                        document.querySelector('#movingC').innerText=c2;
+
+                        // 先取好頭尾值
+                        if (  r1<r2 || (r1==r2 && c1<c2 ) ){
+                            R1=r1;
+                            C1=C1;
+
+                            R2=r2;
+                            C2=c2;
+                        } 
+                        else{
+                            R1=r2;
+                            C1=C2;
+
+                            R2=r1;
+                            C2=c1;
+                        }
+                        
+                        //調整button位置 寬度 顯示
+                        for(let i = 0 ; i<=row_max ; i++){ 
+                            if(i<R1 || i>R2){
+                                // 不顯示的列
+                                button.style.display='none';
+                            }else{
+                                //顯示
+                                debugger;
+                                button.style.display='block';
+
+                                //按鈕是從 min格~max格
+                                let min , max ;
+                                if(i==R1 ){
+                                    if(i==R2){
+                                        min = C1;
+                                        max = C2;
+                                    }
+                                    else{
+                                        min = C1;
+                                        max = 6;
+                                    }
+                                }
+                                else{
+                                    if(i==R2){
+                                        min = 0;
+                                        max = C2;
+                                    }
+                                    else{
+                                        min = 0;
+                                        max = 6;
+                                    }
+                                }
+                                
+                                //左
+                                button.style.left=`${14.2857*min}%`;
+                                //寬
+                                button.style.width=`${14.2857*(max+1-min)}%`;
+                                // button.style.width=`calc(${14.2857*(max+1-min)}% - 11px)`;
+                            }
+                        }
+                    }
+
+                    function stop(ev){
+                        //modal date
+                        let [Y,M,D] = RCToYMD(R1,C1);
+                        document.getElementById('dateStart').value= `${Y}-${M}-${D}`;
+
+                        [Y,M,D] = RCToYMD(R2,C2);
+                        document.getElementById('dateEnd').value= `${Y}-${M}-${D}`;
+
+                        let Modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                        // MyModal.toggle();//顯示、不顯示的切換
+                        Modal.show();
+                        //解開事件
+                        document.removeEventListener('mousemove',move);
+                        document.removeEventListener('mouseup',stop);
+                    }
                 });
 
                 tr.appendChild(td);
 
                 relativeDate++;
             }
-            trActivity.classList.add("trActivity")
+            trActivity.classList.add("trActivity");
             calendarBody.appendChild(trActivity);            
             calendarBody.appendChild(tr);
         }
@@ -247,24 +327,21 @@
                 monthOccupy[row].push( new Set() );
             }
         }
-        // console.log(monthOccupy);
-
-        trHeights=[];//等於各列的最大值?
+        trHeights=[];
 
         for(let row=0; row < row_max; row++){
-            
             let maxOfWeekOccupy=0 ;//計算當週最大佔用列數
             for(let col=0; col<7;col++){
                 //Print activities  從localstorage取資料
-                //目前無法印出由當月以前蔓延過來的行程  解法：相對日再往前調個幾百天來判斷= =?
+                //目前無法印出由當月以前蔓延過來的行程  
+                //解法：檢查任何行程 key <月曆首格  end>=月曆首格，有就只從首格印到end
                 let current = new Date( year , month, relativeDate ); 
                 let activityDate = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
                 if(localStorage.getItem(activityDate) != null){
                     let todoArr = JSON.parse(localStorage.getItem(activityDate));
-                    //console.log(todoArr);
                     todoArr.forEach((todoItem)=>{
                         //local日期格式 轉相對日
-                        // let relativeD1 = localstorageDateToRelativeDate(activityDate);
+                        // let relativeD1 = relativeDate;
                         let relativeD2 = localstorageDateToRelativeDate(todoItem.dateEnd);
                         relativeD2 = relativeD2>dayOfMonth? dayOfMonth:relativeD2; //超過就印到月底即可
 
@@ -275,8 +352,8 @@
                         let C2 = (relativeD2 -shift) % 7;
 
                         //按鈕顏色亂數
-                        function getm_M(m,M){ return Math.floor( Math.random()*(M-m)  ) +m ; }
-                        let color = `rgb(${getm_M(0,111)},${getm_M(0,111)},${getm_M(111,222)})`;
+                        function R_mM(m,M){ return Math.floor( Math.random()*(M-m) ) +m ; }
+                        let color = `rgb(${R_mM(0,111)},${R_mM(0,111)},${R_mM(111,222)})`;
                         // let color = `rgb(55,55,${getm_M(111,222)})`;
 
                         //單一行程有跨週=>每週一按鈕
@@ -322,9 +399,6 @@
 
                             //遞增idx避開已佔
                             for(let c = min ; c<=max ;c++){
-                                console.log(i);
-                                console.log(c);
-                                console.log(monthOccupy[i][c]);
                                 while(monthOccupy[i][c].has(idx)){ idx++; }
                             }
 
@@ -347,8 +421,6 @@
                                 //record original todo
                                 activityDateStart = activityDate;
                                 activityIdx = idx;
-                                //刪?
-                                // document.getElementById(exampleModal)
                             });
                             button.setAttribute("data-bs-toggle","modal");
                             button.setAttribute("data-bs-target","#exampleModal");
@@ -378,30 +450,7 @@
         }
     };
 
-    function move(ev){                    
-        let [r,c] = coordToRC(ev);
-        let mR = document.querySelector('#movingR');
-        let mC = document.querySelector('#movingC');
-        mR.innerText=r;
-        mC.innerText=c;
-        //終止日
-        // document.getElementById('dateEnd').value=;
-    }
-
-    function stop(ev){
-        let Modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        let [r,c]=coordToRC(ev)
-        let [Y,M,D] = RCToYMD(r,c);
-        document.getElementById('dateEnd').value= `${Y}-${M}-${D}`;
-
-        // MyModal.toggle();//顯示、不顯示的切換
-        Modal.show();
-        //解開事件
-        document.removeEventListener('mousemove',move);
-        document.removeEventListener('mouseup',stop);
-    }
-
-    function coordToRC( mouseEv){
+    function coordToRC(mouseEv){
         let w = document.querySelector('.date').offsetWidth;
         let m1=document.querySelector('#calendar').offsetTop;
         let m2=document.querySelector('#calendarHead').offsetHeight;
@@ -417,11 +466,13 @@
         }
         return [r,c];
     }
-    function dateToRC( date){
+
+    function dateToRC(date){
         let R = Math.floor( (date + firstDay) / 7);
         let C = ( date + firstDay) % 7;
         return [R,C]
     }
+
     function localstorageDateToRelativeDate(localstorageDate){
         //可能超出當月
         let YMD = localstorageDate.split('-');
@@ -433,7 +484,7 @@
     }
     // console.log( localstorageDateToRelativeDate('2021-6-27') );
 
-    // relativeDate - shift / 7 =R   % 7 =C
+    // relativeDate - shift / 7 => R   % 7 => C
     // shift + R*7+C => relativeDate
     function RCToYMD(R,C){
         let dateObj = new Date(year,month,shift + R*7+C);
@@ -442,23 +493,16 @@
         let D = dateObj.getDate();
         return [Y,M,D];
     }
+    function removeFake(){
+        let trActivities = document.querySelectorAll('.trActivity');
+        let fakes = document.querySelectorAll('.fake');
 
-
-    // 可能可刪
-    function TransformToYMD( clickDate , week , week_max){
-        //if   <7 且 在末週=> 是次月
-        //else if 在首週，數字>7 => 是前月
-        //else 是本月
-        if ( clickDate< 7 && week == week_max-1){
-            return [year,month+2,clickDate];
-        }else if( clickDate> 7 && week == 0){
-            return [year,month,clickDate];
-        }else{
-            return [year,month+1,clickDate];
-        }
+        trActivities.forEach( (trActivity,idx) => {
+            trActivity.removeChild(fakes[idx]);
+        });
     }
 
-    function SaveTodoItem(){//亂輸入的防呆...
+    function SaveTodoItem(){//亂輸入的防呆懶得做...
         let title = document.querySelector('#exampleModalLabel').innerText;
         let NewDateStart = document.getElementById('dateStart').value;
         let NewDateEnd = document.getElementById('dateEnd').value;
@@ -470,6 +514,9 @@
         if(title=='修改行程'){
             //除舊
             todoArr = JSON.parse(localStorage.getItem(activityDateStart));
+            console.log(activityDateStart);
+            console.log(todoArr);
+            console.log(activityIdx);
             todoArr.splice( activityIdx , 1);
             if(todoArr.length==0){
                 localStorage.removeItem(activityDateStart);
@@ -500,11 +547,10 @@
                 todoArr =[];
             }
             todoArr.push({dateEnd:NewDateEnd ,  do:NewDo});
-            console.log(todoArr);
+            // console.log(todoArr);
             localStorage.setItem(NewDateStart,JSON.stringify(todoArr));
         }
         //要JSON.stringify不然會出現[Object,Object]
-        // console.log(row_max);
         RefreshActivity(shift ,row_max);
     }
     
