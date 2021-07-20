@@ -1,21 +1,3 @@
-拖曳：
-	只有圖片和超連結預設 draggable =true
-
-
-1.draggable =true
-2.dragstart 事件
-3.事件中可以指定
-	drag data	只有這項必須
-	feedback image
-	drag effect
-
-
-(拖曳事件會向上傳遞)?
--------	drag data----------
-所有拖曳事件都有一個屬性dataTransfer，是一個
-DataTransfer物件，保有drag data
-
-drag data指派：event.dataTransfer.setData(type,value)
 
 ----滑鼠座標-----
 MouseEvent.唯讀屬性
@@ -96,19 +78,49 @@ endRC		終點格
 1.做列印功能V
 2.點擊彈窗V  
 3.儲存更新V
-
 4.做拖曳外觀效果
-	橘底無字
-
 
 按下 =視覺上= 每列一個DOM物件，計算起點格
 移動 = 動態計算終點格，改變長度/位置  
 			定義頭尾：先篩上下，若同列再篩左右
 放開 = 直接計算起點終點格，
 
+處理只按不移
 
 
 
-drag
+----drag拖移----
+
+1.draggable =true
+	只有圖片和超連結預設 draggable =true
+2.dragstart 事件
+3.事件中可以指定
+	drag data	只有這項必須
+	feedback image
+	drag effect
 
 
+(拖曳事件會向上傳遞)?
+-------	drag data----------
+所有拖曳事件都有一個屬性dataTransfer，是一個
+DataTransfer物件，保有drag data，可攜帶多種形態
+
+drag data指派：event.dataTransfer.setData(type,value)
+
+
+
+----拖曳效果----
+複製、移動、連結等
+
+----------
+原始變半透明
+[拖曳開始]
+攜帶起點格資料
+計算起終點格差，調整起終點
+removechild
+加入.fake
+
+[移動]
+
+[結束]
+refresh活動
