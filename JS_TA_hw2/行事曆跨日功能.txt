@@ -109,8 +109,6 @@ endRC		終點格
 
 
 
-
-
-button顯示
+drag
 
 
