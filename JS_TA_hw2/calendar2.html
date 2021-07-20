@@ -72,15 +72,14 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-            <!-- onclick="removeFake()" -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removeFake()"></button>
             </div>
 
             <div id="input-area" class="modal-body d-flex flex-column">
             起日：
             <input readonly="" id="dateStart" type="text">
             迄日：
-            <input readonly="" id="dateEnd" type="text">
+            <input id="dateEnd" type="text">
             任務：
             <input id="do" type="text">
             </div>
@@ -97,22 +96,30 @@
             <span>x:</span>
             <span id='startX'></span>
             <span>_y:</span>
-            <span id='startY'></span>
+            <span id='startY'></span><br>
             <span>r:</span>
             <span id='startR'></span>
             <span>_c:</span>
-            <span id='startC'></span>
+            <span id='startC'></span><br>
+            <span>R1:</span>
+            <span id='R1'></span>
+            <span>_C1:</span>
+            <span id='C1'></span><br>
         </div>
         <div>
             <h1>動點</h1>
             <span>x:</span>
             <span id='movingX'></span>
             <span>_y:</span>
-            <span id='movingY'></span>
+            <span id='movingY'></span><br>
+            <span>R2:</span>
             <span>r:</span>
             <span id='movingR'></span>
             <span>_c:</span>
-            <span id='movingC'></span>
+            <span id='movingC'></span><br>
+            <span id='R2'></span>
+            <span>C2:</span>
+            <span id='C2'></span><br>
         </div>
     </div>
 
@@ -164,6 +171,7 @@
         RefreshDate(shift,row_max);
         RefreshActivity(shift,row_max);
     };
+
     function RefreshDate(relativeDate,row_max){
         //title
         document.getElementById('year-month').innerHTML=`${year}年${month+1}月`;
@@ -204,8 +212,11 @@
 
                     //--------拖曳視覺
                     //各週創一按鈕
+                    let btns = []
                     for(let i=0 ; i < row_max  ; i++){
-                        var button = document.createElement('button');
+                        let button = document.createElement('button');
+                        btns.push(button);
+
                         button.classList.add('btn');
                         button.classList.add('text-start');
                         button.innerText = 'what to do?'; 
@@ -214,19 +225,19 @@
                         //排版
                         button.classList.add('position-absolute');
                         button.style.top = '0';
-                        button.style.display = 'none';
+                        // button.style.display = 'none';
 
                         //接上按紐
                         document.querySelectorAll('.trActivity')[i].appendChild(button);
                         button.classList.add('fake');
                     }
+                    console.log(btns);
 
                     //綁滑鼠移動、放開事件
                     document.addEventListener('mousemove', move);
                     document.addEventListener('mouseup',stop);
-
+                    move(ev);//至少執行一次
                     function move(ev){
-
                         let [r2,c2] = coordToRC(ev);
                         document.querySelector('#movingX').innerText=ev.clientX;
                         document.querySelector('#movingY').innerText=ev.clientY;
@@ -234,30 +245,34 @@
                         document.querySelector('#movingC').innerText=c2;
 
                         // 先取好頭尾值
-                        if (  r1<r2 || (r1==r2 && c1<c2 ) ){
+                        if (  r1<r2 || (r1==r2 && c1<=c2 ) ){
                             R1=r1;
-                            C1=C1;
+                            C1=c1;
 
                             R2=r2;
                             C2=c2;
                         } 
                         else{
                             R1=r2;
-                            C1=C2;
+                            C1=c2;
 
                             R2=r1;
                             C2=c1;
                         }
-                        
+                        document.querySelector('#R1').innerText=R1;
+                        document.querySelector('#C1').innerText=C1;
+                        document.querySelector('#R2').innerText=R2;
+                        document.querySelector('#C2').innerText=C2;
+
+                        // debugger;
                         //調整button位置 寬度 顯示
-                        for(let i = 0 ; i<=row_max ; i++){ 
+                        for( let i =0; i<=row_max ; i++){ 
                             if(i<R1 || i>R2){
-                                // 不顯示的列
-                                button.style.display='none';
+                                //不顯示的列
+                                btns[i].style.display='none';
                             }else{
-                                //顯示
-                                debugger;
-                                button.style.display='block';
+                                //顯示的列
+                                btns[i].style.display='block';
 
                                 //按鈕是從 min格~max格
                                 let min , max ;
@@ -283,25 +298,23 @@
                                 }
                                 
                                 //左
-                                button.style.left=`${14.2857*min}%`;
+                                btns[i].style.left=`${14.2857*min}%`;
                                 //寬
-                                button.style.width=`${14.2857*(max+1-min)}%`;
-                                // button.style.width=`calc(${14.2857*(max+1-min)}% - 11px)`;
+                                btns[i].style.width=`calc(${14.2857*(max+1-min)}% - 11px)`;
                             }
                         }
                     }
 
                     function stop(ev){
+                        let Modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                        // MyModal.toggle();//顯示、不顯示的切換
+                        Modal.show();
                         //modal date
                         let [Y,M,D] = RCToYMD(R1,C1);
                         document.getElementById('dateStart').value= `${Y}-${M}-${D}`;
 
                         [Y,M,D] = RCToYMD(R2,C2);
                         document.getElementById('dateEnd').value= `${Y}-${M}-${D}`;
-
-                        let Modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-                        // MyModal.toggle();//顯示、不顯示的切換
-                        Modal.show();
                         //解開事件
                         document.removeEventListener('mousemove',move);
                         document.removeEventListener('mouseup',stop);
@@ -317,6 +330,7 @@
             calendarBody.appendChild(tr);
         }
     };
+
     function RefreshActivity(relativeDate , row_max){
         let trActivities = document.querySelectorAll('.trActivity');
         let monthOccupy=[];
@@ -339,7 +353,7 @@
                 let activityDate = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
                 if(localStorage.getItem(activityDate) != null){
                     let todoArr = JSON.parse(localStorage.getItem(activityDate));
-                    todoArr.forEach((todoItem)=>{
+                    todoArr.forEach((todoItem, todoIndex)=>{
                         //local日期格式 轉相對日
                         // let relativeD1 = relativeDate;
                         let relativeD2 = localstorageDateToRelativeDate(todoItem.dateEnd);
@@ -354,7 +368,6 @@
                         //按鈕顏色亂數
                         function R_mM(m,M){ return Math.floor( Math.random()*(M-m) ) +m ; }
                         let color = `rgb(${R_mM(0,111)},${R_mM(0,111)},${R_mM(111,222)})`;
-                        // let color = `rgb(55,55,${getm_M(111,222)})`;
 
                         //單一行程有跨週=>每週一按鈕
                         for(let i = R1 ; i<=R2 ; i++){
@@ -420,7 +433,7 @@
 
                                 //record original todo
                                 activityDateStart = activityDate;
-                                activityIdx = idx;
+                                activityIdx = todoIndex;
                             });
                             button.setAttribute("data-bs-toggle","modal");
                             button.setAttribute("data-bs-target","#exampleModal");
@@ -436,9 +449,6 @@
                     maxOfWeekOccupy = monthOccupy[row][col].size ;
                 }
             }
-                            
-            // debugger;
-
 
             //記錄列高
             trHeights.push(maxOfWeekOccupy*32 + 25);
@@ -493,6 +503,7 @@
         let D = dateObj.getDate();
         return [Y,M,D];
     }
+
     function removeFake(){
         let trActivities = document.querySelectorAll('.trActivity');
         let fakes = document.querySelectorAll('.fake');
@@ -514,9 +525,6 @@
         if(title=='修改行程'){
             //除舊
             todoArr = JSON.parse(localStorage.getItem(activityDateStart));
-            console.log(activityDateStart);
-            console.log(todoArr);
-            console.log(activityIdx);
             todoArr.splice( activityIdx , 1);
             if(todoArr.length==0){
                 localStorage.removeItem(activityDateStart);
