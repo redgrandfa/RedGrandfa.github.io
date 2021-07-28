@@ -450,7 +450,8 @@
                     maxOfWeekOccupy = monthOccupy[row][col].size ;
                 }
             }
-
+            if(maxOfWeekOccupy == 0)
+            maxOfWeekOccupy=1;
             //記錄列高
             trHeights.push(maxOfWeekOccupy*32 + 25);
             // console.log(trHeights);
