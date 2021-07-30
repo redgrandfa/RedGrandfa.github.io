@@ -1,12 +1,7 @@
-表格
-===
-| 齊左欄 | 置中欄 | 齊右欄 |
-| :--- | :---: | ----: |
-| a | b |
-| c | d | 
+我是偉軒!
 
 
-BuildSchool
+markdown rules
 ===
 
 # h1
@@ -20,6 +15,12 @@ _斜體_
 **粗體**
 `等寬字`
 ~~刪除線~~
+
+```js
+function name(){
+  return 7
+}
+```
 
 > 區塊
 >> qwe
@@ -49,6 +50,10 @@ _斜體_
 [超連結標題](https://google.com)
 <https://google.com>
 
+(失敗?)我喜歡 [google] [link1] 勝過 [noodle] [link2].
+[link1]: <https://google.com/>  "浮出title字樣"
+[link2]: https://cheapandcheerfulcooking.com/wp-content/uploads/2021/01/chinese-fried-noodles-basic-recipe-2.jpg/ "浮出title字樣"
+
 
 圖片
 ===
@@ -56,5 +61,10 @@ _斜體_
 
 
 
-
+表格
+===
+| 齊左欄 | 置中欄 | 齊右欄 |
+| :--- | :---: | ----: |
+| a | b | 
+| q |   | e | 
 
