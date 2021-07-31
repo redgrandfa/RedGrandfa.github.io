@@ -50,13 +50,16 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <div class="imgBox"><img src="https://picsum.photos/100/150/?random=1"></div>
-                        <div class="textBox">
-                            xx
-                        </div>
+                        Slide 1
                     </div>
                     <div class="swiper-slide">
-                        Slide 2
+                        <div class="imgBox">
+                            <img class="w-100" src="https://picsum.photos/100/150/?random=1">
+                        </div>
+                        <div class="textBox">
+                            Lorem ipsum
+                            ...要做嗎
+                        </div>
                     </div>
                     <div class="swiper-slide">
                         Slide 3
@@ -78,10 +81,12 @@
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <div class="imgBox w-50">
-                            <img src="https://picsum.photos/100/150/?random=1">
+                            <img class="w-100" src="https://picsum.photos/100/100/?random=1">
                         </div>
-                        <div class="textBox w-50">
+                        <div class="textBox w-50 px-2" >
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos est earum qui voluptatem, quibusdam consequatur neque quis omnis, ipsum </p>
+                            <p>Located: </p>
+                            <p>owned by </p>
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -104,7 +109,14 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        Slide 1</div>
+                        <div class="imgBox">
+                            <img src="https://picsum.photos/150/160/?random=1">
+                        </div>
+                        <div class="textBox">
+                            <h5>Dora</h5>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur optio eum, soluta adipisci blanditiis nostrum quasi qui cumque quo illo.</p>
+                        </div>
+                    </div>
                     <div class="swiper-slide">
                         Slide 2</div>
                     <div class="swiper-slide">
@@ -154,12 +166,14 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <div class="imgBox w-50">
-                            <img src="https://picsum.photos/100/150/?random=1">
+                        <div class="imgBox">
+                            <img class="w-100" src="https://picsum.photos/300/500/?random=1">
                         </div>
-                        <div class="textBox w-50">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos est earum qui voluptatem, quibusdam consequatur neque quis omnis, ipsum </p>
-                        </div>    
+                        <div class="textBox" >
+                            <h6>報導標題八十億人都震驚了 </h6>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos est earum qui voluptatem, quibusdam consequatur neque quis omnis, ipsum...還沒做 </p>
+                            <button class="btn">查看更多</button>
+                        </div>
                     </div>
                     <div class="swiper-slide">
                         Slide 2</div>
@@ -263,12 +277,12 @@
             },
             spaceBetween: 12,
             centeredSlides: true,
-            slidesPerView: 1.3,
+            slidesPerView: 1.2,
             breakpoints: {
                 // when window width is >= 
                 992: {
                     centeredSlides: true,
-                    slidesPerView: 2
+                    slidesPerView: 1.6
                 },
                 1280: {
                     centeredSlides: false,

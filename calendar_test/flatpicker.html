@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_orange.css">
+    <!-- #FF8A65 可以載下來改色-->
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        input.flatpickr{
+            width: 444px;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 1.直接選時間 -->
+    <!-- 2.選完日期，點繼續設定時間，model -->
+    <!-- 改星期? -->
+    </div>
+        <input class=flatpickr type=text placeholder="Select Date"  id="dateTimePicker">
+        <div id="start"></div>
+        <div id="end"></div>
+    </div>
+
+
+
+    <!-- <script>
+        var base_url = 'https:\/\/flatpickr.js.org\/';
+        var repo_id = 'flatpickr\/flatpickr';
+    </script> -->
+    <!-- <script src=https://flatpickr.js.org/javascripts/application.js></script>
+    <script src=https://flatpickr.js.org/init.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/weekSelect/weekSelect.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/minMaxTimePlugin.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js></script> -->
+    <!-- example -->
+    <!-- <script src=https://flatpickr.js.org/flatpickr.js></script> -->
+    <!-- theme -->
+    <!-- <script src=https://flatpickr.js.org/themer.js></script>     -->
+
+    <script>
+        const input = document.querySelector("#dateTimePicker");
+        const Myfp = flatpickr(input, {
+            mode: "range",
+            enableTime: true,
+            time_24hr: true,
+            dateFormat: "Y-m-d H:i",
+
+            altInput: true,
+            altFormat: "F j, Y",
+
+            onChange: function( selectedDates, dateStr, instance) {//固定的參數順序
+
+                // console.log(selectedDates) ;
+                // console.log(dateStr) ;          //input的value
+                // console.log(instance) ;
+                document.querySelector("#start").innerHTML= selectedDates[0];
+                document.querySelector("#end").innerHTML= instance.selectedDates[1];
+            },
+
+            onValueUpdate:function() {//selectedDates, dateStr, instance
+            },
+            // onValueUpdate gets triggered when the input value is updated with a new date string.
+            //開關picker也會觸發
+            
+            onDayCreate: function(selectedDates, dateStr, instance, dayElem){
+
+                // Utilize dayElem.dateObj, which is the corresponding Date
+                // dummy logic
+                if (Math.random() < 0.15)
+                    // dayElem.innerHTML += "<span class='event'></span>";
+                    dayElem.style.background="#FF8A65";
+                else if (Math.random() > 0.85)
+                    // dayElem.innerHTML += "<span class='event busy'></span>";
+                    dayElem.style.background="#cff";
+
+            }
+            // clickOpens  點擊是否打開
+        });
+
+        // selectedDates
+        // currentYear
+        // currentMonth
+        // config
+        //formatDate(fp.selectedDates[0],fp.config.dateFormat)  Date物件
+
+
+        //方法
+        // parseDate(dateStr, dateFormat)
+        // Parses a date string or a timestamp, and returns a Date.
+
+        // formatDate(dateObj, formatStr)
+        // Return Value = A string representation of dateObj,  formatted as per formatStr
+
+        // redraw()
+        // Redraws the calendar. Shouldn’t be necessary in most cases.
+
+        // set(option, value)
+        // Sets a config option optionto value, redrawing the calendar and updating the current view, if necessary.
+
+        // setDate(date, triggerChange, dateStrFormat)  
+
+
+        //兩個靜態方法：
+        // flatpickr.parseDate(dateStr, dateFormat)         =>字串轉物件
+        // flatpickr.formatDate(dateObj, dateFormat)        =>物件轉字串
+                //dateFormat = 要解析/要成為的字串格式
+
+        
+    </script>
+
+
+</body>
+</html>
