@@ -217,10 +217,18 @@ article .categories-swiper-container > .swiper-wrapper > .swiper-slide > .textBo
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   font-size: 16px;
+}
+
+article .categories-swiper-container > .swiper-wrapper > .swiper-slide > .textBox:hover {
+  background-color: #eee;
 }
 
 article .stories-swiper-container > .swiper-wrapper > .swiper-slide {
