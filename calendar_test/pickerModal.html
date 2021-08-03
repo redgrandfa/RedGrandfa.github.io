@@ -95,29 +95,43 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         let DateModalLauncher = document.querySelector('button[data-bs-target="#DateModal"]');
+        let TimeModalLauncher = document.querySelector('button[data-bs-target="#TimeModal"]');
+        let completeBtn = document.querySelector('#complete');
+
         DateModalLauncher.addEventListener('click',function(){
-            document.querySelector('button[data-bs-target="#TimeModal"]').disabled = true;
+            let sD = datePicker.selectedDates;
+            if (sD.length == 2 && sD[1]>sD[0]){
+                TimeModalLauncher.disabled =  false;
+            }else{
+                TimeModalLauncher.disabled =  true;
+            }
+        });
+
+        TimeModalLauncher.addEventListener('click',function(){
+            if (TimePicker[0].selectedDates.length==1 && TimePicker[1].selectedDates.length==1){
+                completeBtn.disabled =  false;
+            }else{
+                completeBtn.disabled =  true;
+            }
         });
 
         const datePicker = flatpickr("#datePicker", {
             mode: "range",
-            dateFormat: "Y-m-d",
+            dateFormat: "Y\\年m\\月d\\日",
             // altInput: true,
             // altFormat: "F j, Y",
 
             minDate: new Date(),
-            disable: ["2021-08-09", new Date(2021, 7, 17) ],
+            disable: ["2021-08-11", new Date(2021, 7, 19) ],
 
             inline:true,
 
 
             onChange: function( selectedDates, dateStr, instance) {//固定的參數群
-                let btn = document.querySelector('button[data-bs-target="#TimeModal"]');
-
                 if (selectedDates.length == 2 && selectedDates[1]>selectedDates[0]){
-                    btn.disabled =  false;
+                    TimeModalLauncher.disabled =  false;
                 }else{
-                    btn.disabled =  true;
+                    TimeModalLauncher.disabled =  true;
                 }
                 let s = flatpickr.formatDate(selectedDates[0], instance.config.dateFormat);
                 let e = flatpickr.formatDate(selectedDates[1], instance.config.dateFormat);
@@ -127,12 +141,9 @@
             },
         });
 
-        let TimeModalLauncher = document.querySelector('button[data-bs-target="#TimeModal"]');
-        DateModalLauncher.addEventListener('click',function(){
-            document.querySelector('#complete').disabled = true;
-        });
 
-        const startTimePicker = flatpickr(".TimePicker", {
+
+        const TimePicker = flatpickr(".TimePicker", {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i",
@@ -141,14 +152,14 @@
             maxTime: "22:30",
 
             onChange: function( selectedDates, dateStr, instance) {//固定的參數群
-                console.log(instance)
-                let btn = document.querySelector('#complete');
-                btn.disabled = false;
-                if (selectedDates.length != 1 ){
-                    btn.disabled =  true;
+                if (TimePicker[0].selectedDates.length==1 && TimePicker[1].selectedDates.length==1){
+                    completeBtn.disabled =  false;
+                }else{
+                    completeBtn.disabled =  true;
                 }
             }
         });
+        
 
         // const startTimePicker = flatpickr("#startTimePicker", {
         // });
