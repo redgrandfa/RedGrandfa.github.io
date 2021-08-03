@@ -1,6 +1,6 @@
 $themeColor:#fc8d61;
 $min-width:280px;
-$max-width:1600px;
+$max-width:1200px;
 $arrowBtnWidth:48px;
 $searchBorderR:11px;
 
@@ -97,21 +97,21 @@ header{
 
 .swiper-container{
     width: 100%;
-}
-// .swiper-wrapper{
-//     // align-items: stretch;
-//     // background-color: #fcc;
-// }
-.swiper-slide {
-    font-size: 18px;
-
-    border: 1px solid #ddd;
-    border-radius: .5em;
-
-    display: flex;
-    /* Center slide text vertically */
-    justify-content: center;
-    align-items: center;
+    // .swiper-wrapper{
+    //     // align-items: stretch;
+    //     // background-color: #fcc;
+    // }
+    .swiper-slide {
+        font-size: 18px;
+    
+        border: 1px solid #ddd;
+        border-radius: .5em;
+    
+        display: flex;
+        /* Center slide text vertically */
+        justify-content: center;
+        align-items: center;
+    }
 }
 .swiper-button-prev, .swiper-button-next{
     color: #000;
@@ -120,17 +120,19 @@ header{
     width: $arrowBtnWidth;
     height: $arrowBtnWidth;
 }
+.swiper-button-prev:hover, .swiper-button-next:hover{
+    background-color: rgba(255, 255, 255, 1);
+}
 
 .swiper-button-prev::after,.swiper-button-next::after{
     position: relative;
     font-size: $arrowBtnWidth/2;
     font-weight: 900;
 }
-.swiper-button-next::after{    left: 7%;}
-.swiper-button-prev::after{    right: 7%;}
+.swiper-button-next::after{ left: 7%;}
+.swiper-button-prev::after{ right: 7%;}
 
 article{
-    width: 100%;
     max-width: $max-width;
     margin-left: auto;
     margin-right: auto;
@@ -149,7 +151,7 @@ article{
             // justify-content: center;
         }
         .imgBox{
-            // background-color: #fee;
+            background-color: #fee;
             align-items: center;
         }
         .textBox{
@@ -159,17 +161,21 @@ article{
         }
     }
 
-    
+    $catImgBoxWidth: 111px;
     .categories-swiper-container{
         >.swiper-wrapper{
             >.swiper-slide{
-                height: 160px;
+                height: 111px;
+                // justify-content: flex-start;
                 >.imgBox{
-                    width: 150px;
+                    width: $catImgBoxWidth;
+                    overflow: hidden;
                 }
                 >.textBox{
-                    width: calc(100% - 150px);
+                    width: calc(100% - $catImgBoxWidth);
+                    text-align: center;
                     font-size: 16px;
+                    // background-color: #f00;
                 }
             }
         }
@@ -178,12 +184,11 @@ article{
     .stories-swiper-container{
         >.swiper-wrapper{
             >.swiper-slide{
-                height: 444px;
+                height: 333px;
                 >.imgBox{
-                    height: 100%;
-                    border-right: 1px solid #ddd;
-                    // box-shadow: #000;
+                    padding: 11px;
                     img{
+                        border-radius: 50%;
                     }
                 }
                 >.textBox{
@@ -213,8 +218,7 @@ article{
                     // width: auto;
                     width: calc(100% - 100px);
                     font-size: 16px;
-                    h5{
-                    }
+                    // h5{}
                 }
             }
         }
@@ -238,25 +242,34 @@ article{
     .blogPosts-swiper-container{
         >.swiper-wrapper{
             >.swiper-slide{
-                height: 444px;
+                // height: 444px;
                 >.imgBox{
                     width: 100%;
                     overflow: hidden;
                     img{
-                        // height: 100%;
+                        height: auto;
+                        width: 100%;
                     }
                 }
                 >.textBox{
                     width: 100%;
-                    height: 100%;
                     justify-content: flex-start;
-                    padding: 22px;
-                    >h6{
+                    padding: 0 22px ;
+                    margin: 22px 0 ;
+
+                    >h5{
                         font-size: 33px;
                     }
                     >p{
                         font-size: 16px;
-                    }                    >button{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box; 
+                        -webkit-line-clamp: 4;
+                        -webkit-box-orient: vertical;    
+    
+                    }
+                    >button{
                         border: 1px solid $themeColor;
                         border-radius: .25em;
                         line-height: 1.5;
@@ -271,6 +284,27 @@ article{
 
 
 @media screen and (max-width:767px){
+    .stories-swiper-container{
+        >.swiper-wrapper{
+            >.swiper-slide{
+                flex-direction: column;
+                justify-content: flex-start;
+                >.imgBox{
+                    width: 100%;
+                    height: 111px;
+                    border-bottom: 1px solid #ddd;
+                    box-shadow: 0 1px 2px #aaa;
+                    img{
+                        height: 100%;;
+                    }
+                }
+                // >.textBox{
+                //     >p{}
+                // }
+            }
+        }
+    }
+
     //產品兩欄
     .category-sample{
         .card-item{//有bs
@@ -278,16 +312,38 @@ article{
         }
     }
 }
+@media screen and (min-width:768px){
+    .stories-swiper-container{
+        >.swiper-wrapper{
+            >.swiper-slide{
+                flex-direction: row;
+                >.imgBox{
+                    width: 50%;
+                    height: 100%;
+                    // height: 333px;
+                    border-right: 1px solid #ddd;
+                    box-shadow: 1px 0 2px #aaa;
+
+                    img{
+                        width: 100%;
+                    }
+                }
+                >.textBox{
+                    width: 50%;
+                    // >p{}
+                }
+            }
+        }
+    }
+}
 
 @media screen and (min-width:768px) and (max-width:991px){
-
     //產品三欄
     .category-sample{
         .card-item{//有bs
             width: 32%;
         }
-    }       
-
+    }
 }
 
 @media screen and (min-width:992px){
@@ -340,7 +396,8 @@ article{
             .imgBox{
                 height: 222px;
                 img{
-                    // height: 100%;
+                    height: 100%;
+                    width: auto;
                 }
             }
         }

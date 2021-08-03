@@ -41,7 +41,7 @@
     </header>
     
 
-    <article>
+    <article class="container">
         <section id="categories" class="Area">
             <h3>租借種類
                 <a href="">see all</a>
@@ -57,8 +57,7 @@
                             <img class="w-100" src="https://picsum.photos/100/150/?random=1">
                         </div>
                         <div class="textBox">
-                            Lorem ipsum
-                            ...要做嗎
+                            <div>Lorem ipsum</div>
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -80,12 +79,12 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <div class="imgBox w-50">
-                            <img class="w-100" src="https://picsum.photos/100/100/?random=1">
+                        <div class="imgBox">
+                            <img class="" src="https://picsum.photos/100/100/?random=1">
                         </div>
-                        <div class="textBox w-50 px-2" >
+                        <div class="textBox px-2" >
+                            <h5>BuildSchool </h5>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos est earum qui voluptatem, quibusdam consequatur neque quis omnis, ipsum </p>
-                            <p>Located: </p>
                             <p>owned by </p>
                         </div>
                     </div>
@@ -170,8 +169,8 @@
                             <img class="w-100" src="https://picsum.photos/300/500/?random=1">
                         </div>
                         <div class="textBox" >
-                            <h6>報導標題八十億人都震驚了 </h6>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos est earum qui voluptatem, quibusdam consequatur neque quis omnis, ipsum...還沒做 </p>
+                            <h5>報導標題八十億人都震驚了 </h5>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos, corporis quia tempore labore saepe, fuga repellendus vel quisquam harum debitis facilis accusamus numquam? Dolor explicabo a veritatis. Aliquam, aperiam illum?m illum?m illum?m illum? </p>
                             <button class="btn">查看更多</button>
                         </div>
                     </div>
@@ -202,8 +201,9 @@
             centeredSlides: true,
             slidesPerView: 1.8,          
             breakpoints: {
-                // when window width is >= 
+                // when window width is >=
                 768: {
+                    height:55,
                     centeredSlides: true,
                     slidesPerView: 3.3
                 },
@@ -218,8 +218,6 @@
         });
 
         const storiesSwiper = new Swiper('.stories-swiper-container', {
-            // autoHeight: true,
-            // setWrapperSize: true,
             loop: true,
             freeMode: true,
             navigation: {

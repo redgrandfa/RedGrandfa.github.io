@@ -7,10 +7,10 @@
     <title>Document</title>
 
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_orange.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
     <!-- #FF8A65 可以載下來改色-->
+    <!-- #fc8d61 網站顏色-->
     
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
         input.flatpickr{
             width: 444px;
@@ -27,26 +27,8 @@
         <div id="start"></div>
         <div id="end"></div>
     </div>
-
-
-
-    <!-- <script>
-        var base_url = 'https:\/\/flatpickr.js.org\/';
-        var repo_id = 'flatpickr\/flatpickr';
-    </script> -->
-    <!-- <script src=https://flatpickr.js.org/javascripts/application.js></script>
-    <script src=https://flatpickr.js.org/init.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/weekSelect/weekSelect.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/minMaxTimePlugin.js></script>
-    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js></script> -->
-    <!-- example -->
-    <!-- <script src=https://flatpickr.js.org/flatpickr.js></script> -->
-    <!-- theme -->
-    <!-- <script src=https://flatpickr.js.org/themer.js></script>     -->
-
+        
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         const input = document.querySelector("#dateTimePicker");
         const Myfp = flatpickr(input, {
@@ -57,6 +39,9 @@
 
             altInput: true,
             altFormat: "F j, Y",
+
+            minDate: "2021-08-05",
+            disable: ["2021-08-07", , new Date(2021, 7, 9) ],
 
             onChange: function( selectedDates, dateStr, instance) {//固定的參數順序
 
@@ -76,12 +61,13 @@
 
                 // Utilize dayElem.dateObj, which is the corresponding Date
                 // dummy logic
-                if (Math.random() < 0.15)
-                    // dayElem.innerHTML += "<span class='event'></span>";
-                    dayElem.style.background="#FF8A65";
-                else if (Math.random() > 0.85)
-                    // dayElem.innerHTML += "<span class='event busy'></span>";
-                    dayElem.style.background="#cff";
+
+                // if (Math.random() < 0.15)
+                //     // dayElem.innerHTML += "<span class='event'></span>";
+                //     dayElem.style.background="#FF8A65";
+                // else if (Math.random() > 0.85)
+                //     // dayElem.innerHTML += "<span class='event busy'></span>";
+                //     dayElem.style.background="#cff";
 
             }
             // clickOpens  點擊是否打開
@@ -111,8 +97,8 @@
 
 
         //兩個靜態方法：
-        // flatpickr.parseDate(dateStr, dateFormat)         =>字串轉物件
-        // flatpickr.formatDate(dateObj, dateFormat)        =>物件轉字串
+        // flatpickr.parseDate(dateStr, dateFormat)         =>日期字串轉物件
+        // flatpickr.formatDate(dateObj, dateFormat)        =>日期物件轉字串
                 //dateFormat = 要解析/要成為的字串格式
 
         

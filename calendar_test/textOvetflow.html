@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            border: 1px solid ;
+            width: 111px;
+            
+            white-space : nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .b{
+            white-space :normal;
+            display: -webkit-box; 
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical; 
+        }
+    </style>
+</head>
+<body>
+    <h4 class="a">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero id nesciunt molestiae explicabo debitis ea omnis dolorum possimus distinctio, reprehenderit, obcaecati dolores porro molestias rem a, vel soluta sed cumque!
+    </h4>
+
+    <p class="a b">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero id nesciunt molestiae explicabo debitis ea omnis dolorum possimus distinctio, reprehenderit, obcaecati dolores porro molestias rem a, vel soluta sed cumque!
+    </p>
+
+
+    <div class="a b">
+        <h4>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero id nesciunt molestiae explicabo debitis ea omnis dolorum possimus distinctio, reprehenderit, obcaecati dolores porro molestias rem a, vel soluta sed cumque!
+        </h4>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero id nesciunt molestiae explicabo debitis ea omnis dolorum possimus distinctio, reprehenderit, obcaecati dolores porro molestias rem a, vel soluta sed cumque!
+        </p>
+    </div>
+
+</body>
+<script>
+    // let b = document.querySelector(".b");
+    // console.log(b);
+    // console.log(b.style);
+    // console.log(b.style.whiteSpace);
+</script>
+
+</html>
