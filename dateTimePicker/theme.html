@@ -1,0 +1,107 @@
+<!doctype html>
+<html class=no-js>
+
+<head lang=en-us>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv=x-ua-compatible content="IE=10">
+    <title>Themes - flatpickr</title>
+    <meta name=generator content="Hugo 0.79.1">
+    <meta name=description content="A lightweight and powerful datetimepicker">
+    <link rel=canonical href=https://flatpickr.js.org/themes />
+    <meta name=author content="chmln">
+    <meta property="og:url" content="https://flatpickr.js.org/themes/">
+    <meta property="og:title" content="flatpickr">
+    <meta property="og:image" content="https://flatpickr.js.org/images/logo.png">
+    <meta name=apple-mobile-web-app-title content="flatpickr">
+    <meta name=apple-mobile-web-app-capable content="yes">
+    <meta name=apple-mobile-web-app-status-bar-style content="black-translucent">
+    <link rel="shortcut icon" type=image/x-icon href=https://flatpickr.js.org/images/logo.png>
+    <link rel=icon type=image/x-icon href=https://flatpickr.js.org/images/logo.png>
+    <style>
+        @font-face {
+            font-family: icon;
+            src: url(https://flatpickr.js.org/fonts/icon.eot);
+            src: url(https://flatpickr.js.org/fonts/icon.eot)format('embedded-opentype'), url(https://flatpickr.js.org/fonts/icon.woff)format('woff'), url(https://flatpickr.js.org/fonts/icon.ttf)format('truetype'), url(https://flatpickr.js.org/fonts/icon.svg)format('svg');
+            font-weight: 400;
+            font-style: normal
+        }
+    </style>
+    <link rel=stylesheet href=https://flatpickr.js.org/stylesheets/application.css>
+    <link rel=stylesheet href=https://flatpickr.js.org/stylesheets/temporary.css>
+    <link rel=stylesheet href=https://flatpickr.js.org/stylesheets/palettes.css>
+    <link rel=stylesheet href="//fonts.googleapis.com/css?family=Libre%20Franklin:400,700|Roboto+Mono">
+    <style>
+        body,
+        input {
+            font-family: libre franklin, Helvetica, Arial, sans-serif
+        }
+
+        pre,
+        code {
+            font-family: roboto mono, courier new, courier, monospace
+        }
+    </style>
+    <link rel=stylesheet href=https://flatpickr.js.org/site.css>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.css>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css>
+    <script src=https://flatpickr.js.org/javascripts/modernizr.js></script>
+</head>
+
+<body class="palette-primary-blue palette-accent-light-blue">
+    <div class=backdrop>
+    </div>
+
+    <main class=main>
+        <article class=article>
+            <div class=wrapper>
+                <p><label for=themes>Select Theme:</label>
+                    <select id=themes>
+                        <option value>Default</option>
+                    </select>
+                </p><input class=flatpickr type=text placeholder="Select Date.." data-id=datetime>
+            </div>
+        </article>
+    </main>
+
+    <script>var base_url = 'https:\/\/flatpickr.js.org\/'; var repo_id = 'flatpickr\/flatpickr';</script>
+    <script src=https://flatpickr.js.org/javascripts/application.js></script>
+    <script src=https://flatpickr.js.org/init.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/weekSelect/weekSelect.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/minMaxTimePlugin.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js></script>
+    <script src=https://flatpickr.js.org/flatpickr.js></script>
+    <script src=https://flatpickr.js.org/themer.js></script>
+    <script>
+        var headers = document.getElementsByTagName("h2"); 
+        var scrollspy = document.getElementById('scrollspy'); 
+        if (scrollspy) {
+            if (headers.length > 0) {
+                for (var i = 0; i < headers.length; i++) {
+                    var li = document.createElement("li"); 
+                    li.setAttribute("class", "anchor"); 
+                    var a = document.createElement("a"); 
+                    a.setAttribute("href", "#" + headers[i].id); 
+                    a.setAttribute("title", headers[i].innerHTML); 
+                    a.innerHTML = headers[i].innerHTML; 
+                    li.appendChild(a)
+                    scrollspy.appendChild(li);
+                }
+            } else { scrollspy.parentElement.removeChild(scrollspy) }
+            var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            for (var i = 0; i < headers.length; i++) {
+                var a = document.createElement("a"); 
+                a.setAttribute("class", "headerlink"); 
+                a.setAttribute("href", "#" + headers[i].id); 
+                a.setAttribute("title", "Permanent link")
+                a.innerHTML = "#"; headers[i].appendChild(a);
+            }
+        }
+    </script>
+</body>
+
+</html>
