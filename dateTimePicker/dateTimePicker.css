@@ -1,10 +1,94 @@
+.right{
+    width: 0;
+}
+
+.RentInfo{
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid #aaa;
+}
+
+.RentSetting{
+    margin: 0 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin: 10px 0;
+}
+.hint{
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+    line-height: 3;
+    letter-spacing: 2px;
+    
+    background-color:transparent;
+    color: #aaa;
+}
+/* 選取器 */
+
+.decision-group{
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.decision-group>button:nth-child(1){
+    margin-right: 10px;
+}
+
+.decision-group>button{
+    width: 40%;
+    flex-grow: 1;
+}
+
+
+@media screen and (min-width:768px) {
+    .right{
+        width: 380px;
+        height: 1200px;
+        /* background-color: #ffe; */
+    }
+    .RentInfo{
+        position: sticky;
+        top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 11px;
+        box-shadow: 0 0 5px #ccc;
+
+        width: 100%;
+    }
+    .RentSetting{
+        display: flex;
+        flex-direction: column;
+    }
+    .price{
+        font-size: 40px;
+    }
+    /* .hint{
+        background-color:transparent;
+        color: #aaa;
+    } */
+}
+
+
+/* ------------modal---------------------- */
+
 .orange{
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
     color: #fff;
 
-    vertical-align: middle;
+    /* vertical-align: middle; */
 
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -13,6 +97,18 @@
     background-color:#FF8A65;
     border:none;
 }
+.orange.setted{
+    border:1px solid #ccc;
+    background-color:#fff;
+    color: #000;
+    font-weight: 900;
+}
+
+.orange.setted>div{
+    /* background-color: #fcc; */
+    width: 130px;
+}
+
 button:not(:disabled):hover{
     box-shadow: 2px 2px 2px #aaa;
     transform: translate(-3px ,-2px) scaleY(1.05);
@@ -57,14 +153,17 @@ button:not(:disabled):hover{
     color: #fff;
     background-color: #FFAD87;
     letter-spacing: 2px;
-    /* FF8A65 */
-    /* FFAD87 */
-    /* FFCFA9 */
+    /* FF8A65   +2*/
 }
-.modal-body>button[data-bs-toggle="collapse"]:disabled{
+
+.right .orange:disabled{
     color: #777;
     background-color: #ddd;
 }
+/* .modal-body>button[data-bs-toggle="collapse"]:disabled{
+    color: #777;
+    background-color: #ddd;
+} */
 
 #collapseTimePicker{
     box-shadow: 0px 0px 7px #eee;
@@ -123,4 +222,3 @@ button:not(:disabled):hover{
     color: #777;
     background-color: #ddd;
 }
-</style
