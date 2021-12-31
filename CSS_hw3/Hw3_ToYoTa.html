@@ -40,11 +40,10 @@
     .containerHeader~ul{
       width: 960px;
       padding: 0 41px;
-      margin: 0px auto 210px auto;
+      margin: 0px auto 270px auto;
       display: flex;
       justify-content: space-between;
       font-size: 22px;
-      height: 60px;
     }
     .containerHeader~ul a{
       display: block;
@@ -64,20 +63,22 @@
     ul>li>a:last-child{
       color:#fff;
       background-color: #ae0014;
+      /* 重要 */
       overflow: hidden;
       position: relative;      
-      transition: all 0.5s 0s ease;
+      transition: all 2s 0s ease;
       top: -1px;
       height: 1px;
       padding-top:2px;
     }
-
+/*  高度長33px 向上位移33px 但content box的上緣鎖死位置*/
     ul>li:hover>a:last-child{
       height: 34px;
       margin-top: -33px;
       padding-top: 35px;
     }
-    ul>li>a>div{
+    /* 字的定位 根據父層content box的上緣  配合上緣鎖死 產生固著的視覺結果*/
+    ul>li>a>div{ 
       position: relative;
       top: -33px;
     }
