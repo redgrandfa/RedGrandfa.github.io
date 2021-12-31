@@ -44,9 +44,10 @@
     </nav>
 
     <!-- 球員表：bootstrapVue -->
-    <!-- Table busy state -->
     <section id="showPlayers">
-        <b-table sticky-header="677px" head-variant="dark" striped responsive :fields="fields" :items="items" :busy="isBusy"
+        <b-table sticky-header="677px" head-variant="dark" 
+            striped responsive 
+            :fields="fields" :items="items" :busy="isBusy"
             :sort-by.sync="sortBy" :sort-desc.sync="sortDesc">
             <template #table-busy>
                 <div class="text-center text-danger my-2">
@@ -55,7 +56,7 @@
                 </div>
             </template>
         </b-table>
-
+        <!-- Primary key 防重複-->
     </section>
 
     <!-- 襯線 -->
@@ -74,11 +75,20 @@
                         <li class="d-flex" v-for="i in 6">
                             <!-- rank.length/2-1.5 -->
                             <div class="rank__liStyle">{{i}}</div>
-                            <span class="mx-2">{{rank.list[i-1].id}}</span>
-                            <span class="player-name ml-2">{{rank.list[i-1].name}}</span>
+                            <span class="mx-2" v-if="rank.list[i-1].id<10">
+                                &ensp;{{rank.list[i-1].id}}
+                            </span>
+                            <span class="mx-2" v-else>
+                                {{rank.list[i-1].id}}
+                            </span>
+
+                            <span class="player-name ml-2">
+                                {{rank.list[i-1].name}}
+                            </span>
                             <!-- <hr class="d-inline-block"> -->
                             <span class="rank__data ml-auto">
-                                {{rank.list[i-1].value.toFixed(rank.digit)}}</span>
+                                {{rank.list[i-1].value.toFixed(rank.digit)}}
+                            </span>
                         </li>
                     </div>
                 </div>
@@ -97,7 +107,7 @@
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOneXO">
-                            比賽{{}}
+                            比賽1
                         </button>
                     </h2>
                 </div>
@@ -106,7 +116,7 @@
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                     data-parent="#accordionExample">
                     <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        Anim pariatur cliche reprehenderit
                     </div>
                 </div>
             </div>
@@ -167,20 +177,32 @@
                 });
             });
         })
+        // function SwitchPage(id){
 
+        // }
         let url = 'https://script.google.com/macros/s/AKfycbwcNyjZp50ycEmJN5EChsJa3RfTkLkNl6n24U5gEVcggqPtnOXDJxe7mm4yexVk5LzI/exec';
         fetch(url)
             .then(response => response.json())
             .then(result => {
                 let dataRows = result.player;
                 let titles = dataRows.shift(1);
-                showPlayers.fields = titles.map(x => {
-                    return { key: x, sortable: true };
-                });
-
+                //player.fields
+                showPlayers.fields = titles.slice(1).map(x => {
+                    if (x=='姓名')
+                        return { key: x, sortable: true, class:'text-nowrap',stickyColumn: true};
+                    // else if(x=='背號')
+                    //     return { key: x, sortable: true, class:'text-nowrap',
+                    //     formatter: (value, key, item) => {
+                    //         return value.length<2 ? '0'+value : value
+                    //     },
+                    //     };
+                    else 
+                        return { key: x, sortable: true, class:'text-nowrap' };
+                    });
+                //player.items
                 for (let i = 0; i < dataRows.length; i++) {
                     let item = {};
-                    for (let j = 0; j < dataRows[i].length; j++) {
+                    for (let j = 1; j < dataRows[i].length; j++) {
                         let data = dataRows[i][j];
                         if (titles[j][2] == '率' || titles[j] == "攻擊指數") {
                             if (isNaN(data))
@@ -194,9 +216,11 @@
                     showPlayers.items.push(item);
                 }
                 showPlayers.isBusy = false;
-
+                // 
                 showRanks.ranks = result.rank;
-
+            })
+            //更多資訊
+            .then( ()=>{
 
             });
     </script>
