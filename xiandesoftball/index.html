@@ -65,15 +65,14 @@
         <div class="container-fluid w-100 d-flex flex-wrap">
             <div class="row">
                 <div class="rank col-12 col-md-6 col-lg-4 mb-5" v-for="rank in ranks">
-                    <div class="rank__title pl-3 pr-2 d-flex justify-content-between">
+                    <div class="rank__title pl-3 pr-2 d-flex justify-content-between"  :sortby="rank.sortBy">
                         <h4>{{rank.awardName}}</h4>
                         <button class="d-flex align-items-center">更多資訊
                             <div class="ml-2 link-icon"></div>
                         </button>
                     </div>
                     <div class="rank__body p-3">
-                        <li class="d-flex" v-for="i in 6">
-                            <!-- rank.length/2-1.5 -->
+                        <li class="d-flex" v-for="i in 5">
                             <div class="rank__liStyle">{{i}}</div>
                             <span class="mx-2" v-if="rank.list[i-1].id<10">
                                 &ensp;{{rank.list[i-1].id}}
@@ -98,7 +97,6 @@
 
 
     <!-- 比賽：accordion card -->
-<!-- class="d-flex flex-wrap justify-content-between"  -->
     <section id="showRaces" class="d-none">
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -146,7 +144,8 @@
                 items: [],
             }
         });
-
+        let allItems; 
+        let countOfRaces = 6;
         let showRanks = new Vue({
             el: '#showRanks',
             data: {
@@ -154,33 +153,45 @@
             }
         });
         // let showRaces = new Vue
+
+        //導覽事件委派函式
         let showDoms = [
             document.getElementById('showPlayers'),
             document.getElementById('showRanks'),
             document.getElementById('showRaces')
-        ];
+        ];    
 
         let navItems = document.querySelectorAll('.nav-item');
         navItems.forEach((x, id_nav) => {
             x.addEventListener('click', ev => {
-                showDoms.forEach((s, id) => {
-                    if (id_nav == id) 
-                        s.classList.remove('d-none');
-                    else 
-                        s.classList.add('d-none')
-                });
-                navItems.forEach((n, id) => {
-                    if (id_nav == id) 
-                        n.classList.add('active');
-                    else 
-                        n.classList.remove('active');
-                });
+                SwitchPage(id_nav);
+            });    
+        })    
+        
+        function SwitchPage(id_nav){
+            showDoms.forEach((s, id) => {
+                if (id_nav == id) 
+                    s.classList.remove('d-none');
+                else 
+                    s.classList.add('d-none')
             });
-        })
-        // function SwitchPage(id){
+            navItems.forEach((n, id) => {
+                if (id_nav == id) 
+                    n.classList.add('active');
+                else 
+                    n.classList.remove('active');
+            });
+            showPlayers.items = allItems;
+        }
+        function PlayerDataSortBy(colName){
+            showPlayers.sortBy = colName;
+            showPlayers.sortDesc = true;
+            showPlayers.items = allItems.filter(x=> 
+                x['打席'] >= countOfRaces*1.5
+            )
+        }
 
-        // }
-        let url = 'https://script.google.com/macros/s/AKfycbwcNyjZp50ycEmJN5EChsJa3RfTkLkNl6n24U5gEVcggqPtnOXDJxe7mm4yexVk5LzI/exec';
+        let url = 'https://script.google.com/macros/s/AKfycbyA4b8HmJVC6vc6OYM-7B1nXH6lwefXad0ezRcVn4ti4-hh_lqzOAEuf_Ub5pT3pTD9/exec';
         fetch(url)
             .then(response => response.json())
             .then(result => {
@@ -190,12 +201,6 @@
                 showPlayers.fields = titles.slice(1).map(x => {
                     if (x=='姓名')
                         return { key: x, sortable: true, class:'text-nowrap',stickyColumn: true};
-                    // else if(x=='背號')
-                    //     return { key: x, sortable: true, class:'text-nowrap',
-                    //     formatter: (value, key, item) => {
-                    //         return value.length<2 ? '0'+value : value
-                    //     },
-                    //     };
                     else 
                         return { key: x, sortable: true, class:'text-nowrap' };
                     });
@@ -216,14 +221,21 @@
                     showPlayers.items.push(item);
                 }
                 showPlayers.isBusy = false;
+                allItems = showPlayers.items;
+                console.table( allItems);
                 // 
                 showRanks.ranks = result.rank;
             })
             //更多資訊
             .then( ()=>{
-
+                let moreLinks = document.querySelectorAll('.rank__title');
+                moreLinks.forEach( (x,id) => {
+                    x.querySelector('button').addEventListener('click',ev=>{
+                        SwitchPage(0);
+                        PlayerDataSortBy(x.getAttribute("sortby"));
+                    })
+                });
             });
     </script>
 </body>
-
 </html>
