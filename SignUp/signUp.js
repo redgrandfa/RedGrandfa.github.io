@@ -1,12 +1,28 @@
 let vm = new Vue({
     el: '#sign-up-form',
     data: {
+        show:true,
         form: {
-            name: 'a',
-            id:'a',
-            email: 'za',
-            line:'a',
-            tel:'a',
+            //個資
+            name: '',
+            gender:{
+                selected:null,
+                options: [
+                    { value: true, text: '男' },
+                    { value: false, text: '女' },
+                ],
+            },
+            birth:'',
+            id:'',
+            //聯繫
+            email: '',
+            line:'',
+            tel:'',
+            //地緣
+            school:'',
+            schoolLocation: '',
+            jobLocation: '',
+            homelandLocation:'',
         },
         // selected: 'third',
         // options: [
@@ -15,27 +31,65 @@ let vm = new Vue({
     },
     computed: {
         stateName() {
-            return this.form.name.length >= 4
+            return this.form.name.length >= 2
         },
         invalidFeedbackName() {
-            if (this.form.name.length > 0) {
-                return 'Enter at least 4 characters.'
+            return '須至少兩個字'
+        },
+        //生日
+        stateId() {
+            let id = this.form.id;
+            if(id.search(/[A-O]\d{9}/) != -1){
+                // let alphabetCode = id[0]-'A'+ 10;
+                // let resultNumber = Math.floor(alphabetCode/10) + (alphabetCode%10)*9;
+                // for(let i = 1 ; i<= 8 ; i++){
+                //     resultNumber += id[i]*(9-i);
+                // }
+                // resultNumber += id[9];
+                // if(resultNumber%10 == 0)
+                    return true;
             }
-            return 'Please enter something.'
-        }
-    },    
+            return false;
+        },
+        invalidFeedbackId() {
+            return '格式不合身分證字號規定'
+        },
+
+        stateEmail() {
+            return this.form.email.search(/\w+@\w+\.\w+/) != -1
+        },
+        stateLine() {
+            return this.form.line.length > 0
+        },
+        stateTel() {
+            return this.form.tel.search(/09\d{8}/) != -1 ;
+        },
+
+        //
+        stateSchool() {
+            return this.form.tel.length > 0 ;
+        },
+
+    },
     methods: {
         onSubmit(event) {
             event.preventDefault()
-            alert(JSON.stringify(this.form))
+            console.log(JSON.stringify(this.form))
+            
         },
         onReset(event) {
             event.preventDefault()
             // Reset our form values
-            this.form.email = ''
             this.form.name = ''
-            this.form.food = null
-            this.form.checked = []
+            this.form.birth = ''
+            this.form.gender.selected = null;
+            this.form.id = ''
+
+            this.form.email = ''
+            this.form.line = ''
+            this.form.tel = ''
+
+
             // Trick to reset/clear native browser form validation state
             this.show = false
             this.$nextTick(() => {
@@ -44,4 +98,7 @@ let vm = new Vue({
         }
     }
 });
+
+const twzipcode = new TWzipcode(".twzipcode" ,{});
+
 

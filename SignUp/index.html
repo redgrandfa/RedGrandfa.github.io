@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="sign-up-form">
-        <b-form @submit="onSubmit" @reset="onReset" >
+        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
             <div>
                 <h4>個資</h4>
                 <b-form-group
@@ -26,6 +26,7 @@
                     :invalid-feedback="invalidFeedbackName"
                     valid-feedback="Thank you!"
                     description="請輸入中文姓名"
+                    
                 >
                     <b-form-input
                         id="input-name"
@@ -34,56 +35,73 @@
                     ></b-form-input>
                 </b-form-group>
 
-                <!-- <b-form-group label="性別" v-slot="{ ariaDescribedby }">
-                    <b-form-radio-group
-                        id="radio-group-1"
-                        v-model="selected"
-                        :options="options"
-                        :aria-describedby="ariaDescribedby"
-                        name="radio-options"
-                    ></b-form-radio-group>
-                </b-form-group> -->
+                <b-form-group 
+                    id="input-group-birth" 
+                    label="生日" 
+                    label-for="input-birth"
+                    :state="false"  
+                    valid-feedback="Thank you!"
+                    description="今年年滿18才可報名"
+                >
+                    <b-input-group class="mb-3">
+                        <b-form-input 
+                            id="input-birth" 
+                            v-model="form.birth" 
+                            placeholder="YYYY-MM-DD" 
+                            autocomplete="off"
+                        ></b-form-input>
+                        <b-input-group-append>
+                            <b-form-datepicker
+                                v-model="form.birth" 
+                                button-only left 
+                                locale="zh-tw" 
+                                aria-controls="input-birth"
+                            ></b-form-datepicker>
+                        </b-input-group-append>
+                    </b-input-group>    
+                </b-form-group>
 
-                <!-- <b-form-group 
+                <b-form-group label="性別" v-slot="{ ariaDescribedby }">
+                    <b-form-radio-group class="mb-3" id="radio-group-gender"
+                        v-model="form.gender.selected"
+                        :options="form.gender.options"
+                        value-field="value"
+                        text-field="text"
+
+                        name="radio-gender"
+                        required
+                        :aria-describedby="ariaDescribedby"
+                    ></b-form-radio-group>
+                </b-form-group>
+
+                <b-form-group 
                     id="input-group-id" 
                     label="身分證字號" 
                     label-for="input-id"
-                    :state=""  
+                    :state="stateId"  
+                    :invalid-feedback="invalidFeedbackId"
                     valid-feedback="Thank you!"
-                    :invalid-feedback=""
                     description="請輸入身分證字號"
                 >
                     <b-form-input
                         id="input-id"
                         v-model="form.id"
                         placeholder="A123456789"
-                        required
                     ></b-form-input>
-                </b-form-group> -->
-
-                <!-- <b-form-group 
-                    id="input-group-birth" 
-                    label="生日" 
-                    label-for="input-birth"
-                    :state=""  
-                    valid-feedback="Thank you!"
-                    :invalid-feedback=""
-                    description="請輸入生日"
-                >
-                </b-form-group> -->
+                </b-form-group>
             </div>
-            <!-- <div>
+
+            <div>
                 <h4>聯繫</h4>
                 <b-form-group 
                     id="input-group-email" 
                     label="Email" 
                     label-for="input-email"
-                    :state=""  
+                    :state="stateEmail"  
+                    invalid-feedback="非email格式"
                     valid-feedback="Thank you!"
-                    :invalid-feedback=""
-                    description="請輸入Email"
+                    description="聯繫你要用的Email"
                 >
-
                     <b-form-input
                         id="input-email"
                         v-model="form.email"
@@ -93,13 +111,30 @@
                 </b-form-group>
 
                 <b-form-group 
-                    id="input-group-tel" 
-                    label="電話" 
-                    label-for="input-tel"
-                    :state=""  
+                    id="input-group-line" 
+                    label="LineID" 
+                    label-for="input-line"
+                    :state="stateLine"  
+                    invalid-feedback="不可為空"
                     valid-feedback="Thank you!"
-                    :invalid-feedback=""
-                    description="請輸入電話"
+                    description="聯繫你要用的LineID"
+                >
+                    <b-form-input
+                        id="input-line"
+                        v-model="form.line"
+                        placeholder=""
+                        required
+                    ></b-form-input>
+                </b-form-group>
+
+                <b-form-group 
+                    id="input-group-tel" 
+                    label="手機號碼" 
+                    label-for="input-tel"
+                    :state="stateTel"  
+                    invalid-feedback="格式應為09後面接8個數字"
+                    valid-feedback="Thank you!"
+                    description="聯繫你要用的手機號碼"
                 >
                     <b-form-input
                         id="input-tel"
@@ -111,7 +146,28 @@
             </div>
             <div>
                 <h4>地緣</h4>
-            </div> -->
+                <b-form-group 
+                    id="input-group-school" 
+                    label="學校名稱" 
+                    label-for="input-school"
+                    :state="stateSchool"  
+                    invalid-feedback="不可為空"
+                    valid-feedback="Thank you!"
+                    description="最高學歷的學校，須為大專以上、就讀中或畢業"
+                >
+                    <b-form-input
+                        id="input-school"
+                        v-model="form.school"
+                        placeholder="哈侯大學"
+                        required
+                    ></b-form-input>
+                </b-form-group>
+<!-- 兩個套件? vue -->
+                <div class="twzipcode d-flex justify-content-start mb-2">
+                    <div class="mr-1" data-role="county" data-css="form-control form-control-md"></div>
+                    <div class="mr-1" data-role="district" data-css="form-control form-control-md"></div>
+                </div>
+            </div>
 
             <b-button type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
@@ -133,6 +189,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <!-- BootstrapVue -->
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script src="TWzipcode.js"></script>
     <script src="signUp.js"></script>
 </body>
 </html>
