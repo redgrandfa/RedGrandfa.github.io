@@ -1,30 +1,32 @@
 我是偉軒!
 
+[我的GitHub Pages首頁](https://redgrandfa.github.io/)
 
-markdown rules
+
+markdown 語法規則
 ===
 
-# h1
-## h2
-### h3
-#### h4
-##### h5
-###### h6
+# h1級標題
+## h2級標題
+### h3級標題
+#### h4級標題
+##### h5級標題
+###### h6級標題
 
+
+*斜體*
 _斜體_
 **粗體**
-`等寬字`
 ~~刪除線~~
 
-```js
-function name(){
-  return 7
-}
-```
+`OOXX`
 
-> 區塊
->> qwe
->>> asd 
+```css
+div{
+  width:55px;
+}
+
+```
 
 清單 * + -  7.
 ===
@@ -42,6 +44,14 @@ function name(){
   - z
   - x
 * e
+
+
+
+
+> 引用區塊
+>> 引用
+>>> 引用 
+
 
 
 
