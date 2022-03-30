@@ -1,0 +1,59 @@
+* {
+  list-style: none;
+  text-decoration: none;
+}
+
+.container {
+  width: 960px;
+}
+
+.container .button-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+li {
+  margin: 11px;
+  width: 188px;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  line-height: 34px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+li a:first-child {
+  border: 1px #444 dotted;
+  color: #000;
+  background-color: #fff;
+  height: 34px;
+}
+
+li a:last-child {
+  color: #fff;
+  background-color: #f00;
+  -webkit-transition: all 1.6s 0s ease;
+  transition: all 1.6s 0s ease;
+  overflow: hidden;
+  height: 1px;
+  margin-top: -1px;
+  padding-top: 1px;
+}
+
+li a:last-child div {
+  margin-top: -33px;
+}
+
+li:hover a:last-child {
+  height: 34px;
+  margin-top: -34px;
+  padding-top: 34px;
+}
+/*# sourceMappingURL=button.css.map */
