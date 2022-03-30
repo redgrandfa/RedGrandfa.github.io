@@ -1,0 +1,8 @@
+.info{
+    position: relative;
+    width: 355px;
+}
+
+.info>.textArea{
+	position: absolute;
+}

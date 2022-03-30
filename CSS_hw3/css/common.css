@@ -1,0 +1,25 @@
+*{
+	/* outline:1px solid #00b; */
+	text-decoration: none;
+	font-family: "Noto Sans",sans-serif;
+	font-weight: 100;
+}
+header,footer{
+	margin: 150px auto;
+
+	background-color: #666;
+	line-height: 111px;
+	text-align: center;
+}
+
+.container{
+	margin: auto;
+	width: 960px;
+}
+
+
+.advantage{
+	/* width: 960px; */
+	margin-top: 222px;
+
+}
