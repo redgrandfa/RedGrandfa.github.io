@@ -14,9 +14,9 @@
 
     <h1>pokemon list</h1>
 
-    <button id="button1" class="btn btn-primary" onclick="fetch()">HTML標籤屬性</button>
-    <button id="button2" class="btn btn-secondary" >JS設定物件.onclick</button>  
-    <button id="button3" class="btn btn-dark">addEventListener</button>
+    <button id="button1" class="btn btn-primary" onclick="fetch()">侵入式寫attribute</button>
+    <button id="button2" class="btn btn-secondary" >DOM.onclick</button>  
+    <button id="button3" class="btn btn-dark">DOM.addEventListener</button>
     <button id="button4" class="btn btn-danger">重置by addEventListener</button>
 
     <div id="container">
@@ -29,7 +29,8 @@
         for(let i=1;i<=898 ; i++){
           let filename =i.toString().padStart(3,'0');
           let pathfile = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${filename}.png`;
-          let pokemonImg = `<img src="${pathfile}">`;
+          let pokemonImg = `<img src="${pathfile}" >`;
+          // loading="lazy"
           pokemons += pokemonImg;
         }
         container.innerHTML = pokemons;
