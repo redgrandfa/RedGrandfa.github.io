@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="icon" href="images/contractICO.ico" />
+		<title>契約展區</title>
+
+		<link
+			href="https://meyerweb.com/eric/tools/css/reset/reset.css"
+			rel="stylesheet"
+		/>
+
+		<!-- @latest/dist -->
+		<!-- Bootstrap and BootstrapVue CSS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		/>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css"
+		/>
+
+		<!-- Fonts -->
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto+Mono:wght@100;200;300;400;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Icon Fonts -->
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="index.css" />
+
+		<!-----------JS -------------------------------->
+	</head>
+
+	<body>
+		<div id="app" class="container">
+			<b-button
+				size="sm"
+				variant="secondary"
+				class="my-1"
+				href="https://www.notion.so/8-b608e880cc0649e791b6c6480b8ea485?pvs=4"
+				target="_blank"
+				>回說明頁</b-button
+			>
+
+			<b-table
+				head-variant="dark"
+				table-variant="primary"
+				bordered
+				striped
+				hover
+				responsive
+				:items="items"
+				:fields="fields"
+				:sort-by.sync="sortBy"
+				:sort-desc.sync="sortDesc"
+			>
+				<template #cell(Photos)="row">
+					<b-form-checkbox
+						v-model="row.detailsShowing"
+						@change="row.toggleDetails"
+					>
+						看
+					</b-form-checkbox>
+				</template>
+
+				<template #row-details="row">
+					<b-card>
+						<a
+							v-for="(x,i) in row.item.Photos"
+							class="pic mx-1"
+							target="_blank"
+							:href="photoImgPath(x)"
+						>
+							<img :src="photoImgPath(x)" />
+						</a>
+					</b-card>
+				</template>
+			</b-table>
+		</div>
+
+		<!--  Vue 、 BootstrapVue -->
+		<script src="//unpkg.com/vue@2.7.16/dist/vue.min.js"></script>
+		<script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+
+		<!-- Custom JS -->
+		<script src="index.js"></script>
+	</body>
+</html>
