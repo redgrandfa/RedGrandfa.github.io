@@ -43,14 +43,22 @@
 
 	<body>
 		<div id="app">
-			<b-button
+			<!-- <b-button
 				size="sm"
 				variant="secondary"
 				class="my-1"
 				href="https://www.notion.so/8-b608e880cc0649e791b6c6480b8ea485?pvs=4"
 				target="_blank"
 				>回說明頁</b-button
-			>
+			> -->
+			<!-- <b-pagination 
+				v-model="currentPage" 
+				:total-rows="totalRows" 
+				:per-page="perPage" 
+				size="sm"
+				class="my-0">
+			</b-pagination> -->
+			<!-- align="fill"  -->
 
 			<b-table
 				head-variant="dark"
@@ -59,10 +67,14 @@
 				striped
 				hover
 				responsive
+				small
+
 				:items="items"
 				:fields="fields"
 				:sort-by.sync="sortBy"
 				:sort-desc.sync="sortDesc"
+				:per-page="perPage"
+				:current-page="currentPage"
 			>
 				<template #cell(Photos)="row">
 					<b-form-checkbox
@@ -86,13 +98,14 @@
 					</b-card>
 				</template>
 			</b-table>
-		</div>
+	</div>
 
 		<!--  Vue 、 BootstrapVue -->
 		<script src="//unpkg.com/vue@2.7.16/dist/vue.min.js"></script>
 		<script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
 
 		<!-- Custom JS -->
+		<script src="contractDataList.js"></script>
 		<script src="index.js"></script>
 	</body>
 </html>

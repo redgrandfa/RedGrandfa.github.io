@@ -1,11 +1,10 @@
 body {
 	background-color: #000;
 
-	min-width: 350px;
-
 	/* font-family: 'Noto Sans TC', sans-serif; */
 	font-family: "Roboto Mono", monospace;
 	font-weight: 400;
+	font-size: 13px;
 }
 
 .pic img {
