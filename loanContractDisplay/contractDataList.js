@@ -3,7 +3,7 @@ let contractDataList = [
 	{
 		Id: 1,
 		Name: null,
-		Photos: ["1"],
+		Photos: ['1_1_v2'],
 		DateStart: new Date(2023, 1, 19), // 112 / 2 /19
 		DateEnd: new Date(2028, 1, 19), //
 		// Duration: 5,
@@ -14,7 +14,7 @@ let contractDataList = [
 	{
 		Id: 2,
 		Name: null,
-		Photos: ["2"],
+		Photos: ['2_1_v2'],
 		DateStart: new Date(2023, 3, 6), //112 年  04 月 06  日
 		DateEnd: new Date(2024, 3, 7), //113年 04 月 07 日
 		// Duration: 1,
@@ -25,7 +25,7 @@ let contractDataList = [
 	{
 		Id: 3,
 		Name: null,
-		Photos: ["3_1", "3_2"],
+		Photos: ['待補拍照片', '3_2_v1'],
 		DateStart: new Date(2023, 5, 28), //112 年  06 月 28 日
 		DateEnd: new Date(2028, 5, 28), //117年 06 月 28 日
 		// Duration: 5,
@@ -98,7 +98,7 @@ let contractDataList = [
 	{
 		Id: 4,
 		Name: null,
-		Photos: [],
+		Photos: ['尚未簽紙本契約',],
 		DateStart: new Date(2023, 8, 18), //112 年  08 月 18 日
 		DateEnd: new Date(2030, 8, 18), //119年 08月 18 日
 		// Duration: 7,
@@ -200,7 +200,7 @@ let contractDataList = [
 const fakeContract3 = {
   Id: 93,
   Name: null,
-  Photos: "",
+  Photos: '',
   DateStart: new Date(2023, 0, 13),
   DateEnd: new Date(2024, 1, 14),
   Principal: 200000,
