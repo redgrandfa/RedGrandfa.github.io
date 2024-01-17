@@ -93,6 +93,15 @@ let app = new Vue({
 		totalRows() {
 			return this.items.length;
 		},
+		totalDistributedInterest(){
+			const sum = this.items.reduce(
+				(sum, x , i) => {
+					return sum + x.DistributedInterest
+				}
+				,0,
+			)
+			return sum
+		}
 	},
 	methods: {
 		photoImgPath(photo) {
