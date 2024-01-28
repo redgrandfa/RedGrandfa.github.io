@@ -53,7 +53,7 @@ let app = new Vue({
 				sortable: true,
 				formatter: (v, key, item) => {
 					if (v instanceof Date) {
-						return v;
+						return v.toLocaleDateString()
 					}
 					if (item.Type == 2) {
 						return `X(已攤還${item.principalAmortized})`;
