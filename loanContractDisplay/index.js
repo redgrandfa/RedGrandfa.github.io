@@ -3,7 +3,7 @@ let app = new Vue({
 	data: {
 		fields: [
 			{ key: "Id", label: "", sortable: true, stickyColumn: true },
-			{ key: "Photos", label: "契約照", sortable: false },
+			{ key: "Photos", label: "借據照", sortable: false },
 			{
 				key: "Principal",
 				label: "本金",
