@@ -5,8 +5,8 @@
 - Cookie Authentication
 - 2023
 - Anyone could login by my test account:
-    - acount : asd
-    - password : asd
+    - Account : asd
+    - Password : asd
 
 
 ##  Trading Robot: Martingale Strategy
