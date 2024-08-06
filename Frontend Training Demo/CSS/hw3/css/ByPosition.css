@@ -1,0 +1,12 @@
+.advantage{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.advantage:nth-child(odd){
+	flex-direction: row;
+}
+
+.advantage:nth-child(even){
+	flex-direction: row-reverse;
+} 

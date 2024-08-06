@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Apple product</title>
+    <style>
+      body{
+        font-family: 'Noto Sans TC' , sans-serif;
+      }
+      ul{
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="products" class="mb-3 bg-info d-flex justify-content-center">
+    </div>
+    <div id="product-info" class="container">
+      <div class="row">
+        <div id="product-photo" class="col-12 col-md-7">
+        </div>
+        <div id="detail-selections" class="col-12 col-md-5 ">
+          <ul id="model-selection" class="">
+          </ul>
+          <ul id="specification-selection" class="">
+          </ul>
+          <h1 id="total-price" class="ms-3 text-center"></h1>
+        </div>
+      </div> 
+    </div>
+  
+    <script>
+      let dataStuct=[
+        {
+          name:'iPhone',
+          baseImg:'apple material/iPhone base.jpg',
+          basePrice:23900,
+          model:[
+            {
+              name:'iPhone 12 Pro' 
+              ,img:'apple material/iPhone 12 pro.jpg'
+              , extraPrice:0
+            },
+            {
+              name:'iPhone 12 Pro Max' 
+              , img:'apple material/iPhone 12 pro max.png'
+              ,extraPrice:3000
+            }
+          ],
+          spec:[
+            {
+              size:'128GB'
+              ,extraPrice:0
+            },
+            {
+              size:'256GB'
+              ,extraPrice:300
+            },
+            {
+              size:'512GB'
+              ,extraPrice:500
+            }
+          ]
+        },
+        {
+          name:'iPad',
+          baseImg:'apple material/iPad base.jpg',
+          basePrice:27900,
+          model:[
+            {
+              name:'9吋顯示器' 
+              ,img:'apple material/iPad 9.jpg'
+              , extraPrice:0
+            },
+            {
+              name:'12.2吋顯示器' 
+              , img:'apple material/iPad 12.jpg'
+              ,extraPrice:5000
+            }
+          ],
+          spec:[
+            {
+              size:'512GB'
+              ,extraPrice:0
+            },
+            {
+              size:'1TB'
+              ,extraPrice:300
+            }
+          ]
+        },
+        {
+          name:'Mac',
+          baseImg:'apple material/Mac base.jpg',
+          basePrice:30900,
+          model:[
+            {
+              name:'Mac' 
+              ,img:'apple material/Mac.jpg'
+              , extraPrice:0
+            },
+            {
+              name:'MacPro' 
+              , img:'apple material/Mac Pro.jpg'
+              ,extraPrice:9000
+            }
+          ],
+          spec:[
+            {
+              size:'256GB'
+              ,extraPrice:0
+            },
+            {
+              size:'512GB'
+              ,extraPrice:250
+            },
+            {
+              size:'1TB'
+              ,extraPrice:550
+            },
+            {
+              size:'2TB'
+              ,extraPrice:800
+            }
+          ]
+        },
+      ]
+      let products = document.getElementById("products");
+      let productPhoto = document.getElementById("product-photo");
+      let modelSelection = document.getElementById("model-selection");
+      let specification = document.getElementById("specification-selection");
+      let totalPrice = document.getElementById("total-price");
+  
+
+      dataStuct.forEach(x => {
+        //產生商品按鈕
+        let name =document.createElement('a');
+        name.setAttribute('href',"#");
+        products.appendChild(name);
+        name.setAttribute('class',"btn btn-dark m-3");
+        name.innerText = x.name;
+        name.addEventListener('click',showInfo);
+
+        function showInfo(){
+          let modelChosen=false;
+          let specChosen = false;
+          let mXP=0;
+          let sXP=0;
+          totalPrice.innerText =``;
+          // totalPrice.innerText =`原價 : ${x.basePrice}元`;
+          //圖片
+          productPhoto.innerText="";
+          let baseImg =document.createElement('img');
+          productPhoto.appendChild(baseImg);
+          baseImg.setAttribute('src',x.baseImg);
+          baseImg.setAttribute('class',"w-100");
+
+          //機型+圖
+          modelSelection.innerHTML="<h2>選擇機型</h2>";
+          x.model.forEach(m =>{
+            let li =document.createElement('li');
+            modelSelection.appendChild(li);
+
+            let a =document.createElement('a');
+            li.appendChild(a);
+            a.setAttribute('href',"#");
+            a.setAttribute('class',"btn btn-success ms-5 my-1 d-flex flex-column align-items-center");
+            
+
+            a.innerHTML=`
+            <sapn>${m.name}</sapn>
+            <span>+${m.extraPrice}元</span>`;
+
+            a.addEventListener('click', event=>{
+              baseImg.setAttribute('src',m.img);
+              modelChosen=true;
+              mXP=m.extraPrice;
+              //算錢
+              showPrice();
+            });
+          });
+
+          //規格
+          specification.innerHTML="<h2>選擇規格</h2>";
+          x.spec.forEach(s =>{
+            let li =document.createElement('li');
+            specification.appendChild(li);
+
+            let a =document.createElement('a');
+            li.appendChild(a);
+            a.setAttribute('href',"#");
+            a.setAttribute('class',"btn btn-danger ms-5 my-1 d-flex flex-column align-items-center");
+            a.innerHTML=`
+            <sapn>${s.size}</sapn>
+            <span>+${s.extraPrice}元</span>`;
+
+            a.addEventListener('click', event=>{
+              specChosen=true;
+              sXP=s.extraPrice;
+              //算錢
+              showPrice();
+            });
+          });
+          function showPrice(){
+            if (modelChosen&&specChosen){
+              totalPrice.innerText=`總價 : ${x.basePrice+mXP+sXP}元`;              
+            }
+          }
+        }
+      });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,113 @@
+/* header */
+header{
+    background-color: #00142d;
+}
+
+header .container .row{
+    justify-content: flex-end;
+    padding: 11px;
+}
+
+header a{
+    margin-left: 11px;
+    font-size: 12px;
+}
+
+header a, header i{
+    color: #fff;
+}
+
+/* nav */
+nav{
+    background-color: #fff;
+}
+
+nav .row{
+    align-items: center;
+}
+
+nav .row a{
+    font-size: 12px;
+}
+nav .row .logo {
+    margin-right: 22px;
+}
+
+nav .row ul>li{
+    margin-left: 15px;
+}
+
+nav .row ul>li a{
+    color: #324255;
+}
+
+nav .row>a{
+}
+
+
+
+/* banner */
+.banner{
+    background-color: #000;
+    color: #fff;
+}
+
+
+.banner .col{
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.banner .col:first-child{
+    padding: 111px 22px;    
+    
+    line-height: 1.7;
+}
+
+.banner .col .title{
+    font-size: 33px;
+    font-weight: 900;
+}
+
+.banner .col .title p{
+    color: orange;
+} 
+
+
+.banner .col>p{
+    margin-top: 33px;
+    margin-bottom: 55px;
+}
+
+
+.banner .col .input-area input{
+
+    border: none;
+    border-bottom: 1px #fff solid;
+
+    width: 244px;
+
+    background-color: transparent;
+    color: #fff;
+}
+
+.banner .col .input-area input::placeholder{
+    color: #fff;
+}
+
+.banner .col .input-area .free-try-button{
+    margin-left: 22px;
+}
+
+
+.banner .col:nth-child(2){
+    /* padding: 0 44px; */
+    display: flex;
+    align-items: center;
+    
+}
+.banner .col:nth-child(2) img{
+    width: 100%;
+    margin: auto;
+
+}

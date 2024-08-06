@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>calculator</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .box{
+        background-color: #bef;
+        margin: 0px auto;
+
+        width: 70vh;
+        height: 100vh;
+        min-width: 210px;
+        min-height: 300px;
+        box-sizing: border-box;
+        padding: 6vh;
+
+      }
+      .input{
+        border: #000 1px solid;
+        font-size: 7vh;
+        text-align: end;
+        box-sizing: border-box;
+        width: 58vh;
+        height: 10vh;
+
+      }
+      .keyboard{
+        width: 58vh;
+        height: 72vh;
+        border: #000 1px solid;
+        margin-top: 6vh;
+        padding: 2vh;
+
+      }
+      .btn{
+        font-size: 5vh;
+        width: 12vh;
+        height: 12vh;
+        text-align: center;
+        border-radius:7%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box d-flex flex-column align-items-center">
+      <input type="text" class="input" 
+      value="(4.4+3.3)/(2.2-1.1)">
+      
+      <div class="keyboard d-flex flex-wrap justify-content-between align-content-between">
+        <button class="btn btn-danger" id="clear">C</button>
+        <button class="btn btn-danger" id="back">></button>
+        <button class="btn btn-danger" id="evaluate">=</button>
+        <button class="btn btn-primary">+</button>
+
+        <button class="btn btn-dark">1</button>
+        <button class="btn btn-dark">2</button>
+        <button class="btn btn-dark">3</button>
+        <button class="btn btn-primary">-</button>
+        
+        <button class="btn btn-dark">4</button>
+        <button class="btn btn-dark">5</button>
+        <button class="btn btn-dark">6</button>
+        <button class="btn btn-primary">x</button>
+        
+        <button class="btn btn-dark">7</button>
+        <button class="btn btn-dark">8</button>
+        <button class="btn btn-dark">9</button>
+        <button class="btn btn-primary">/</button>
+        
+        <button class="btn btn-warning">(</button>
+        <button class="btn btn-dark">0</button>
+        <button class="btn btn-dark" id="dot">.</button>
+        <button class="btn btn-warning">)</button>
+        
+
+      </div>
+    </div>
+    <p>註1.沒有先乘除後加減的判斷，只以小括號來改變運算順序</p>
+    <p>註2.沒有正負號功能，防呆也許未完善</p>
+    防呆測資：
+    <br>V	1
+    <br>V	(
+    <br>X  )
+    <br>V	()
+    <br>V	(2)
+    <br>V	(3	(((3)
+    <br>V	(4))	4)	
+    <br>V	-8
+    <br>V	-8)
+    <br>V	(-8
+    <br>V	1+
+    <br>V	1+)
+    <br>V	1+2+3
+    <br>V	(1+2)
+    <br>V	(1+2+3)
+    <br>V	1+(2+3)
+    <br>V	(2.2-1.1)/(4.4+3.3)
+    <br>V	(2.2-1.1)/((((4.4+3.3)
+    <script>
+      let input = document.querySelector('input');
+      let keyInBtns = document.querySelectorAll('.btn:not(.btn-danger,#dot)');
+      
+      keyInBtns.forEach( k=>{
+          k.addEventListener('click', ()=>{keyIn()});
+      });
+      function keyIn(){
+        input.value += event.target.innerText;
+      }
+
+      document.querySelector('#dot').addEventListener('click', ()=>{keyInDot()});
+      function keyInDot(){
+        let last = input.value[input.value.length-1];
+        if( !(last>='0' && last<='9') ){
+          input.value += '0';//補個位數0
+        }
+        keyIn();
+      }
+
+
+      document.querySelector('#clear').addEventListener('click',()=>{clear()});
+      function clear(){
+        input.value ="";
+      }
+
+      document.querySelector('#back').addEventListener('click',()=>{back()});
+      function back(){
+        let tmp = input.value;
+        input.value = tmp.substring(0,tmp.length-1);
+      }
+
+      document.querySelector('#evaluate').addEventListener('click',()=>{isEqualTo()});
+
+      let infixExpr;
+      let pos;
+      let diff_parenthese = 0;//右括號 減 左括號數量
+      let operators=['+','-','x','/'];
+      let PrefixEXPR=[];
+
+      
+      //運算-----------------------
+      function isEqualTo(){
+        infixExpr = input.value;
+        pos = infixExpr.length-1;
+        if(pos>=0){
+          // debugger;
+          let tree = EXPR();
+          // console.log(tree);
+          if(tree == 'ERROR') return;
+          else{
+            printPrefix(tree);
+            // console.log(PrefixEXPR);
+            let ans = evaluate();
+            // console.log(ans);
+
+            if (ans != null && ans!='ERROR'){
+              input.value = ans;
+            }
+            PrefixEXPR=[];
+            diff_parenthese = 0;
+          }
+        }
+      }
+
+      function makeNode(char){
+        let node = {L:null, data:char ,R:null};
+        return node;
+      } 
+      
+      //演算法
+      // EXPR = FACTOR | EXPR OP FACTOR    遞迴自己 op factor
+      // FACTOR= NUM | (EXPR)             數值 或 小括號組
+
+      function EXPR(){
+        if (pos>=0){
+          let right=FACTOR();
+          if (right=='ERROR' ||right==null ) return right;
+          else{
+            //防呆檢查剩字
+            if (pos<0) return right;
+            else{
+              let c=infixExpr[pos--];
+              //若c是右括號
+              if(c==')'){
+                ++diff_parenthese;
+                alert('錯誤:缺少運算子');
+                return 'ERROR';
+              }
+              //若c是左括號
+              else if(c=='('){
+                if(--diff_parenthese <0){
+                  alert('錯誤:缺少右括號以成對');
+                  return 'ERROR';
+                }
+                ++diff_parenthese;
+                pos++;
+                return right;
+              }
+              //若c是運算子
+              else if(operators.includes(c)){
+                let left =EXPR();
+                if (left=='ERROR')return 'ERROR';                
+                //空 op FACTOR 
+                else if (left==null){
+                  alert('錯誤:缺少左運算元');
+                  return 'ERROR';
+                }
+                //EXPR op FACTOR 
+                else{
+                  let node = makeNode(c);
+                  node.R=right;
+                  node.L=left;
+                  return node;
+                }
+              }
+            }
+          }
+        }        
+      }
+
+      function FACTOR(){
+        if(pos<0)
+          return null;        
+        else{
+          let c=infixExpr[pos--];
+          let node;
+          //c是數字或點
+          if((c>='0' && c<='9')||c=='.' ){
+            //rule: FACTOR = NUM
+            let tmp = [];
+            do{
+              tmp.unshift(c);
+              c=infixExpr[pos--];
+            }
+            while((c>='0' && c<='9')||c=='.')
+ 
+            pos++;
+            node = makeNode(tmp.join(''));
+            return node;
+          }
+          //遇到右括號
+          //rule: FACTOR = (EXPR)
+          else if(c==')'){
+            ++diff_parenthese;
+            node = EXPR();
+            if(node=='ERROR' || node==null) return node;         
+            else{
+              //取字，判斷是否為左括號
+              //有瑕疵
+              if(infixExpr[pos--]!='('){
+                alert('錯誤:缺少左括號以成對');
+                return 'ERROR';
+              }
+              else{
+                --diff_parenthese;
+                return node;
+              }
+            }
+          }
+          //遇到左括號
+          else if(c=='('){
+            if(--diff_parenthese <0){
+              alert('錯誤:缺少右括號以成對');
+              return 'ERROR';
+            }
+            else{
+              return null;
+            }
+          }
+          //遇到運算子
+          else if(operators.includes(c)){
+            alert('錯誤:缺少右運算元');
+            return 'ERROR';
+          }
+        }
+      }
+
+      function printPrefix(node){
+        if(node!=null){
+          //中左右 表達序,組成陣列
+          PrefixEXPR.push(node.data);
+          printPrefix(node.L);
+          printPrefix(node.R);
+        }        
+      }
+      
+      function evaluate(){
+        // debugger;
+        if(PrefixEXPR.length>0){
+          let first = PrefixEXPR.shift();
+          //是運算子
+          if( operators.includes(first)){        
+            let op = first;
+            let A = evaluate();//遞迴
+            if (A==null)
+              return null;
+            let B = evaluate();//遞迴
+            if (B==null)
+              return null;
+
+            switch(op){
+              case '+':
+                return parseFloat(A)+parseFloat(B);
+              case '-':
+                return parseFloat(A)-parseFloat(B);
+              case 'x':
+                return parseFloat(A)*parseFloat(B);
+              case '/':
+                return parseFloat(A)/parseFloat(B);
+              default:
+                alert('錯誤:無設計此運算子');
+                return 'ERROR';
+            }
+          }
+          //非運算子，必是數值
+          else{
+            // 防呆 只能一個小數點
+            if(Array.from(first).filter( c => c =='.').length>1){
+              alert('錯誤:小數點數量異常');
+              return 'ERROR';
+            }
+            else
+              return first;
+          }
+        }
+      }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </body>
+</html>

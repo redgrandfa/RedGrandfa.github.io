@@ -1,0 +1,160 @@
+/* more */
+.more{
+    background-color: #f4f5f7;
+    padding: 55px 0;
+}
+.more h3{
+    font-size: 35px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.more .row{
+    flex-wrap: wrap;
+}
+
+.more .row .card{
+
+    box-sizing: border-box;
+    padding: 55px;
+
+
+    width: 33%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.more .row .card img{
+    width: 138px;
+    border-radius: 50%;
+    margin-bottom: 33px;
+/* offset-x | offset-y | blur-radius | color */
+    box-shadow: 0 0 11px #aaa;
+}
+
+.more .row .card h4{
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.more .row .card p{
+    font-size: 15px;
+    line-height: 2;
+    color: #00142d;
+
+}
+
+/* recommand */
+.recommand{
+    padding: 111px 0;
+}
+.recommand h3{
+    font-weight: 900;
+    font-size: 33px;
+    text-align: center;
+    margin-bottom: 33px;
+}
+
+.recommand h3 span{
+    color: #0061ff;   
+}
+
+
+
+.recommand ul>li {
+    width: 20%;
+    border-bottom: 1px #ccc solid;
+    margin-bottom: 22px;
+}
+
+.recommand ul>li:first-child {
+    border-bottom: 3px #0061ff solid;
+}
+
+.recommand ul>li a {
+    /* outline: 1px #f00 solid; */
+    display: block;
+    width: 100%;
+
+    height: 111px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommand ul>li img{
+    width: 33%;
+}
+
+
+.recommand .row .info{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;  
+    
+    line-height: 1.8;
+}
+.recommand .row .info p:last-child{
+    font-size: 15px;
+    margin-top: auto;
+}
+.recommand .row .info span{
+    font-size: 16px;
+    color: #0061ff;
+}
+
+.recommand .row .info p{
+    color: #324255;
+    line-height: 2.2;
+}
+.recommand .row .info p+p{
+    font-size: 17px;
+}
+
+/* 圖 */
+.recommand .row .info+div{
+    width: 55%;
+}
+
+.recommand .row .info+div img{
+    width: 100%
+}
+/* outline: 1px #f00 solid; */
+
+
+/* free-try */
+section.free-try{
+    background-color: #172b4d;
+    padding: 111px 0;
+    line-height: 1.8;
+}
+section.free-try h3{
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 44px;
+}
+section.free-try h3 span{
+    /* line-height: 0.3; */
+    /* height: 11px; */
+    /* background-color: #0061ff; */
+}
+
+section.free-try a{
+    background-color: #0061ff;
+    color: #fff;
+    font-size: 17px;
+
+    display: block;
+
+    width: 222px;
+    text-align: center;
+
+    line-height: 44px;
+    border-radius: 22px;
+}

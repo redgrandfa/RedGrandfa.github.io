@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Reservoir</title>
+  </head>
+  <body>
+    <button class="btn btn-primary" onclick="fetch()">取得資料</button>    
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <td>項目</td>
+          <td>水庫名稱</td>
+          <td>有效蓄水量</td>
+          <td>剩餘百分比</td>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <script>
+      function fetch(){
+
+        let reservoirs = [
+          {
+            name:'新山水庫(基隆)',
+            capacity:896.58,
+            pecent:89.4
+          },
+          {
+            name:'翡翠水庫(台北、新北)',
+            capacity:26455.31,
+            pecent:78.8
+          },
+          {
+            name:'石門水庫(新北、桃園、新竹)',
+            capacity:6795.68,
+            pecent:34.4
+          },
+          {
+            name:'永和山水庫(新竹、苗栗)',
+            capacity:242.59,
+            pecent:8.1
+          },
+          {
+            name:'寶山水庫(新竹)',
+            capacity:94.18,
+            pecent:18.7
+          }
+        ];
+
+        let tbody = document.getElementsByTagName('tbody')[0];
+        reservoirs.forEach( (rr,idx)=>{
+          let tr= document.createElement('tr');
+          tbody.appendChild(tr);
+          let tdid = document.createElement('td');
+          tr.appendChild(tdid);
+          tdid.innerText=`${idx+1}`;
+          
+          let proerties = Object.keys(rr);
+          proerties.forEach((p)=>{
+            let td = document.createElement('td');
+            tr.appendChild(td);
+            td.innerText=rr[p];
+            switch(p){
+              case 'capacity':
+                td.innerText += "萬立方公尺"
+                break;
+              case 'percent':
+                td.innerText += "%"
+                break;
+              default:
+                break;
+            }
+          });
+        });
+
+    }
+
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

@@ -1,0 +1,88 @@
+.jump-buttons .container{
+	margin-bottom: 270px;
+}
+
+.jump-buttons h1{   
+	margin: auto; 
+	font-size: 50px;
+	font-weight: 600;
+	color: #555;
+	text-align: center;
+}
+
+/* 黑線 */
+.jump-buttons h1::after{
+	content: '';
+	display: block;
+	width: 38px;
+	height: 5px;
+	background-color: #000;
+	margin: 11px auto 51px; 
+}
+
+/* buttonList */
+.jump-buttons .button-list{
+	/* width: 960px; */
+
+	display: flex;
+	justify-content: space-between;
+
+	font-size: 22px;
+}
+
+.jump-buttons .button-list li{
+	width: 185px;
+}
+
+/* 紅白共同設定 */
+.jump-buttons .button-list a{
+	display: block;
+	line-height:34px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+/* 白 */
+ul>li>a:first-child{
+	border:1px dotted #444;
+	color:#000;
+	background-color: #fff;
+	height: 34px;
+}
+
+/* 紅 */
+ul>li>a:last-child{
+	color:#fff;
+	background-color: #ae0014;
+	
+	transition: all 1.6s 0s ease;
+	/* 字大小超出範圍，要隱藏*/
+	overflow: hidden;
+
+	/* 初始只有一條細線 */
+	height: 1px;	
+	/* 和白塊的下邊框重疊 */
+	margin-top: -1px;
+
+	/* 鎖住content box的'絕對位置' */
+	padding-top: 1px;
+}
+
+/* 紅 觸摸 */
+ul>li:hover>a:last-child{
+	/* 高度長高 白塊高 */
+	height: 34px;
+	/* 同時，位置向上移動 白塊高  */
+	margin-top: -34px;
+
+	/* 鎖住content box的'絕對位置' */
+	padding-top: 34px;
+}
+
+/* 字的定位 是根據父層content box
+目前content box上緣位置已鎖死*/
+
+ul>li>a>span{ 
+	display: block;
+	margin-top: -33px;
+}

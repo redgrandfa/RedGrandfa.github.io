@@ -1,0 +1,47 @@
+.info>.titleArea{
+	background-color: #bb0404;
+
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.advantage:nth-child(even)>.info>.titleArea{
+	flex-direction: row-reverse;
+}
+
+.info>.titleArea>.bango{
+	font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+	color: #f3f3f3;
+	width: 118px;
+	font-size: 133px;
+	writing-mode: vertical-lr;
+    font-weight: 100;
+
+    margin: 2px -10px;
+}
+
+.info>.titleArea>h2{
+    margin: 22px auto 0px;
+
+	color: #efefef;
+	font-size: 50px;
+	font-weight: 400;
+}
+.info>.textArea{
+	background-color: #111;
+	padding: 20px;
+    width: 315px;
+}
+.info>.textArea>h3{
+	font-size: 27px;
+	color: #eee;
+	font-weight: 500;
+	line-height: 2;
+}
+
+.info>.textArea>p{
+	color: #dfdfdf;
+	font-size: 19px;
+	line-height: 1.6;
+	letter-spacing: 2px;
+}

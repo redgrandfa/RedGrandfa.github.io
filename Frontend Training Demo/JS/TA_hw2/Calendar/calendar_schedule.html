@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+      /* *{
+        padding: 0;
+        margin: 0;
+      } */
+
+      #calenderTitle{
+        width: 100%;
+        padding: 20px;
+      }
+    </style>
+    <title>Calendar</title>
+  </head>
+<body>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div id="input-area" class="modal-body d-flex flex-column">
+          日期：
+          <input readonly="" id="date" type="text">
+          <div>行程<span id="todo-index"></span>：</div>
+          <input id="todo-item" type="text">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="SaveTodoItem()">儲存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- calender html -->
+  <div id="calenderTitle" class="d-flex justify-content-around">
+    <button type="button" class="btn btn-primary" onclick="MinMonth()">往上月</button>
+    <h1 id="year-month" class="text-center"></h1>
+    <button type="button" class="btn btn-primary" onclick="AddMonth()">往下月</button>
+  </div>
+  <table class="table table-bordered table table-striped table-warning">
+    <thead>
+      <th>日</th>
+      <th>一</th>
+      <th>二</th>
+      <th>三</th>
+      <th>四</th>
+      <th>五</th>
+      <th>六</th>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+
+  <script>
+    //數字轉國字
+    // let monthsMandarin = ['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+    // let daysMandarin = ['日','一','二','三','四','五','六'];
+    let tbody = document.querySelector('tbody');
+    //當天 的 date物件
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    let date = today.getDate();
+    
+    // debugger;
+    RefreshCalendar();
+
+    function RefreshCalendar(){
+      tbody.innerHTML ="";
+      //refreash title
+      document.getElementById('year-month').innerHTML=`${year}年${month+1}月`;
+
+      // Obj of the first day of Month
+      let firstOfMonth = new Date( year , month ,1 );
+      let firstDay = firstOfMonth.getDay();
+
+      // the number of dates of Month
+      let dayOfMonth = new Date( year , month+1 , 0 ).getDate();     
+      
+      let shift = -(firstDay-1); //倒推幾天
+      let row_max = Math.ceil((dayOfMonth + firstDay)/7);
+
+      //Print calender
+      for(let row=0; row<row_max; row++){
+        let tr = document.createElement('tr');
+        for(let col=0; col<7;col++){
+          let td = document.createElement('td');
+
+          //Print dates
+          //x月1日
+          let current = new Date( year , month, shift )
+          if (current.getDate()==1){
+            td.innerText = 1+current.getMonth() +" / ";
+          }
+          let span = document.createElement('span');
+          span.innerText = current.getDate();
+          td.appendChild(span);
+
+
+          //Print activities  從local取資料
+          let activitiyDate = `${year}-${month+1}-${shift}`
+          if(localStorage.getItem(activitiyDate)!=null){
+            let todoArr = JSON.parse(localStorage.getItem(activitiyDate));
+
+            let ul = document.createElement('ul');
+            todoArr.forEach(todoItem=>{
+                let li =document.createElement('li');
+                li.setAttribute("data-bs-toggle","modal");
+                li.setAttribute("data-bs-target","#exampleModal");
+                //local的資料結構?
+                li.innerText=todoItem.title;
+                ul.appendChild(li);
+            });
+            td.appendChild(ul);
+          }
+          //行程物件= 日期 :[  mission1 , mission2   ...]
+          td.addEventListener('click',function(ev){
+            let target;
+
+            //點在li修改，取li序號
+            if(ev.target.localName=="li") {
+              //modal title
+              document.querySelector('#exampleModalLabel').innerText='修改行程';
+              //modal text
+              ev.target.parentNode.querySelectorAll('li').forEach((item , idx) => {
+                if(item.isSameNode(ev.target)){
+                  document.querySelector("#todo-index").innerText= idx+1;
+                }
+              });
+
+              document.querySelector("#todo-item").value = ev.target.innerText;
+        
+              target = ev.target.offsetParent;
+            }
+            //點在li外新增，取li最大值
+            else{
+              //modal title
+              document.querySelector('#exampleModalLabel').innerText='新增任務';
+              if(ev.target.localName=='ul'||ev.target.localName=='span'){
+                target = ev.target.offsetParent;
+              }            
+              else{
+                target = ev.target;
+              }
+              // console.log(target);
+              //modal text
+              // console.log(target.querySelectorAll('ul>li'))             
+              document.querySelector("#todo-index").innerText= target.querySelectorAll('ul>li').length+1;
+              document.querySelector("#todo-item").value = "";
+            }           
+            
+            let clickYMD = TransformToYMD(parseInt(target.querySelector('span').innerText)  , row , row_max);
+            document.getElementById('date').value= `${clickYMD[0]}-${clickYMD[1]}-${clickYMD[2]}`;
+
+            
+            // .select();
+            // document.getElementById("todo-item").focus();
+            
+          })
+
+          td.setAttribute("data-bs-toggle","modal");
+          td.setAttribute("data-bs-target","#exampleModal");
+          tr.appendChild(td);
+          shift++;
+        }
+        tbody.appendChild(tr);
+      }
+    };
+
+    //td轉date物件
+    function TransformToYMD( clickDate , week , week_max){
+      //if   <7 且 在末週=> 是次月
+      //else if 在首週，數字>7 => 是前月
+      //else 是本月
+      if ( clickDate< 7 && week == week_max-1){
+        return [year,month+2,clickDate];
+      }else if( clickDate> 7 && week == 0){
+        return [year,month,clickDate];
+      }else{
+        return [year,month+1,clickDate];
+      }
+    }
+    //todoLi物件 轉 localstorage key或 取value
+    //localstorage key轉 todoLi物件
+
+
+//跨日 => modal起訖日
+
+    //modal存json進localstorage
+    function SaveTodoItem(){
+      let date = document.getElementById('date').value;
+      let todoIndex = parseInt( document.getElementById('todo-index').innerText)-1;
+      console.log(todoIndex);
+      let todoItem = document.getElementById('todo-item').value;
+      let todoArr = [];
+
+      if(todoItem==''){
+        let title = document.querySelector('#exampleModalLabel').innerText;
+        if(title=='修改行程'){
+          //刪除
+          todoArr = JSON.parse(localStorage.getItem(date));
+          todoArr.splice(todoIndex, 1);
+          localStorage.setItem(date,JSON.stringify(todoArr)); 
+
+        }else if(title=='新增行程'){
+          //不新增
+        }
+      }else{
+        let todoObj = {title:todoItem};
+        if(localStorage.getItem(date)!=null){
+            todoArr = JSON.parse(localStorage.getItem(date));
+        }
+        todoArr[todoIndex]=todoObj;
+        localStorage.setItem(date,JSON.stringify(todoArr)); 
+        //要JSON.stringify不然會出現[Object,Object]
+      }
+
+      RefreshCalendar();
+    }
+
+    
+    function AddMonth(){
+        month++;
+        RefreshCalendar();
+    }
+
+    function MinMonth(){
+        month--;
+        RefreshCalendar();
+    }
+  </script>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  -->
+</body>
+</html>

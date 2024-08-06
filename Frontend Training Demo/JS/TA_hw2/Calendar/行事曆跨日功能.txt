@@ -1,0 +1,126 @@
+
+----滑鼠座標-----
+MouseEvent.唯讀屬性
+pageX = 鼠標相對於app網頁檔的X座標
+clientX = 鼠標相對於app的viewport的X座標(受到卷軸影響)(只有IE沒有?)
+offsetX = 鼠標相對於事件源元素的X座標
+screenX = 鼠標相對於顯示器的X座標
+
+
+----offset-----
+HTMLElement.
+offsetWidth = 元素佔用寬度扣除水平外距占用的部分
+(offsetHeight )
+
+offsetLeft = 元素左上角相對於
+	HTMLElement.offsetParent的左邊界的差
+(offsetTop = ...上邊界)
+offsetParent有可能null：應該是用viewport算
+
+---座標找元素--------------
+
+document.elementFromPoint(X,Y)	=> 取得HTMLElement
+
+
+============	設計	============
+
+-----local storage 資料結構------------
+
+key:DateStart-single / Cross
+value:[
+	{
+		dateEnd : 
+		do : 
+	}
+]
+
+取行程值 =easy  改localstorage =easy 
+印行程=DateStart為關鍵字查找
+早日優先放，晚日查找空位，class名預設， 
+style絕對定位，相對於整列，寬度 left預定排位
+
+跨週做多個元素???
+前月延伸過來的? 如何印 
+	=> 檢查當月首日是否夾在起迄日之間
+
+
+
+===============================================
+跨日拖曳可能性：
+
+按下 =視覺上= 每列一個DOM物件，計算起點格
+	~功能上~ 紀錄起日
+移動 = 動態計算終點格，改變長度/位置  
+			定義頭尾：先篩上下，若同列再篩左右
+	~紀錄迄日
+放開 = 直接計算起點終點格，
+	~ 彈出modal
+
+打叉=刪除視覺DOM物件
+儲存=刪除視覺>更新storage>刷新行事曆
+
+刷新行事曆外觀：
+法一：臨時用變數紀錄當前五列七格 佔用情況??
+	檢查各格是否有一個統一的空列
+
+----------------------
+startCoord	滑鼠起點座標	
+endCoord	滑鼠終點座標
+(如果座標超出日曆主區，就取上/下限作為當前的X/Y)
+
+tdWidth		=DOM.offsetWidth
+tdHeight	=陣列紀錄
+
+startCoord	起點格
+endRC		終點格
+
+----------------------
+1.做列印功能V
+2.點擊彈窗V  
+3.儲存更新V
+4.做拖曳外觀效果
+
+按下 =視覺上= 每列一個DOM物件，計算起點格
+移動 = 動態計算終點格，改變長度/位置  
+			定義頭尾：先篩上下，若同列再篩左右
+放開 = 直接計算起點終點格，
+
+處理只按不移
+
+
+
+----drag拖移----
+
+1.draggable =true
+	只有圖片和超連結預設 draggable =true
+2.dragstart 事件
+3.事件中可以指定
+	drag data	只有這項必須
+	feedback image
+	drag effect
+
+
+(拖曳事件會向上傳遞)?
+-------	drag data----------
+所有拖曳事件都有一個屬性dataTransfer，是一個
+DataTransfer物件，保有drag data，可攜帶多種形態
+
+drag data指派：event.dataTransfer.setData(type,value)
+
+
+
+----拖曳效果----
+複製、移動、連結等
+
+----------
+原始變半透明
+[拖曳開始]
+攜帶起點格資料
+計算起終點格差，調整起終點
+removechild
+加入.fake
+
+[移動]
+
+[結束]
+refresh活動

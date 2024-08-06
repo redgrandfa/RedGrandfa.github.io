@@ -1,0 +1,37 @@
+*{
+    text-decoration: none;
+}
+
+
+.container{
+    width: 1200px;
+    margin: auto;
+}
+
+/* .wrap{
+
+} */
+
+.row{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.free-try-button{
+    display: block;
+    margin-left: auto;
+    
+    border-radius: 16px;
+    
+    width: 66px;
+    
+    line-height: 32px;
+    font-size: 12px;
+    text-align: center;
+
+    
+    color: #fff;
+    background-color: #0061ff;
+}
+

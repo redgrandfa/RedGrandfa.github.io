@@ -1,0 +1,59 @@
+/* 大影片 */
+.video-bg{
+    position: relative;
+    z-index: -1;
+}
+
+.advantage:nth-child(odd) .video-bg {
+    margin-left: 180px;
+}
+
+.advantage:nth-child(even) .video-bg{
+    margin-right: 260px;
+}
+
+.video-bg img{
+    width: 695px;
+}
+
+/* 按鈕 */
+.video-icon{
+    margin-top: 11px;
+}
+.advantage:nth-child(odd) .video-icon{
+    margin-left: -50px;
+}
+
+.advantage:nth-child(even) .video-icon{
+    margin-right: -50px;
+}
+
+.video-icon>img{
+	width: 55px;
+}
+
+
+/* 灰塊 */
+.video-bg::after{
+	content:'';
+	background-color:  #f3f3f3; 
+
+	position: absolute;
+	z-index: -1;
+
+    /* 右切齊隱藏線 */
+	right: -85px;
+
+	/*上偏切齊標題字*/
+	top: -85px;
+}
+
+.advantage:nth-child(odd) .video-bg::after{
+	width: 435px;
+	height: 285px;
+} 
+
+.advantage:nth-child(even) .video-bg::after{
+	width: 515px;
+	height: 405px;
+}

@@ -1,0 +1,33 @@
+.innovation{
+	width: 682px;
+
+	position: relative;
+	top: -30px;
+}
+
+.advantage:nth-child(even)>.innovation{
+	/* 右切齊 */
+	right: 0px;
+}
+.advantage-fun>.innovation{
+	left:45px;
+	/* 切齊黑塊內緣 */
+	/* 左內距-20 li左外距-2 黑塊左外距-5 黑塊左右內距-6-7 
+	寬5~6個字-100~120*/
+}
+.advantage-comfortable>.innovation{
+	left:25px;
+	/* 切齊黑塊內緣 */
+	/* 左內距-20 li左外距-2 
+    黑塊左外距-5 黑塊左右內距-6-7 
+	寬6個字-120*/
+}
+.advantage-proud>.innovation{
+	left:65px;
+	/* 切齊黑塊內緣 */
+	/* 左內距-20 li左外距-2 黑塊左外距-5 黑塊左右內距-6-7 
+	寬4個字-80*/
+}
+
+
+/*  */

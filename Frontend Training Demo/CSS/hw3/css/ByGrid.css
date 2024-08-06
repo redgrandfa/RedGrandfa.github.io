@@ -1,0 +1,124 @@
+.advantage{
+    width: 960px;
+
+    display: grid;
+    grid-template-columns: repeat(192,5px);
+    grid-template-rows: repeat(570,1px) 1fr
+}
+
+/* column 共960
+355px
+180px 695px
+        重疊50
+            55px
+    682px
+
+
+            355px
+    695px 260px
+重疊50
+55px 
+*/
+
+.info>.titleArea{
+    height: 140px;
+}
+
+/* row 共570+1fr
+    140
+    175/205     430 = 182 + 
+                    23          
+                    25          48 = 23+25
+                    170
+重疊30px;            30
+*/
+
+.info{
+    /* 0 ~ 355  =>  0 ~ 71 */
+    grid-column: 1/ 72;  
+    /*  0~ 345 */
+    grid-row: 1/span 345;
+    z-index: 2;
+}
+
+.video-bg{
+    /* 180 ~ 875  =>  36 ~ 175  */
+    grid-column: 37/ span 139;  
+    /*  120~ 550 */
+    grid-row: 141/span 430;
+    z-index: 1;
+}
+.video-bg img ,.video-icon img{
+    width: 100%;
+}
+
+.advantage::after{
+    content: '';
+    background-color: #f3f3f3;
+    display: block;
+    /* x  , 寬435/5 = 87 */
+    grid-column: span 87 / -1;  
+    /*  140-85 = 55 , 高285 */
+    grid-row: 55/span 285;
+
+}
+
+.video-icon{
+    /* 825 ~ 880  =>  165 ~ 176  */
+    grid-column: 166 / span 11; 
+    /*  302 ~ 350 */
+    grid-row: 350/span 48; 
+    z-index: 2;
+}
+
+.innovation{
+    /* -30 ~ 0 */
+    grid-row: span 20/-1;
+    z-index: 2;
+}
+
+.advantage-fun>.innovation{
+	/* left:45px; */
+        /* 45 ~   =>  9 ~ 146  */
+    grid-column: 10 / span 143;  
+}
+.advantage-comfortable>.innovation{
+	/* left:25px; */
+        /* 25 ~   =>  5 ~ 142  */
+    grid-column: 6 / span 143;  
+}
+.advantage-proud>.innovation{
+	/* left:65px; */
+        /* 65 ~   =>  13 ~ 150  */
+    grid-column: 14 / span 143;  
+}
+/* 685 + 15 + 15 /5 = 143  */
+
+
+/* 偶數 */
+.advantage:nth-child(even) .info{
+    /* -355 ~ 0  =>  -71 ~ 0 */
+    grid-column: -72 / -1;  
+}
+
+.advantage:nth-child(even) .video-bg{
+    /* 5 ~ -260  =>  1 ~ -52  */
+    grid-column: 2 / -53;  
+}
+
+.advantage:nth-child(even)::after{
+    /* 終點700+85/5  , 寬515/5 = 103 */
+    grid-column: span 103/156;  
+    /*  ... , 405 */
+    grid-row-end: span 405;
+}
+
+.advantage:nth-child(even) .video-icon{
+    /* 0 ~ 55  =>  0 ~ 11  */
+    grid-column: 1 / 12;  
+}
+
+.advantage:nth-child(even) .innovation{
+    /* -685 ~ 0 =>  -137 ~ 0  */
+    grid-column: span 143 / -1;
+}

@@ -1,0 +1,166 @@
+
+$min-width:992px;
+$max-width:1200px;
+$transp-blue:rgba(0,111,222,.5);
+$banner-contentcwidth:377px;
+a{
+  text-decoration: none;
+  color: #000;
+}
+// 
+.header{
+  min-width:$min-width;
+  >.navbar{
+    min-width:$min-width;
+    z-index: 3;
+    >.container-fluid{
+      >.navbar-brand{
+        color:#fff; 
+        >.d-flex{
+          img{
+            width: 55px;
+          } 
+          h1{
+            font-size: 33px;
+          }
+        }    
+        h6{
+          margin-left:66px;
+        }          
+
+      }
+      >.navbar-collapse{
+        >ul{
+          font-size: 14px;
+          >.nav-item{
+
+            >.nav-link{
+              color: white;
+            }
+            >.active{
+              color: #4c9;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .content{
+    z-index:2;
+    top: 200px;
+    color: #fff;
+    width: $banner-contentcwidth;
+    text-align: center;
+
+    .description{
+      margin-bottom: ($banner-contentcwidth)/6;
+      p{
+        background-color:$transp-blue;
+      }
+    }
+    .association-links{
+      a{
+        color: #fff;
+        background-color:$transp-blue;
+        padding-top: 5px ;
+        padding-bottom: 5px ;
+        width: ($banner-contentcwidth)/3;
+      }
+    }
+  }
+  .header-background{
+    .carousel-inner{
+      overflow:hidden;
+      height: (992px)*0.526;
+      .carousel-item{
+        margin: 0 auto;
+        width: 100vw;
+        height: 52vw;
+      }
+    }
+  }
+}
+
+
+.main{
+  min-width:$min-width;
+  .box{
+      max-width: $max-width;
+      .row{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 100px auto 50px;
+        .item{
+          width: 430px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          h2,h3,h4,h5,h6{
+            font-weight: 900;
+          }
+          p{
+            font-size: 17px;
+          }
+        }
+
+      }
+      .row:nth-child(even){
+        flex-direction: row-reverse;
+      }    
+    }
+}
+
+.non-profit{
+  min-width:$min-width;
+  .banner{
+    height: 166px;
+    .box{
+      background-color:$transp-blue;
+
+      h2,p{
+        font-size: 22px;
+        margin: 0;
+      }
+    }
+  }
+  .non-profit-links{ 
+    height: 166px;
+    max-width:$max-width;
+    margin-bottom: 0;
+    
+  }
+}
+
+
+.footer{
+  min-width:$min-width;
+  background-color: #ddd;
+  margin-bottom: -25px;
+  .box{
+    max-width:$max-width;
+    .contact{
+      width: 400px;
+      .chatroom{
+        display: block;
+        width: 77px;
+        height: 77px;
+        border-radius: 50%;
+        background-color: #77f;
+
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+      }
+    }
+    .copyright{
+      width: 300px;
+    }
+  }
+}
