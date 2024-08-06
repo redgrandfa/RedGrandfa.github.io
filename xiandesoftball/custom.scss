@@ -1,0 +1,101 @@
+$deepBlueColor:#11a;
+$textColor:#444;
+
+li{
+    list-style-type: none;
+}
+body{
+    max-width: 1200px;
+    margin: auto;
+}
+#showPlayers{
+    //overflow: hidden;
+}
+
+// #showRanks{
+// }
+.rank{
+    color: $textColor;
+}
+
+.rank__title{
+    border-bottom:5px solid $deepBlueColor;
+    
+    button{
+        border: none;
+        background-color: transparent;
+        .link-icon{
+            border: 1px solid $textColor;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            position: relative;
+            &::after{
+                content: '';
+                display: block ;
+                border-top: 2px solid $textColor;
+                border-right: 2px solid $textColor;
+                width: 8px;
+                height: 8px;
+                transform: rotate(45deg);
+                
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                right: 3px;
+                margin: auto;
+            }
+        }
+        &:hover{
+            color: $deepBlueColor;
+            .link-icon{
+                background-color: $deepBlueColor;
+                border: none;
+                &::after{
+                    border-color: #fff;
+                }
+            }
+        }
+        &:focus-visible{
+            outline: none;
+        }
+    }
+
+}
+.rank__body{
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.2);
+    li{
+        .rank__liStyle{
+            width: 26px;
+            height: 26px;
+            background-color: #aaa;
+            color: $textColor;  
+            text-align: center;  
+            font-weight: 900;
+            font-style: italic;     
+        }
+        // .rank__data{
+
+        // }
+        &:not(:first-of-type){
+            padding-top: 11px;
+        }
+        &:first-of-type{
+            color: $deepBlueColor;
+            .rank__liStyle{
+                background-color: $deepBlueColor;
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:600px){
+}
+@media screen and (min-width:900px) {
+// .rank{
+//     width: 50%;
+// }
+}
