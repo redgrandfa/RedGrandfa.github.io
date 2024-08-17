@@ -1,6 +1,7 @@
 # Some Side Projects: 
 
 ## [Web App: Scripture Exercise ](https://scriptureexercise.azurewebsites.net/)
+- [GitHub](https://github.com/redgrandfa/ScriptureExercise)
 - Azure | ASP.NET Core 5 | bootstrap | Vue2 | bootstrapVue | Redis DB
 - Cookie Authentication
 - [Video Tutorial (it's in Chinese for the clients)](https://www.youtube.com/watch?v=JJjL_keZUFo&ab_channel=%E6%B4%AA%E5%81%89%E8%BB%92)
@@ -10,15 +11,15 @@
 - 2023
 
 ##  [Web App: Softball players data and ranking](https://redgrandfa.github.io/xiandesoftball/)
-- GitHub Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
-- 2023
+- [GitHub](https://github.com/redgrandfa/RedGrandfa.github.io/tree/main/xiandesoftball) Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
+- 2022
 
 ##  [Trading Robot: Martingale Strategy](https://github.com/redgrandfa/MQL5_share/tree/main/)
 - MQL5 | MT5 | VPS provided by broker
 - [Myfxbook](https://www.myfxbook.com/members/weiyen/ea-hungreal/10634035/)
 - 2024
 
-## [Alpaca's Algorithm Trading API](https://github.com/redgrandfa/Alpaca-s-Algorithm-Trading-API)
+## [Alpaca's Algorithm Trading API](https://github.com/redgrandfa/ReBalnaceBot)
 - Azure | ASP.NET
 - 2023
 - [Alpaca's Document](https://docs.alpaca.markets/docs/getting-started)
