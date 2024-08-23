@@ -1,6 +1,7 @@
 # Some Side Projects: 
 
 ## [Web App: Scripture Exercise ](https://scriptureexercise.azurewebsites.net/)
+I made this online exercise website for eliminating the repeated work to print A4 papers and grade manually.
 - [GitHub](https://github.com/redgrandfa/ScriptureExercise)
 - Azure | ASP.NET Core 5 | bootstrap | Vue2 | bootstrapVue | Redis DB
 - Cookie Authentication
@@ -11,6 +12,7 @@
 - 2023
 
 ##  [Web App: Softball players data and ranking](https://redgrandfa.github.io/xiandesoftball/)
+Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recordall).
 - [GitHub](https://github.com/redgrandfa/RedGrandfa.github.io/tree/main/xiandesoftball) Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
 - 2022
 
