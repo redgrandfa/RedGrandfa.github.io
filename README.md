@@ -28,6 +28,7 @@ Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recorda
 
 
 # Some Practice: 
+(These are not well organized because I didn't take into account how it would appear to the public.)
 ## [Discount Module Design Practice](https://github.com/redgrandfa/Discount-Module_Design-Practice/tree/main/Lib)
 - ASP.NET
 - 2023
