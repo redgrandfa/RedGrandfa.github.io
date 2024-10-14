@@ -16,6 +16,12 @@ Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recorda
 - [GitHub](https://github.com/redgrandfa/RedGrandfa.github.io/tree/main/xiandesoftball) Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
 - 2022
 
+##  [Web App: Religious Affairs Management System](https://chongzheng-admin.vercel.app/auth/login)
+- Vercel | Next.js | React.js | Prisma | MySQL | Aiven
+- Team members from Indonesia, Taiwan and Singapore
+- 2024 (Development undergoing)
+
+
 ##  [Trading Robot: Martingale Strategy](https://github.com/redgrandfa/MQL5_share/tree/main/)
 - MQL5 | MT5 | VPS provided by broker
 - [Myfxbook](https://www.myfxbook.com/members/weiyen/ea-hungreal/10634035/)
