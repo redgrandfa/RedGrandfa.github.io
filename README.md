@@ -17,8 +17,8 @@ Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recorda
 - 2022
 
 ##  [Web App: Religious Affairs Management System](https://chongzheng-admin.vercel.app/auth/login)
-- Vercel | Next.js | React.js | Prisma | MySQL | Aiven
-- Team members from Indonesia, Taiwan and Singapore
+- Vercel | Next.js | React.js | Ant Design | Prisma | MySQL | Aiven
+- Team members are from Indonesia, Taiwan and Singapore.
 - 2024 (Development undergoing)
 
 
