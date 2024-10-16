@@ -3,7 +3,7 @@
 ## [Web App: Scripture Exercise ](https://scriptureexercise.azurewebsites.net/)
 I made this online exercise website for eliminating the repeated work to print A4 papers and grade manually.
 - [GitHub](https://github.com/redgrandfa/ScriptureExercise)
-- Azure | ASP.NET Core 5 | bootstrap | Vue2 | bootstrapVue | Redis DB
+- Azure | ASP.NET Core 5 | bootstrap | Vue2 | bootstrapVue | Redis
 - Cookie Authentication
 - [Video Tutorial (it's in Chinese for the clients)](https://www.youtube.com/watch?v=JJjL_keZUFo&ab_channel=%E6%B4%AA%E5%81%89%E8%BB%92)
 - Anyone could login my test account:
@@ -11,26 +11,20 @@ I made this online exercise website for eliminating the repeated work to print A
     - Password : asd
 - 2023
 
-##  [Web App: Softball players data and ranking](https://redgrandfa.github.io/xiandesoftball/)
-Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recordall).
-- [GitHub](https://github.com/redgrandfa/RedGrandfa.github.io/tree/main/xiandesoftball) Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
-- 2022
+##  [Trading Robot: Martingale Strategy](https://github.com/redgrandfa/MQL5_share/tree/main/)
+- MQL5 | MT5 | VPS provided by broker
+- [Myfxbook](https://www.myfxbook.com/members/weiyen/ea-hungreal/10634035/)
+- 2024
 
 ##  [Web App: Religious Affairs Management System](https://chongzheng-admin.vercel.app/auth/login)
 - Vercel | Next.js | React.js | Ant Design | Prisma | MySQL | Aiven
 - Team members are from Indonesia, Taiwan and Singapore.
 - 2024 (Development undergoing)
 
-
-##  [Trading Robot: Martingale Strategy](https://github.com/redgrandfa/MQL5_share/tree/main/)
-- MQL5 | MT5 | VPS provided by broker
-- [Myfxbook](https://www.myfxbook.com/members/weiyen/ea-hungreal/10634035/)
-- 2024
-
-## [Alpaca's Algorithm Trading API](https://github.com/redgrandfa/ReBalnaceBot)
-- Azure | ASP.NET
-- 2023
-- [Alpaca's Document](https://docs.alpaca.markets/docs/getting-started)
+##  [Web App: Softball players data and ranking](https://redgrandfa.github.io/xiandesoftball/)
+Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recordall).
+- [GitHub](https://github.com/redgrandfa/RedGrandfa.github.io/tree/main/xiandesoftball) Pages | HTML | bootstrap | Vue2 | bootstrapVue | Google App Script ( use Google spreadsheet as DB)
+- 2022
 
 
 # Some Practice: 
@@ -41,6 +35,12 @@ Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recorda
 ## [Clean Arch Design Practice](https://github.com/redgrandfa/Design-Notes/tree/main/Architecture/CleanArch)
 - ASP.NET
 - 2023
+
+## [Alpaca's Algorithm Trading API](https://github.com/redgrandfa/ReBalnaceBot)
+- Azure | ASP.NET
+- 2023
+- [Alpaca's Document](https://docs.alpaca.markets/docs/getting-started)
+
 ---
 # Frontend Demo: 2021 Trained at BuildSchool
 ## JS Portfolios:
