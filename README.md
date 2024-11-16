@@ -41,6 +41,30 @@ Displaying statistics imitating the [CPBL](https://www.cpbl.com.tw/stats/recorda
 - 2023
 - [Alpaca's Document](https://docs.alpaca.markets/docs/getting-started)
 
+# Tutorial
+## [VBA tutorial](https://drive.google.com/drive/folders/1NgxV3xB1yXt76bGfziDPrDIkiBm0eOn0?usp=drive_link)
+I made **videos** with **handouts** .
+
+---
+# About me, beyond software
+I have explored many interests:
+
+fire staff spinning, 
+[acting](https://drive.google.com/file/d/1Bwy9rQ6tusmXfLpL0R30lDwbj4m3Gv-e/view?usp=drive_link), 
+[origami](https://drive.google.com/drive/folders/1_e04aC_YPPEhhSFnIHXKWcmz4O656Wgg?usp=drive_link),
+[Go](https://drive.google.com/file/d/15q12S1vV9KNg8uVRdXABiaBtyfTwAkwG/view?usp=drive_link),
+[Design](https://drive.google.com/drive/folders/1U9IurrF0aCdTK-oYog5H6IBdUfRalTUb?usp=drive_link), 
+Guzheng, 
+[Erhu](https://drive.google.com/file/d/1sUCGbYHCuxEbKwKSG15_mfXMmCWvR2S6/view?usp=drive_link), 
+singing, dancing, softball, badminton...
+
+Over time, I realized it wasn’t the activities themselves that interest me—it was the joy of learning and mastering new skills.
+
+With that understanding, I’ve stopped doing them and decide to focus on skills with business value or those in high demand in the job market.
+
+For example, I am willing to [teach Mandarin](https://drive.google.com/drive/folders/1q_sKjO6Jxbzx1ACShD9yIg2r2en9v7b1) because it sharpens my English speaking skills.
+
+
 ---
 # Frontend Demo: 2021 Trained at BuildSchool
 ## JS Portfolios:
